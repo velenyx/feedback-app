@@ -34,7 +34,7 @@ jobs:
         run: yarn test
         if: always()
         env:
-          MONGODB_URL: ${{env.MONGODB_URL}}
+          MONGODB_URL: ${{secrets.MONGODB_URL}}
 
       - name: linting ESLint
         run: yarn lint
