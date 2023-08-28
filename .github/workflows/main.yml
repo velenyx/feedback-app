@@ -1,0 +1,43 @@
+name: linting, testing, building
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Starting Node.JS ${{matrix.node-version}}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{matrix.node-version}}
+
+      - name: install yarn
+        run: npm install --global yarn
+
+      - name: install modules
+        run: yarn ci
+
+      - name: testing
+        run: yarn test
+        if: always()
+
+      - name: linting ESLint
+        run: yarn lint
+        if: always()
+
+      - name: format Prettier
+        run: yarn prettier
+        if: always()
