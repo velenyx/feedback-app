@@ -30,9 +30,11 @@ jobs:
       - name: install modules
         run: yarn install --frozen-lockfile
 
-#      - name: testing
-#        run: yarn test
-#        if: always()
+      - name: testing
+        run: yarn test
+        if: always()
+        env:
+          MONGODB_URL: { { secrets.MONGODB_URL } }
 
       - name: linting ESLint
         run: yarn lint
