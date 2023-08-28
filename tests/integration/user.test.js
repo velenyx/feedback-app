@@ -18,7 +18,7 @@ describe('User routes', () => {
         name: faker.name.findName(),
         email: faker.internet.email().toLowerCase(),
         password: 'password1',
-        role: 'user',
+        role: 'user'
       };
     });
 
@@ -37,13 +37,18 @@ describe('User routes', () => {
         name: newUser.name,
         email: newUser.email,
         role: newUser.role,
-        isEmailVerified: false,
+        isEmailVerified: false
       });
 
       const dbUser = await User.findById(res.body.id);
       expect(dbUser).toBeDefined();
       expect(dbUser.password).not.toBe(newUser.password);
-      expect(dbUser).toMatchObject({ name: newUser.name, email: newUser.email, role: newUser.role, isEmailVerified: false });
+      expect(dbUser).toMatchObject({
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+        isEmailVerified: false
+      });
     });
 
     test('should be able to create an admin as well', async () => {
@@ -155,7 +160,7 @@ describe('User routes', () => {
         page: 1,
         limit: 10,
         totalPages: 1,
-        totalResults: 3,
+        totalResults: 3
       });
       expect(res.body.results).toHaveLength(3);
       expect(res.body.results[0]).toEqual({
@@ -163,7 +168,7 @@ describe('User routes', () => {
         name: userOne.name,
         email: userOne.email,
         role: userOne.role,
-        isEmailVerified: userOne.isEmailVerified,
+        isEmailVerified: userOne.isEmailVerified
       });
     });
 
@@ -198,7 +203,7 @@ describe('User routes', () => {
         page: 1,
         limit: 10,
         totalPages: 1,
-        totalResults: 1,
+        totalResults: 1
       });
       expect(res.body.results).toHaveLength(1);
       expect(res.body.results[0].id).toBe(userOne._id.toHexString());
@@ -219,7 +224,7 @@ describe('User routes', () => {
         page: 1,
         limit: 10,
         totalPages: 1,
-        totalResults: 2,
+        totalResults: 2
       });
       expect(res.body.results).toHaveLength(2);
       expect(res.body.results[0].id).toBe(userOne._id.toHexString());
@@ -241,7 +246,7 @@ describe('User routes', () => {
         page: 1,
         limit: 10,
         totalPages: 1,
-        totalResults: 3,
+        totalResults: 3
       });
       expect(res.body.results).toHaveLength(3);
       expect(res.body.results[0].id).toBe(userOne._id.toHexString());
@@ -264,7 +269,7 @@ describe('User routes', () => {
         page: 1,
         limit: 10,
         totalPages: 1,
-        totalResults: 3,
+        totalResults: 3
       });
       expect(res.body.results).toHaveLength(3);
       expect(res.body.results[0].id).toBe(admin._id.toHexString());
@@ -287,7 +292,7 @@ describe('User routes', () => {
         page: 1,
         limit: 10,
         totalPages: 1,
-        totalResults: 3,
+        totalResults: 3
       });
       expect(res.body.results).toHaveLength(3);
 
@@ -321,7 +326,7 @@ describe('User routes', () => {
         page: 1,
         limit: 2,
         totalPages: 2,
-        totalResults: 3,
+        totalResults: 3
       });
       expect(res.body.results).toHaveLength(2);
       expect(res.body.results[0].id).toBe(userOne._id.toHexString());
@@ -343,7 +348,7 @@ describe('User routes', () => {
         page: 2,
         limit: 2,
         totalPages: 2,
-        totalResults: 3,
+        totalResults: 3
       });
       expect(res.body.results).toHaveLength(1);
       expect(res.body.results[0].id).toBe(admin._id.toHexString());
@@ -366,7 +371,7 @@ describe('User routes', () => {
         email: userOne.email,
         name: userOne.name,
         role: userOne.role,
-        isEmailVerified: userOne.isEmailVerified,
+        isEmailVerified: userOne.isEmailVerified
       });
     });
 
@@ -484,7 +489,7 @@ describe('User routes', () => {
       const updateBody = {
         name: faker.name.findName(),
         email: faker.internet.email().toLowerCase(),
-        password: 'newPassword1',
+        password: 'newPassword1'
       };
 
       const res = await request(app)
@@ -499,20 +504,27 @@ describe('User routes', () => {
         name: updateBody.name,
         email: updateBody.email,
         role: 'user',
-        isEmailVerified: false,
+        isEmailVerified: false
       });
 
       const dbUser = await User.findById(userOne._id);
       expect(dbUser).toBeDefined();
       expect(dbUser.password).not.toBe(updateBody.password);
-      expect(dbUser).toMatchObject({ name: updateBody.name, email: updateBody.email, role: 'user' });
+      expect(dbUser).toMatchObject({
+        name: updateBody.name,
+        email: updateBody.email,
+        role: 'user'
+      });
     });
 
     test('should return 401 error if access token is missing', async () => {
       await insertUsers([userOne]);
       const updateBody = { name: faker.name.findName() };
 
-      await request(app).patch(`/v1/users/${userOne._id}`).send(updateBody).expect(httpStatus.UNAUTHORIZED);
+      await request(app)
+        .patch(`/v1/users/${userOne._id}`)
+        .send(updateBody)
+        .expect(httpStatus.UNAUTHORIZED);
     });
 
     test('should return 403 if user is updating another user', async () => {

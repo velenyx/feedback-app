@@ -5,14 +5,14 @@ const paginate = require('../../../../src/models/plugins/paginate.plugin');
 const projectSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 });
 
 projectSchema.virtual('tasks', {
   ref: 'Task',
   localField: '_id',
-  foreignField: 'project',
+  foreignField: 'project'
 });
 
 projectSchema.plugin(paginate);
@@ -21,13 +21,13 @@ const Project = mongoose.model('Project', projectSchema);
 const taskSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   project: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Project',
-    required: true,
-  },
+    required: true
+  }
 });
 
 taskSchema.plugin(paginate);
@@ -50,7 +50,10 @@ describe('paginate plugin', () => {
       const project = await Project.create({ name: 'Project One' });
       const task = await Task.create({ name: 'Task One', project: project._id });
 
-      const projectPages = await Project.paginate({ _id: project._id }, { populate: 'tasks.project' });
+      const projectPages = await Project.paginate(
+        { _id: project._id },
+        { populate: 'tasks.project' }
+      );
       const { tasks } = projectPages.results[0];
 
       expect(tasks).toHaveLength(1);
