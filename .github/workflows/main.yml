@@ -33,6 +33,8 @@ jobs:
       - name: testing
         run: yarn test
         if: always()
+        env:
+          MONGODB_URL: { { secrets.MONGODB_URL } }
 
       - name: linting ESLint
         run: yarn lint
