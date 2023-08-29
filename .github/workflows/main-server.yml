@@ -1,4 +1,4 @@
-name: linting, testing, building
+name: Server linting, testing, building
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 
 on:
@@ -28,6 +28,7 @@ jobs:
         run: npm install --global yarn
 
       - name: install modules
+        working-directory: ./server
         run: yarn install --frozen-lockfile
 
 #      - name: testing
@@ -35,9 +36,11 @@ jobs:
 #        if: always()
 
       - name: linting ESLint
+        working-directory: ./server
         run: yarn lint
         if: always()
 
       - name: format Prettier
+        working-directory: ./server
         run: yarn prettier
         if: always()
