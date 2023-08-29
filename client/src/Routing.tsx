@@ -14,19 +14,17 @@ export const Routing = () => {
   return (
     <Routes>
       <Route path={routePath.HOME} element={<Home />} />
-      <Route path={routePath.PROFILE} element={!isAuth ? <Profile /> : <Auth />} />
       <Route path={routePath.AUTH} element={isAuth ? <Profile /> : <Auth />} />
       <Route path={routePath.REGISTRATION} element={isAuth ? <Profile /> : <Auth />} />
+      <Route path={routePath.PROFILE} element={!isAuth ? <Profile /> : <Auth />} />
+      <Route path={routePath.FEEDBACK} element={<Feedback />} />
       <Route
         path={routePath.ADD_FEEDBACK}
         element={isAuth ? <AddFeedback /> : <Auth />}
       />
       <Route path={routePath.AGREMEENT} element={<Agremeent />} />
       <Route path={routePath.COMMUNNITY_RULES} element={<CommunityRules />} />
-      <Route path={routePath.FEEDBACK} element={<Feedback />} />
       <Route path={routePath.ABOUT} element={<About />} />
-
-      <Route path={routePath.HOME} element={<Home />} />
       <Route path="*" element={<Navigate to={routePath.NOT_FOUND} />} />
     </Routes>
   );
