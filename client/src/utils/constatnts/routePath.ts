@@ -4,7 +4,7 @@ export const routePath = {
   REGISTRATION: "/registration",
   ADD_FEEDBACK: "/add_feedback",
   PROFILE: "/profile",
-  FEEDBACK: "/feedback:id",
+  FEEDBACK: "/feedback/:id",
   AGREMEENT: "/agreement",
   COMMUNNITY_RULES: "сommunity_rules",
   ABOUT: "/about",

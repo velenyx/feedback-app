@@ -1,10 +1,8 @@
+import { Routing } from "./Routing";
 import "./styles/app.scss";
 
 function App() {
-  return (
-    <>
-      <h1>Feedback-App</h1>
-    </>
+  return ( <Routing/>
   );
 }
 
