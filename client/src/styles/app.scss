@@ -1,0 +1,7 @@
+@import "./libs/normalize";
+@import "./libs/variables";
+
+body {
+  background-color: $bgColor;
+  color: black;
+}
