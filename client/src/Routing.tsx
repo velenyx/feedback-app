@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { routePath } from "./utils/constatnts/routePath";
+import { routePath } from "./shared/config/routePath";
 import { Auth } from "./pages/Auth/Auth";
 import { Home } from "./pages/Home/Home";
 import { Profile } from "./pages/Profile/Profile";
