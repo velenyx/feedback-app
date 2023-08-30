@@ -1,4 +1,6 @@
+@import "../../app/styles/libs/variables";
 .header {
+  background-color: white;
 }
 
 .container {
@@ -7,11 +9,185 @@
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  padding: 10px 0;
+  padding: 10px 10px;
+  max-width: 1020px;
+  margin: 0 auto;
 }
 .headerLogo {
 }
-.searchForm {
+
+.menu {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+
+  @media (max-width: 567px) {
+    display: none;
+  }
 }
-.searchFormBlock {
+
+.navMyFeedback,
+.navProfile,
+.navAuth {
+  cursor: pointer;
+}
+.navAuth {
+  font-weight: 600;
+}
+
+.navWrapper {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  position: relative;
+
+  &:hover {
+    color: $mainColor;
+    text-decoration: underline;
+  }
+  &:hover a {
+    color: $mainColor;
+    text-decoration: underline;
+  }
+  &:hover button {
+    color: $mainColor;
+    text-decoration: underline;
+  }
+}
+
+.headerMenu {
+  display: none;
+}
+.headerBurger {
+  display: none;
+}
+@media (max-width: 567px) {
+  .headerMenu {
+    display: block;
+  }
+  .headerBurger {
+    display: block;
+    position: relative;
+    flex: 0 0 30px;
+    height: 20px;
+    z-index: 5;
+  }
+
+  .headerBurger::before,
+  .headerBurger::after {
+    content: "";
+    background-color: black;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    transition: all 0.3s ease 0s;
+  }
+  .headerBurger::before {
+    top: 0;
+  }
+  .headerBurger::after {
+    bottom: 0;
+  }
+  .headerBurger span {
+    background-color: black;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    top: 9px;
+  }
+
+  .headerBurger.active::before {
+    transform: rotate(45deg);
+    top: 9px;
+  }
+  .headerBurger.active::after {
+    transform: rotate(-45deg);
+    bottom: 9px;
+  }
+  .headerBurger.active span {
+    display: none;
+  }
+
+  .headerMenu.active {
+    left: 0;
+    background: $bgColor;
+  }
+
+  .headerMenu {
+    position: fixed;
+    top: 60px;
+    left: -110%;
+    width: 100%;
+    height: max-content;
+    background-color: $bgColor;
+    transition: all 0.3s ease 0s;
+    z-index: 100;
+    padding: 20px 0px 20px 0px;
+    border-top: 1px solid $borderColor;
+  }
+
+  .headerMenu {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .headerMenuWrapper {
+    border-bottom: 1px solid $borderColor;
+    padding: 0 0 20px 0;
+    .burgerNavAuth {
+      padding: 0 20px;
+      border-bottom: 1px solid $borderColor;
+      padding-bottom: 20px;
+      width: 100%;
+    }
+
+    & .menuLinks {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: baseline;
+      border-bottom: 1px solid $borderColor;
+      margin: 0 0 20px 0;
+    }
+    & .profileItem {
+      padding: 20px 20px 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: baseline;
+      border-bottom: 1px solid $borderColor;
+      padding-bottom: 20px;
+    }
+    & .burgerNavButton {
+      padding: 0 20px;
+    }
+  }
+}
+
+.createFeedback {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+  min-height: 40px;
+  height: 48px;
+  color: white;
+  background-color: $mainColor;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  padding: 7px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  justify-content: center;
+
+  & svg {
+    font-size: 18px;
+  }
 }
