@@ -1,5 +1,5 @@
 import { Routing } from "./Routing";
-import "./styles/app.scss";
+import "./app/styles/app.scss";
 
 function App() {
   return ( <Routing/>
