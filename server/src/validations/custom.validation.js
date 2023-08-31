@@ -16,8 +16,8 @@ const password = (value, helpers) => {
 };
 
 const newCategoryName = (value, helpers) => {
-  if (!value) {
-    return helpers.message('Enter category name');
+  if (value.length < 3) {
+    return helpers.message('At least 3 characters!');
   }
   return value;
 };
