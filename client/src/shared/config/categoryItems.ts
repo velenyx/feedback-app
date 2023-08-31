@@ -1,3 +1,1 @@
-const categoryItems = {
-    
-}
+const categoryItems = {};
