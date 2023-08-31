@@ -1,5 +1,5 @@
 .header {
-  background-color: white;
+  background-color: var(--white-color);
 }
 
 .container {
@@ -176,7 +176,7 @@
   gap: 5px;
   min-height: 40px;
   height: 48px;
-  color: white;
+  color: var(--white-color);
   background-color: var(--main-color);
   border: none;
   font-size: 14px;

@@ -1,6 +1,7 @@
 import styles from "./Header.module.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import classNames from "classnames";
 import { routePath } from "../../shared/config/routePath";
 import { useAuth } from "../../shared/hooks/useAuth";
 import logo from "../../shared/assets/logo.svg";
@@ -64,13 +65,13 @@ export const Header = () => {
         </nav>
 
         <div
-          className={`${styles.headerBurger} ${burgerToggle && styles.active}`}
+          className={classNames(styles.headerBurger, { [styles.active]: burgerToggle })}
           onClick={handleBurgerMenu}
         >
           <span></span>
         </div>
 
-        <nav className={`${styles.headerMenu} ${burgerToggle && styles.active}`}>
+        <nav className={classNames(styles.headerMenu, { [styles.active]: burgerToggle })}>
           <div className={styles.headerMenuWrapper}>
             {isAuth ? (
               <div className={styles.burgerNavAuth}>
