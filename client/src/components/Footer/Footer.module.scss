@@ -31,24 +31,24 @@
     & .text {
       max-width: 375px;
       line-height: 1.2;
-      color: $blackColor;
+      color: var(--black-color);
     }
   }
 
   & .linksContainer {
     & .linkItem {
       margin-bottom: 5px;
-      color: $blackColor;
+      color: var(--black-color);
     }
     & .linkItem:hover a {
-      color: $mainColor;
+      color: var(--main-color);
       text-decoration: underline;
     }
   }
 }
 .credits {
   padding-top: 10px;
-  border-top: 1px solid $borderColor;
+  border-top: 1px solid var(--border-color);
   & span {
     margin-right: auto;
     font-size: 12px;

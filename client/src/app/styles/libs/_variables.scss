@@ -1,5 +1,7 @@
-$bgColor: #f5f5f7;
-$blackColor: #000000bf;
-$fontFamily: "Montserrat", sans-serif;
-$mainColor: #4444c6;
-$borderColor: #ebe7e7;
+:root {
+  --bg-color: #f5f5f7;
+  --black-color: #000000bf;
+  --main-font: "Montserrat", sans-serif;
+  --main-color: #4444c6;
+  --border-color: #ebe7e7;
+}

@@ -7,8 +7,7 @@ import logo from "../../shared/assets/logo.svg";
 
 import { RxEnter as OutIcon } from "react-icons/rx";
 import { IoCreateOutline as CreateIcon } from "react-icons/io5";
-import { BiUser as Profile } from "react-icons/bi";
-
+import { BiUser as ProfileIcon } from "react-icons/bi";
 
 export const Header = () => {
   const { isAuth, name } = useAuth();
@@ -32,34 +31,34 @@ export const Header = () => {
           {isAuth && (
             <>
               <div className={styles.navMyFeedback}>
-                <span className={styles.navWrapper}>
+                <div className={styles.navWrapper}>
                   <CreateIcon />
                   <Link to={routePath.PROFILE}>Мои отзывы</Link>
-                </span>
+                </div>
               </div>
 
               <div className={styles.navProfile}>
-                <span className={styles.navWrapper}>
-                  <Profile />
+                <div className={styles.navWrapper}>
+                  <ProfileIcon />
                   <Link to={routePath.PROFILE}>{name}</Link>
-                </span>
+                </div>
               </div>
             </>
           )}
 
           {isAuth ? (
             <div className={styles.navAuth}>
-              <span className={styles.navWrapper}>
+              <div className={styles.navWrapper}>
                 <OutIcon />
                 <button onClick={signOut}>Выйти</button>
-              </span>
+              </div>
             </div>
           ) : (
             <div className={styles.navAuth}>
-              <span className={styles.navWrapper}>
+              <div className={styles.navWrapper}>
                 <OutIcon />
                 <Link to={routePath.AUTH}>Войти</Link>
-              </span>
+              </div>
             </div>
           )}
         </nav>
@@ -75,34 +74,34 @@ export const Header = () => {
           <div className={styles.headerMenuWrapper}>
             {isAuth ? (
               <div className={styles.burgerNavAuth}>
-                <span className={styles.navWrapper}>
+                <div className={styles.navWrapper}>
                   <OutIcon />
                   <button onClick={signOut}>Выйти</button>
-                </span>
+                </div>
               </div>
             ) : (
               <div className={styles.burgerNavAuth}>
-                <span className={styles.navWrapper}>
+                <div className={styles.navWrapper}>
                   <OutIcon />
                   <Link to={routePath.AUTH}>Войти или зарегистрироваться</Link>
-                </span>
+                </div>
               </div>
             )}
 
             {isAuth && (
               <div className={styles.profileItem}>
                 <div className={styles.navProfile}>
-                  <span className={styles.navWrapper}>
-                    <Profile />
+                  <div className={styles.navWrapper}>
+                    <ProfileIcon />
                     <Link to={routePath.PROFILE}>{name}</Link>
-                  </span>
+                  </div>
                 </div>
 
                 <div className={styles.navMyFeedback}>
-                  <span className={styles.navWrapper}>
+                  <div className={styles.navWrapper}>
                     <CreateIcon />
                     <Link to={routePath.PROFILE}>Мои отзывы</Link>
-                  </span>
+                  </div>
                 </div>
               </div>
             )}
@@ -114,12 +113,12 @@ export const Header = () => {
             </div>
 
             <div className={styles.burgerNavButton}>
-              <span className={styles.navWrapper}>
+              <div className={styles.navWrapper}>
                 <Link to={routePath.ADD_FEEDBACK} className={styles.createFeedback}>
                   <CreateIcon />
                   Написать отзыв
                 </Link>
-              </span>
+              </div>
             </div>
           </div>
         </nav>
