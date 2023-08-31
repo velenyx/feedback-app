@@ -28,9 +28,14 @@ const category = [
 const categorySchema = mongoose.Schema(
   {
     name: {
-      type:String,
-      
+      type: String,
       required: true
+    },
+    category: {
+      type: String,
+      enum: category,
+      required: true,
+      default: 'other'
     }
   },
   { timestamps: true }
