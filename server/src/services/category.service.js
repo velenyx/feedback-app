@@ -7,7 +7,7 @@ const getCategories = async () => {
   return categories;
 };
 
-const createtCategory = async (newCategory) => {
+const createCategory = async (newCategory) => {
   const existsInDb = await Category.findOne({ category: newCategory });
   if (existsInDb) {
     throw new ApiError(httpStatus.CONFLICT, 'Such category already exists!');
@@ -16,4 +16,4 @@ const createtCategory = async (newCategory) => {
   return category;
 };
 
-module.exports = { getCategories, createtCategory };
+module.exports = { getCategories, createCategory };

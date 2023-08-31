@@ -6,8 +6,6 @@ const validate = require('../../middlewares/validate');
 const router = express.Router();
 
 router.route('/').get(categoriesController.getCategories);
-router
-  .route('/create')
-  .post(validate(categoryValidation.category), categoriesController.createCategory);
+router.route('/').post(validate(categoryValidation.category), categoriesController.createCategory);
 
 module.exports = router;
