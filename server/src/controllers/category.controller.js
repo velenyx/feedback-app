@@ -7,6 +7,14 @@ const getCategories = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(categories);
 });
 
+const createCategory = catchAsync(async (req, res) => {
+  const { newCategory } = req.body;
+  const category = await categoriesService.createtCategory(newCategory.toLowerCase());
+
+  res.send(category);
+});
+
 module.exports = {
-  getCategories
+  getCategories,
+  createCategory
 };

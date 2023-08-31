@@ -15,7 +15,15 @@ const password = (value, helpers) => {
   return value;
 };
 
+const newCategoryName = (value, helpers) => {
+  if (!value) {
+    return helpers.message('Enter category name');
+  }
+  return value;
+};
+
 module.exports = {
   objectId,
-  password
+  password,
+  newCategoryName
 };
