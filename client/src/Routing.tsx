@@ -8,20 +8,20 @@ import { Agremeent } from "./pages/Agremeent/Agremeent";
 import { CommunityRules } from "./pages/CommunityRules/CommunityRules";
 import { Feedback } from "./pages/Feedback/Feedback";
 import { About } from "./pages/About/About";
+import { PrivateRouter } from "./shared/router/privateRouter";
 
 export const Routing = () => {
-  const isAuth = true;
   return (
     <Routes>
+      <Route element={<PrivateRouter />}>
+        <Route path={routePath.PROFILE} element={<Profile />} />
+        <Route path={routePath.ADD_FEEDBACK} element={<AddFeedback />} />
+      </Route>
+       
+      <Route path={routePath.AUTH} element={<Auth />} />
+      <Route path={routePath.REGISTRATION} element={<Auth />} />
       <Route path={routePath.HOME} element={<Home />} />
-      <Route path={routePath.AUTH} element={isAuth ? <Profile /> : <Auth />} />
-      <Route path={routePath.REGISTRATION} element={isAuth ? <Profile /> : <Auth />} />
-      <Route path={routePath.PROFILE} element={!isAuth ? <Profile /> : <Auth />} />
       <Route path={routePath.FEEDBACK} element={<Feedback />} />
-      <Route
-        path={routePath.ADD_FEEDBACK}
-        element={isAuth ? <AddFeedback /> : <Auth />}
-      />
       <Route path={routePath.AGREMEENT} element={<Agremeent />} />
       <Route path={routePath.COMMUNNITY_RULES} element={<CommunityRules />} />
       <Route path={routePath.ABOUT} element={<About />} />

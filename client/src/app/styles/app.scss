@@ -1,7 +1,6 @@
 @import "./libs/normalize";
-@import "./libs/variables";
 
 body {
-  background-color: $bgColor;
+  background-color: var(--bg-color);
   color: black;
 }
