@@ -91,8 +91,14 @@ export const Header = () => {
             ) : (
               <div className={styles.burgerNavAuth}>
                 <div className={styles.navWrapper}>
-                  <OutIcon />
-                  <Link to={routePath.AUTH}>Войти или зарегистрироваться</Link>
+                  <div className={styles.login}>
+                    <OutIcon />
+                    <Link to={routePath.AUTH}>Войти</Link>
+                  </div>
+                  или
+                  <div className={styles.register}>
+                    <Link to={routePath.REGISTRATION}>зарегистрироваться</Link>
+                  </div>
                 </div>
               </div>
             )}

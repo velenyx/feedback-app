@@ -1,5 +1,8 @@
 .header {
   background-color: var(--white-color);
+  @media (max-width: 576px) {
+    background-color: var(--bg-color);
+  }
 }
 
 .container {
@@ -27,6 +30,7 @@
 }
 
 .navAuth {
+  color: var(--black-color);
   font-weight: 600;
   & .login,
   .register {
@@ -66,18 +70,11 @@
   align-items: center;
   position: relative;
 
-  // &:hover {
-  //   color: var(--main-color);
-  //   text-decoration: underline;
-  // }
-  // &:hover a {
-  //   color: var(--main-color);
-  //   text-decoration: underline;
-  // }
-  // &:hover button {
-  //   color: var(--main-color);
-  //   text-decoration: underline;
-  // }
+  & .login {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
 }
 
 .headerMenu {
