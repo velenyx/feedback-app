@@ -50,15 +50,23 @@ export const Header = () => {
           {isAuth ? (
             <div className={styles.navAuth}>
               <div className={styles.navWrapper}>
-                <OutIcon />
-                <button onClick={signOut}>Выйти</button>
+                <div className={styles.login}>
+                  <OutIcon />
+                  <button onClick={signOut}>Выйти</button>
+                </div>
               </div>
             </div>
           ) : (
             <div className={styles.navAuth}>
               <div className={styles.navWrapper}>
-                <OutIcon />
-                <Link to={routePath.AUTH}>Войти</Link>
+                <div className={styles.login}>
+                  <OutIcon />
+                  <Link to={routePath.AUTH}>Войти</Link>
+                </div>
+                или
+                <div className={styles.register}>
+                  <Link to={routePath.REGISTRATION}>зарегистрироваться</Link>
+                </div>
               </div>
             </div>
           )}
