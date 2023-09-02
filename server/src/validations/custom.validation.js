@@ -15,7 +15,7 @@ const password = (value, helpers) => {
   return value;
 };
 
-const newCategoryName = (value, helpers) => {
+const createCategory = (value, helpers) => {
   if (value.length < 3) {
     return helpers.message('At least 3 characters!');
   }
@@ -25,5 +25,5 @@ const newCategoryName = (value, helpers) => {
 module.exports = {
   objectId,
   password,
-  newCategoryName
+  createCategory
 };

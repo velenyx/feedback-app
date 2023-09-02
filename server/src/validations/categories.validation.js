@@ -1,9 +1,9 @@
 const Joi = require('joi');
-const { newCategoryName } = require('./custom.validation');
+const { createCategory } = require('./custom.validation');
 
 const category = {
   body: Joi.object().keys({
-    newCategory: Joi.string().required().custom(newCategoryName)
+    newCategory: Joi.string().required().custom(createCategory)
   })
 };
 
