@@ -173,11 +173,14 @@
   font-weight: 500;
   font-family: inherit;
   padding: 7px 12px;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
   justify-content: center;
 
   & svg {
     font-size: 18px;
+  }
+  @media (max-width: 567px) {
+    height: 40px;
   }
 }
