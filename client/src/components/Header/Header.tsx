@@ -7,11 +7,11 @@ import { NavItem } from "../NavItem/NavItem";
 import { RxEnter as OutIcon } from "react-icons/rx";
 import { IoCreateOutline as CreateIcon } from "react-icons/io5";
 import { BiUser as ProfileIcon } from "react-icons/bi";
-import logo from "../../shared/assets/logo.svg";
+import logo from "../../shared/assets/logo.png";
 
 export const Header = () => {
   const { isAuth, name } = useAuth();
-  const signOut = () => {}
+  const signOut = () => {};
 
   return (
     <header className={styles.header}>

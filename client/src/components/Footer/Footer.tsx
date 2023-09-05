@@ -1,7 +1,7 @@
 import styles from "./Footer.module.scss";
 import { Link } from "react-router-dom";
 import { routePath } from "../../shared/config/routePath";
-import logo from "../../shared/assets/logo.svg";
+import logo from "../../shared/assets/logo.png";
 
 export const Footer = () => {
   return (
@@ -29,8 +29,9 @@ export const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className={styles.credits}><span>
-        Отзовик © 2023</span></div>
+        <div className={styles.credits}>
+          <span>Отзовись © 2023</span>
+        </div>
       </div>
     </footer>
   );
