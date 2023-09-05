@@ -35,6 +35,11 @@ const schema = yup.object().shape({
       "Пароль должен состоять минимум из 8 символов и содержать буквы, цифры и символы."
     ),
 });
+const defaultFormValues = {
+  name: "",
+  email: "",
+  password: "",
+};
 
 export const FormRegister = () => {
   const [registerError, setRegisterError] = useState({ state: false, message: "" });
@@ -56,6 +61,7 @@ export const FormRegister = () => {
   const { errors } = formState;
 
   const registerUser = async (userData: IRegisterRequest) => {
+    console.log("userData", userData);
     setLoading(true); //Display loading animation on the button
     setSuccess(false); // Displays a notification item about successful registration
     try {
@@ -65,6 +71,7 @@ export const FormRegister = () => {
         setLoading(false);
         setSuccess(true);
         formRef.current?.reset();
+        form.reset(defaultFormValues);
         return response.data;
       }
     } catch (error: unknown) {
