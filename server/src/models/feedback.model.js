@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { toJSON } = require('./plugins');
-const { categorySchema } = require('./category.model');
 
 const feedbackSchema = mongoose.Schema(
   {
