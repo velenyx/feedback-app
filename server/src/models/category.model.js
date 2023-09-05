@@ -15,4 +15,4 @@ categorySchema.plugin(toJSON);
 
 const Category = mongoose.model('Categories', categorySchema);
 
-module.exports = { Category, categorySchema };
+module.exports = Category;

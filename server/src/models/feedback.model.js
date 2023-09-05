@@ -5,11 +5,10 @@ const { categorySchema } = require('./category.model');
 const feedbackSchema = mongoose.Schema(
   {
     client: {
-      type: mongoose.SchemaTypes.ObjectId,
-      required: true
+      type: mongoose.Schema.ObjectId
     },
     category: {
-      type: categorySchema,
+      type: String,
       required: true,
       default: 'other'
     },
