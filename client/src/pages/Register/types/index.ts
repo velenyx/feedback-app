@@ -1,10 +1,10 @@
-export interface IFormReg {
+export interface IFormRegistration {
   name: string;
   email: string;
   password: string;
 }
 
-export type IRegisterRequest = IFormReg;
+export type IRegisterRequest = IFormRegistration;
 
 export type IRegisterResponse = {
   user: {
