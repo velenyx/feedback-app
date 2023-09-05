@@ -37,7 +37,7 @@ const schema = yup.object().shape({
 });
 
 export const FormRegister = () => {
-  const [registerError, setRegisterError] = useState({ state: false, message: null });
+  const [registerError, setRegisterError] = useState({ state: false, message: "" });
   const [hidePassword, setHidePassword] = useState(false);
 
   const form = useForm<IFormRegistration>({
@@ -60,7 +60,6 @@ export const FormRegister = () => {
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         const { code, message } = error.response?.data;
-
         if (code === 400) setRegisterError({ state: true, message: message });
         if (code === 401) setRegisterError({ state: true, message: message });
       } else {
