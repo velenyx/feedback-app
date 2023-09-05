@@ -39,6 +39,8 @@ const schema = yup.object().shape({
 export const FormRegister = () => {
   const [registerError, setRegisterError] = useState({ state: false, message: "" });
   const [hidePassword, setHidePassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const form = useForm<IFormRegistration>({
     defaultValues: {
@@ -53,27 +55,38 @@ export const FormRegister = () => {
   const { errors } = formState;
 
   const registerUser = async (userData: IRegisterRequest) => {
+    setLoading(true);
+    setSuccess(false);
     try {
       const response = await $api.post(routePath.REGISTRATION, userData);
       const status = await response.status;
-      if (status === 201) response.data;
+      if (status === 201) {
+        setLoading(false);
+        setSuccess(true);
+        return response.data;
+      }
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         const { code, message } = error.response?.data;
         if (code === 400) setRegisterError({ state: true, message: message });
         if (code === 401) setRegisterError({ state: true, message: message });
+        setLoading(false);
+        setSuccess(false);
       } else {
         setRegisterError({ state: true, message: "Ошибка при регистрации" });
+        setSuccess(false);
+        setLoading(false);
       }
     }
   };
+
   const onSubmit = (data: IFormRegistration) => {
     const normalizeDate = {
       ...data,
       name: capitalizeFullName(data.name),
     };
 
-    setRegisterError({ state: false, message: null });
+    setRegisterError({ state: false, message: "" });
     registerUser(normalizeDate);
   };
   const handleHidePassword = () => {
@@ -86,6 +99,11 @@ export const FormRegister = () => {
         {registerError.state && (
           <div className={styles.errors}>
             {errorMessageTranslate(registerError.message)}
+          </div>
+        )}
+        {success && (
+          <div className={styles.success}>
+            ✓ Регистрация прошла успешно. На почту отправлено письмо для подтверждения.
           </div>
         )}
 
@@ -129,7 +147,7 @@ export const FormRegister = () => {
           )}
         </div>
 
-        <AuthButton name="Зарегистрироваться" type="submit" />
+        <AuthButton name="Зарегистрироваться" type="submit" loading={loading} />
       </div>
     </form>
   );

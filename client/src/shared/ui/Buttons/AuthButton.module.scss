@@ -23,4 +23,9 @@
   &:active {
     background-color: var(--main-color-active);
   }
+  & span {
+    color: white;
+    width: 25px !important;
+    height: 25px !important;
+  }
 }

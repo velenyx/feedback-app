@@ -60,6 +60,18 @@ input {
       margin-top: 8px;
     }
   }
+  & .success {
+    padding: 10px 16px;
+    border-radius: 5px;
+    border: 1px solid #77a25161;
+    background-color: #94c67f;
+    color: #ffffff;
+    line-height: 150%;
+    font-size: 12px;
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
   & .hide svg {
     &:hover {
       width: 40px;
