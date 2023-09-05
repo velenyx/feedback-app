@@ -8,7 +8,7 @@ import {
   IRegisterRequest,
   IRegisterResponse,
 } from "../../pages/Register/types";
-import { instanceResponse } from "../../pages/Register/api";
+import { $api } from "../../pages/Register/api";
 import { LuUser as LoginIcon } from "react-icons/lu";
 import { MdOutlineAlternateEmail as EmailIcon } from "react-icons/md";
 import { GoLock as PasswordIcon } from "react-icons/go";
@@ -17,6 +17,8 @@ import { BsFillEyeSlashFill as UnLockIcon } from "react-icons/bs";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { capitalizeFullName } from "../../shared/helpers/capitalizeFullName";
+import { AxiosError } from "axios";
+import { errorMessageTranslate } from "../../shared/helpers/errorMessageTranslate";
 
 const schema = yup.object().shape({
   name: yup
@@ -27,16 +29,16 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .required("Обязательное поле *")
-    .min(6, "Пароль должен содержать не менее 6 символов")
+    .min(8, "Пароль должен содержать не менее 8 символов")
     .matches(
       /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[\W_]).+$/,
-      "Пароль должен состоять минимум из 6 символов и содержать буквы, цифры и символы."
+      "Пароль должен состоять минимум из 8 символов и содержать буквы, цифры и символы."
     ),
 });
 
 export const FormRegister = () => {
+  const [registerError, setRegisterError] = useState({ state: false, message: null });
   const [hidePassword, setHidePassword] = useState(false);
-  const [registerError, setRegisterError] = useState(false);
 
   const form = useForm<IFormRegistration>({
     defaultValues: {
@@ -46,41 +48,48 @@ export const FormRegister = () => {
     },
     resolver: yupResolver(schema),
   });
+
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
   const registerUser = async (userData: IRegisterRequest) => {
     try {
-      const response = await instanceResponse.post(routePath.REGISTRATION, userData);
+      const response = await $api.post(routePath.REGISTRATION, userData);
       const status = await response.status;
-      if (status === 201) response.data as IRegisterResponse;
-    } catch (error: any) {
-      const { code } = await error.response.data;
-      if (code === 400) setRegisterError(true);
+      if (status === 201) response.data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        const { code, message } = error.response?.data;
+
+        if (code === 400) setRegisterError({ state: true, message: message });
+        if (code === 401) setRegisterError({ state: true, message: message });
+      } else {
+        setRegisterError({ state: true, message: "Ошибка при регистрации" });
+      }
     }
   };
-
   const onSubmit = (data: IFormRegistration) => {
     const normalizeDate = {
       ...data,
       name: capitalizeFullName(data.name),
     };
 
-    setRegisterError(false);
+    setRegisterError({ state: false, message: null });
     registerUser(normalizeDate);
   };
-  const handleHidePassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    event.preventDefault();
+  const handleHidePassword = () => {
     setHidePassword((prev) => !prev);
   };
 
   return (
     <form className={styles.formRegister} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.content}>
-        {registerError && (
-          <div className={styles.errors}>Этот E-mail уже зарегистрирован</div>
+        {registerError.state && (
+          <div className={styles.errors}>
+            {errorMessageTranslate(registerError.message)}
+          </div>
         )}
+
         <div className={styles.formItem}>
           <div className={styles.inputContainer}>
             <LoginIcon />
