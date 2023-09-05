@@ -16,6 +16,7 @@ import { BsFillEyeFill as LockIcon } from "react-icons/bs";
 import { BsFillEyeSlashFill as UnLockIcon } from "react-icons/bs";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { capitalizeFullName } from "../../shared/helpers/capitalizeFullName";
 
 const schema = yup.object().shape({
   name: yup
@@ -58,9 +59,15 @@ export const FormRegister = () => {
       if (code === 400) setRegisterError(true);
     }
   };
+
   const onSubmit = (data: IFormRegistration) => {
+    const normalizeDate = {
+      ...data,
+      name: capitalizeFullName(data.name),
+    };
+
     setRegisterError(false);
-    registerUser(data);
+    registerUser(normalizeDate);
   };
   const handleHidePassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
