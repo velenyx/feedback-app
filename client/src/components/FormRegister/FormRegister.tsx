@@ -1,8 +1,13 @@
 import styles from "./FormRegister.module.scss";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { AxiosError } from "axios";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthButton } from "../../shared/ui/Buttons/AuthButton";
 import { routePath } from "../../shared/config/routePath";
+import { capitalizeFullName } from "../../shared/helpers/capitalizeFullName";
+import { errorMessageTranslate } from "../../shared/helpers/errorMessageTranslate";
 import {
   IFormRegistration,
   IRegisterRequest,
@@ -14,11 +19,6 @@ import { MdOutlineAlternateEmail as EmailIcon } from "react-icons/md";
 import { GoLock as PasswordIcon } from "react-icons/go";
 import { BsFillEyeFill as LockIcon } from "react-icons/bs";
 import { BsFillEyeSlashFill as UnLockIcon } from "react-icons/bs";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { capitalizeFullName } from "../../shared/helpers/capitalizeFullName";
-import { AxiosError } from "axios";
-import { errorMessageTranslate } from "../../shared/helpers/errorMessageTranslate";
 
 const schema = yup.object().shape({
   name: yup
@@ -41,6 +41,7 @@ export const FormRegister = () => {
   const [hidePassword, setHidePassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const form = useForm<IFormRegistration>({
     defaultValues: {
@@ -55,14 +56,15 @@ export const FormRegister = () => {
   const { errors } = formState;
 
   const registerUser = async (userData: IRegisterRequest) => {
-    setLoading(true);
-    setSuccess(false);
+    setLoading(true); //Display loading animation on the button
+    setSuccess(false); // Displays a notification item about successful registration
     try {
       const response = await $api.post(routePath.REGISTRATION, userData);
       const status = await response.status;
       if (status === 201) {
         setLoading(false);
         setSuccess(true);
+        formRef.current?.reset();
         return response.data;
       }
     } catch (error: unknown) {
@@ -70,6 +72,7 @@ export const FormRegister = () => {
         const { code, message } = error.response?.data;
         if (code === 400) setRegisterError({ state: true, message: message });
         if (code === 401) setRegisterError({ state: true, message: message });
+
         setLoading(false);
         setSuccess(false);
       } else {
@@ -94,7 +97,7 @@ export const FormRegister = () => {
   };
 
   return (
-    <form className={styles.formRegister} onSubmit={handleSubmit(onSubmit)}>
+    <form ref={formRef} className={styles.formRegister} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.content}>
         {registerError.state && (
           <div className={styles.errors}>
