@@ -1,5 +1,5 @@
 const express = require('express');
-const { categoriesController } = require('../../controllers');
+const { categoryController } = require('../../controllers');
 const { categoryValidation } = require('../../validations');
 const validate = require('../../middlewares/validate');
 
@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(categoriesController.getCategories)
-  .post(validate(categoryValidation.category), categoriesController.createCategory);
+  .get(categoryController.getCategories)
+  .post(validate(categoryValidation.category), categoryController.createCategory);
 
 module.exports = router;
