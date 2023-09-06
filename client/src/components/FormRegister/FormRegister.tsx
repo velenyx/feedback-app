@@ -46,7 +46,6 @@ export const FormRegister = () => {
   const [hidePassword, setHidePassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
 
   const form = useForm<IFormRegistration>({
     defaultValues: {
@@ -71,7 +70,6 @@ export const FormRegister = () => {
       if (status === 201) {
         setSuccess(true);
 
-        formRef.current?.reset();
         form.reset(defaultFormValues);
         return response.data;
       }
@@ -112,7 +110,7 @@ export const FormRegister = () => {
   };
 
   return (
-    <form ref={formRef} className={styles.formRegister} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.formRegister} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.content}>
         {registerError.state && (
           <div className={styles.errors}>
