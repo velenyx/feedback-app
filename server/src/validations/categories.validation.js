@@ -3,7 +3,7 @@ const { createCategory } = require('./custom.validation');
 
 const category = {
   body: Joi.object().keys({
-    newCategory: Joi.string().required().custom(createCategory)
+    newCategory: Joi.string().required().min(3)
   })
 };
 
