@@ -61,36 +61,44 @@ export const FormRegister = () => {
   const { errors } = formState;
 
   const registerUser = async (userData: IRegisterRequest) => {
-    console.log("userData", userData);
-    setLoading(true); //Display loading animation on the button
-    setSuccess(false); // Displays a notification item about successful registration
+    setLoading(true);
+    setSuccess(false);
+
     try {
       const response = await $api.post(routePath.REGISTRATION, userData);
       const status = await response.status;
+
       if (status === 201) {
-        setLoading(false);
         setSuccess(true);
+
         formRef.current?.reset();
         form.reset(defaultFormValues);
         return response.data;
       }
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
-        const { code, message } = error.response?.data;
-        if (code === 400) setRegisterError({ state: true, message: message });
-        if (code === 401) setRegisterError({ state: true, message: message });
+        if (!error.response) {
+          setRegisterError({
+            state: true,
+            message: "canceled",
+          });
+        } else {
+          const { code, message } = error.response.data;
 
-        setLoading(false);
-        setSuccess(false);
+          if (code === 400 || code === 401) {
+            setRegisterError({ state: true, message });
+          }
+        }
       } else {
         setRegisterError({ state: true, message: "Ошибка при регистрации" });
-        setSuccess(false);
-        setLoading(false);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
   const onSubmit = (data: IFormRegistration) => {
+    setSuccess(false);
     const normalizeDate = {
       ...data,
       name: capitalizeFullName(data.name),
