@@ -1,9 +1,9 @@
 const Joi = require('joi');
 
-const newCategory = {
+const createCategory = {
   body: Joi.object().keys({
     newCategory: Joi.string().required().min(3)
   })
 };
 
-module.exports = { newCategory };
+module.exports = { createCategory };
