@@ -14,4 +14,4 @@ export const routePath = {
   COMMUNNITY_RULES: "сommunity_rules",
   ABOUT: "/about",
   NOT_FOUND: "/404",
-};
+} as const;
