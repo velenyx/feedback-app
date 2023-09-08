@@ -22,7 +22,7 @@ const defaultRoutes = [
     route: feedbackRoute
   },
   {
-    path: '/category',
+    path: '/categories',
     route: categoryRoute
   }
 ];

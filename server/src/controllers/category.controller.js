@@ -3,7 +3,7 @@ const catchAsync = require('../utils/catchAsync');
 const { categoryService } = require('../services');
 
 const getCategories = catchAsync(async (req, res) => {
-  const categories = await categoriesService.getCategories();
+  const categories = await categoryService.getCategories();
   res.status(httpStatus.FOUND).send(categories);
 });
 
