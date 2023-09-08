@@ -1,0 +1,75 @@
+.header {
+  background-color: var(--white-color);
+  @media (max-width: 576px) {
+    background-color: var(--bg-color);
+  }
+}
+
+.container {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 10px 10px;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+.headerLogo {
+  & img {
+    height: 50px;
+  }
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+
+  & ul {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  @media (max-width: 567px) {
+    display: none;
+  }
+}
+
+.authContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.navAuth {
+  color: var(--black-color);
+  font-weight: 600;
+
+  &:hover a {
+    color: var(--main-color);
+    text-decoration: underline;
+  }
+  &:hover svg {
+    color: var(--main-color);
+    text-decoration: underline;
+  }
+  &:hover button {
+    color: var(--main-color);
+    text-decoration: underline;
+  }
+}
+.navMyFeedback,
+.navProfile {
+  cursor: pointer;
+  &:hover {
+    color: var(--main-color);
+    text-decoration: underline;
+  }
+  &:hover a {
+    color: var(--main-color);
+    text-decoration: underline;
+  }
+}

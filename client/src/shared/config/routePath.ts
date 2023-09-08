@@ -1,0 +1,17 @@
+export const routePath = {
+  HOME: "/",
+  AUTH: "/auth/login",
+  REGISTRATION: "/auth/register",
+  LOGOUT: "/auth/logout",
+  REFRESH_TOKEN: "/auth/refresh-tokens",
+  RESET_PASSWORD: "/auth/forgot-password",
+  SEND_VERIFY_EMAIL: "/auth/send-verification-email",
+  VERIFY_EMAIL: "/auth/verify-email",
+  ADD_FEEDBACK: "/add_feedback",
+  PROFILE: "/profile",
+  FEEDBACK: "/feedback/:id",
+  AGREMEENT: "/agreement",
+  COMMUNNITY_RULES: "сommunity_rules",
+  ABOUT: "/about",
+  NOT_FOUND: "/404",
+} as const;

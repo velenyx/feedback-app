@@ -1,0 +1,36 @@
+.button {
+  height: 56px;
+  width: 100%;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 400;
+
+  color: var(--white-color);
+  background-color: var(--main-color);
+  border-color: transparent !important;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+
+  @media (max-width: 576px) {
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  &:hover {
+    background-color: var(--main-color-hover);
+  }
+  &:active {
+    background-color: var(--main-color-active);
+  }
+  & span {
+    color: white;
+    width: 25px !important;
+    height: 25px !important;
+  }
+}
+
+.block {
+  pointer-events: none;
+  background-color: lightslategray;
+}

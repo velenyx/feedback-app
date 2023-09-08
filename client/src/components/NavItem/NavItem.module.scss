@@ -1,0 +1,13 @@
+.navWrapper {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    position: relative;
+  
+    & .login {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+  }
+  
