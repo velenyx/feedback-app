@@ -16,7 +16,7 @@ const getFeedback = catchAsync(async (req, res) => {
   if (!feedback) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Feedback not found');
   }
-  res.send(feedback);
+  res.status(httpStatus.CREATED).send(feedback);
 });
 
 const getFeedbackByCategory = catchAsync(async (req, res) => {
