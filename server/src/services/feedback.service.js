@@ -5,12 +5,11 @@ const ApiError = require('../utils/ApiError');
 const createFeedback = async (feedbackBody) => {
   const client = await User.findById(feedbackBody.clientId);
   const existingCategory = await Category.findOne({ category: feedbackBody.category });
-
-  if (!client) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Client not found');
-  }
   if (!existingCategory) {
     throw new ApiError(httpStatus.NOT_FOUND, 'No such existing category');
+  }
+  if (!client) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Client not found');
   }
   const feedback = await Feedback.create({ ...feedbackBody, client });
   return feedback;
@@ -21,7 +20,7 @@ const getFeedbackById = async (id) => {
 };
 const getFeedbackByCategory = async (category) => {
   if (!category || !category.trim()) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Set the category!');
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Set the category!');
   }
   return Feedback.find({ category });
 };

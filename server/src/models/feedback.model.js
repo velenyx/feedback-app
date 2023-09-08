@@ -4,7 +4,9 @@ const { toJSON } = require('./plugins');
 const feedbackSchema = mongoose.Schema(
   {
     client: {
-      type: mongoose.Schema.ObjectId
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: true
     },
     category: {
       type: String,
