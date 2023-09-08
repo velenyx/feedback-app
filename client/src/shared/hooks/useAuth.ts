@@ -1,6 +1,6 @@
 export const useAuth = () => {
   return {
-    isAuth: true,
+    isAuth: false,
     name: "Сергей Иващенко",
     email: "example@gmail.com",
     token: "",

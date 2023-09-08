@@ -13,6 +13,6 @@ const categorySchema = mongoose.Schema(
 
 categorySchema.plugin(toJSON);
 
-const Category = mongoose.model('Categories', categorySchema);
+const Category = mongoose.model('Category', categorySchema);
 
 module.exports = Category;
