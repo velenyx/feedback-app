@@ -8,6 +8,9 @@ const getCategories = async () => {
 };
 
 const createCategory = async (newCategory) => {
+  if (!newCategory || !newCategory.trim()) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Set the category!');
+  }
   const existsInDb = await Category.findOne({ category: newCategory });
   if (existsInDb) {
     throw new ApiError(httpStatus.CONFLICT, 'Such category already exists!');

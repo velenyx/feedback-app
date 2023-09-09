@@ -1,30 +1,6 @@
 const mongoose = require('mongoose');
 const { toJSON } = require('./plugins');
 
-const category = [
-  'targeting',
-  'copyrighting',
-  'development',
-  'development',
-  'seo',
-  'it_services',
-  'marketing',
-  'advertising',
-  'smm',
-  'design',
-  'training',
-  'beauty_health',
-  'sales',
-  'tourism_recreation',
-  'sport',
-  'cleaning',
-  'tattoo',
-  'repair',
-  'construction',
-  'nanny',
-  'other'
-];
-
 const feedbackSchema = mongoose.Schema(
   {
     client: {
@@ -34,7 +10,6 @@ const feedbackSchema = mongoose.Schema(
     },
     category: {
       type: String,
-      enum: category,
       required: true,
       default: 'other'
     },

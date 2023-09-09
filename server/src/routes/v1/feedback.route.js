@@ -8,4 +8,6 @@ router.route('/').post(auth(), feedbackController.createFeedback);
 
 router.route('/:feedbackId').get(feedbackController.getFeedback);
 
+router.route('/').get(feedbackController.getFeedbackByCategory);
+
 module.exports = router;

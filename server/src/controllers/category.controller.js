@@ -4,7 +4,7 @@ const { categoryService } = require('../services');
 
 const getCategories = catchAsync(async (req, res) => {
   const categories = await categoryService.getCategories();
-  res.status(httpStatus.OK).send(categories);
+  res.status(httpStatus.FOUND).send(categories);
 });
 
 const createCategory = catchAsync(async (req, res) => {
