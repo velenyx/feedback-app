@@ -1,14 +1,32 @@
+import { AuthTokens } from "../../../../pages/Register/types";
+
 export interface IAuthSlice {
-  user: UserType | null;
+  user: User | null;
 }
+
+export type User = {
+  id: string;
+  isEmailVerified: boolean;
+  email: string;
+  name: string;
+  role: RoleEnum;
+};
+
+export type Error = {
+  state: boolean;
+  message: string;
+};
 export enum RoleEnum {
   admin = "admin",
   user = "user",
 }
-export type UserType = {
-  id: string;
+
+export type LoginType = {
   email: string;
-  isEmailVerified: boolean;
-  name: string;
-  role: RoleEnum;
+  password: string;
+};
+
+export type LoginResponseType = {
+  user: User;
+  tokens: AuthTokens;
 };
