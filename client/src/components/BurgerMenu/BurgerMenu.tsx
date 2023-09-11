@@ -1,20 +1,21 @@
 import styles from "./BurgerMenu.module.scss";
-import { useState } from "react";
+import { memo, useState } from "react";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { routePath } from "../../shared/config/routePath";
 import { RxEnter as OutIcon } from "react-icons/rx";
 import { IoCreateOutline as CreateIcon } from "react-icons/io5";
 import { BiUser as ProfileIcon } from "react-icons/bi";
-
 import { useAuth } from "../../shared/hooks/useAuth";
 import { NavItem } from "../NavItem/NavItem";
 
-export const BurgerMenu = () => {
+interface BurgerMenuProps {
+  signOut: () => void;
+}
+
+export const BurgerMenu = memo(({ signOut }: BurgerMenuProps) => {
   const { isAuth, name } = useAuth();
   const [burgerToggle, setBurgerToggle] = useState(false);
-
-  const signOut = () => {};
 
   const handleBurgerMenu = () => {
     setBurgerToggle((prev) => !prev);
@@ -62,7 +63,7 @@ export const BurgerMenu = () => {
             <ul className={styles.profileItem}>
               <NavItem
                 className={styles.navProfile}
-                title={name}
+                title={name || ""}
                 path={routePath.PROFILE}
                 Icon={ProfileIcon}
               />
@@ -99,4 +100,4 @@ export const BurgerMenu = () => {
       </nav>
     </>
   );
-};
+});

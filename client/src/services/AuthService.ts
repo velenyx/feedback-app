@@ -1,8 +1,8 @@
 import axios from "axios";
 import { LoginResponseType, LoginType, User } from "../app/store/slice/auth/authTypes";
+import { RegisterResponseType, RegisterType } from "../pages/Register/types";
 import { routePath } from "../shared/config/routePath";
 import { BASE_URL } from "./../shared/config/url";
-import { RegisterResponseType, RegisterType } from "../pages/Register/types";
 
 class AuthService {
   static async chechAuth() {
@@ -20,29 +20,49 @@ class AuthService {
     }
   }
   static async login(userData: LoginType) {
-    const response = await axios.post<LoginResponseType>(
-      BASE_URL + routePath.AUTH,
-      userData
-    );
-    const { data, status } = response;
-    if (status === 200) {
-      sessionStorage.setItem("accessToken", data.tokens.access.token);
-      return data;
+    try {
+      const response = await axios.post<LoginResponseType>(
+        BASE_URL + routePath.AUTH,
+        userData
+      );
+      const { data, status } = response;
+      if (status === 200) {
+        sessionStorage.setItem("accessToken", data.tokens.access.token);
+        sessionStorage.setItem("refreshToken", data.tokens.refresh.token);
+        return data;
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
   static async registration(userData: RegisterType) {
-    const response = await axios.post<RegisterResponseType>(
-      BASE_URL + routePath.REGISTRATION,
-      userData
-    );
-    const { status, data } = response;
+    try {
+      const response = await axios.post<RegisterResponseType>(
+        BASE_URL + routePath.REGISTRATION,
+        userData
+      );
+      const { status, data } = response;
 
-    if (status === 201) {
-      return data;
+      if (status === 201) {
+        return data;
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
   static async logout() {
-    return axios.post(BASE_URL + routePath.LOGOUT);
+    const refreshToken = sessionStorage.getItem("refreshToken")
+    try {
+      const response = await axios.post(BASE_URL + routePath.LOGOUT, {
+        refreshToken: refreshToken,
+      });
+
+      if (response.status === 204) {
+        console.log("Logout successful!");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 export default AuthService;
