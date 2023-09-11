@@ -8,13 +8,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthButton } from "../../shared/ui/Buttons/AuthButton";
 import { errorMessageAuthTranslate } from "../../shared/helpers/errorMessageTranslate";
+import { setUser } from "../../app/store/slice/auth/authSlice";
+import { LoginType } from "../../app/store/slice/auth/authTypes";
+import AuthService from "../../services/AuthService";
 import { MdOutlineAlternateEmail as EmailIcon } from "react-icons/md";
 import { GoLock as PasswordIcon } from "react-icons/go";
 import { BsFillEyeFill as LockIcon } from "react-icons/bs";
 import { BsFillEyeSlashFill as UnLockIcon } from "react-icons/bs";
-import { LoginType } from "../../pages/Auth/types";
-import { setUser } from "../../app/store/slice/auth/authSlice";
-import AuthService from "../../services/AuthService";
 
 const schema = yup.object().shape({
   email: yup.string().required("Обязательное поле *").email("Некорректный email"),
@@ -27,9 +27,10 @@ const schema = yup.object().shape({
 export const FormAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [error, setError] = useState({ state: false, message: "" });
-  const [hidePassword, setHidePassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [hidePassword, setHidePassword] = useState(false);
 
   const form = useForm<LoginType>({
     defaultValues: {
@@ -41,11 +42,15 @@ export const FormAuth = () => {
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
-  const onSubmit = (userData: LoginType) => {
+  const resetFormState = () => {
     setLoading(true);
     setError({ state: false, message: "" });
+  };
 
-    AuthService.authUser(userData)
+  const onSubmit = (userData: LoginType) => {
+    resetFormState();
+
+    AuthService.login(userData)
       .then((data) => {
         dispatch(setUser(data?.user));
         navigate("/", { replace: false });

@@ -1,5 +1,4 @@
 import styles from "./FormRegister.module.scss";
-import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { AxiosError } from "axios";
@@ -8,17 +7,15 @@ import { AuthButton } from "../../shared/ui/Buttons/AuthButton";
 import { routePath } from "../../shared/config/routePath";
 import { capitalizeFullName } from "../../shared/helpers/capitalizeFullName";
 import { errorMessageTranslate } from "../../shared/helpers/errorMessageTranslate";
-import {
-  IFormRegistration,
-  IRegisterRequest,
-  IRegisterResponse,
-} from "../../pages/Register/types";
+import { IRegisterRequest, RegisterType } from "../../pages/Register/types";
 import { $api } from "../../pages/Register/api";
 import { LuUser as LoginIcon } from "react-icons/lu";
 import { MdOutlineAlternateEmail as EmailIcon } from "react-icons/md";
 import { GoLock as PasswordIcon } from "react-icons/go";
 import { BsFillEyeFill as LockIcon } from "react-icons/bs";
 import { BsFillEyeSlashFill as UnLockIcon } from "react-icons/bs";
+import { useState } from "react";
+import AuthService from "../../services/AuthService";
 
 const schema = yup.object().shape({
   name: yup
@@ -42,12 +39,12 @@ const defaultFormValues = {
 };
 
 export const FormRegister = () => {
-  const [registerError, setRegisterError] = useState({ state: false, message: "" });
-  const [hidePassword, setHidePassword] = useState(false);
+  const [error, setError] = useState({ state: false, message: "" });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [hidePassword, setHidePassword] = useState(false);
 
-  const form = useForm<IFormRegistration>({
+  const form = useForm<RegisterType>({
     defaultValues: {
       name: "",
       email: "",
@@ -55,55 +52,37 @@ export const FormRegister = () => {
     },
     resolver: yupResolver(schema),
   });
-
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
-  const registerUser = async (userData: IRegisterRequest) => {
+  const resetFormState = () => {
     setLoading(true);
     setSuccess(false);
+    setError({ state: false, message: "" });
+  };
+  const onSubmit = (userData: RegisterType) => {
+    resetFormState();
+    const normalizeData = { ...userData, name: capitalizeFullName(userData.name) };
 
-    try {
-      const response = await $api.post(routePath.REGISTRATION, userData);
-      const status = await response.status;
-
-      if (status === 201) {
+    AuthService.registration(normalizeData)
+      .then(() => {
         setSuccess(true);
-
         form.reset(defaultFormValues);
-        return response.data;
-      }
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        if (!error.response) {
-          setRegisterError({
-            state: true,
-            message: "canceled",
-          });
-        } else {
+      })
+      .catch((error) => {
+        if (error instanceof AxiosError && error.response) {
           const { code, message } = error.response.data;
 
           if (code === 400 || code === 401) {
-            setRegisterError({ state: true, message });
+            setError({ state: true, message });
           }
+        } else {
+          setError({ state: true, message: "Ошибка при регистрации" });
         }
-      } else {
-        setRegisterError({ state: true, message: "Ошибка при регистрации" });
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const onSubmit = (data: IFormRegistration) => {
-    setSuccess(false);
-    const normalizeDate = {
-      ...data,
-      name: capitalizeFullName(data.name),
-    };
-
-    setRegisterError({ state: false, message: "" });
-    registerUser(normalizeDate);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
   const handleHidePassword = () => {
     setHidePassword((prev) => !prev);
@@ -112,9 +91,9 @@ export const FormRegister = () => {
   return (
     <form className={styles.formRegister} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.content}>
-        {registerError.state && (
+        {error.state && (
           <div className={styles.errors}>
-            {errorMessageTranslate(registerError.message)}
+            {errorMessageTranslate(error.message)}
           </div>
         )}
         {success && (
