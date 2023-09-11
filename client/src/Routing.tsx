@@ -15,12 +15,12 @@ export const Routing = () => {
   return (
     <Routes>
       <Route element={<PrivateRouter />}>
+        <Route path={routePath.AUTH} element={<Auth />} />
+        <Route path={routePath.REGISTRATION} element={<Register />} />
         <Route path={routePath.PROFILE} element={<Profile />} />
         <Route path={routePath.ADD_FEEDBACK} element={<AddFeedback />} />
       </Route>
 
-      <Route path={routePath.AUTH} element={<Auth />} />
-      <Route path={routePath.REGISTRATION} element={<Register />} />
       <Route path={routePath.HOME} element={<Home />} />
       <Route path={routePath.FEEDBACK} element={<Feedback />} />
       <Route path={routePath.AGREMEENT} element={<Agremeent />} />
