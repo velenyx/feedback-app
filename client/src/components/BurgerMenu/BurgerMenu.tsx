@@ -1,13 +1,13 @@
-import styles from "./BurgerMenu.module.scss";
 import { memo, useState } from "react";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
-import { routePath } from "../../shared/config/routePath";
 import { RxEnter as OutIcon } from "react-icons/rx";
 import { IoCreateOutline as CreateIcon } from "react-icons/io5";
 import { BiUser as ProfileIcon } from "react-icons/bi";
+import { routePath } from "../../shared/config/routePath";
 import { useAuth } from "../../shared/hooks/useAuth";
 import { NavItem } from "../NavItem/NavItem";
+import styles from "./BurgerMenu.module.scss";
 
 interface BurgerMenuProps {
   signOut: () => void;

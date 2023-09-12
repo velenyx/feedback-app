@@ -1,20 +1,20 @@
-import styles from "./FormAuth.module.scss";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { AuthButton } from "../../shared/ui/Buttons/AuthButton";
-import { errorMessageAuthTranslate } from "../../shared/helpers/errorMessageTranslate";
-import { setUser } from "../../app/store/slice/auth/authSlice";
-import { LoginType } from "../../app/store/slice/auth/authTypes";
-import AuthService from "../../services/AuthService";
 import { MdOutlineAlternateEmail as EmailIcon } from "react-icons/md";
 import { GoLock as PasswordIcon } from "react-icons/go";
 import { BsFillEyeFill as LockIcon } from "react-icons/bs";
 import { BsFillEyeSlashFill as UnLockIcon } from "react-icons/bs";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { AuthButton } from "../../shared/ui/Buttons/AuthButton/AuthButton";
+import { errorMessageAuthTranslate } from "../../shared/helpers/errorMessageTranslate";
+import { setUser } from "../../app/store/slice/auth/authSlice";
+import { LoginType } from "../../app/store/slice/auth/authTypes";
+import AuthService from "../../services/AuthService";
+import styles from "./FormAuth.module.scss";
 
 const schema = yup.object().shape({
   email: yup.string().required("Обязательное поле *").email("Некорректный email"),

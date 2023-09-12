@@ -1,8 +1,8 @@
-import styles from "./Register.module.scss";
 import { Link } from "react-router-dom";
 import { MainLayout } from "../../layout/MainLayout";
 import { FormRegister } from "../../components/FormRegister/FormRegister";
 import { routePath } from "../../shared/config/routePath";
+import styles from "./Register.module.scss";
 
 export const Register = () => {
   return (

@@ -1,7 +1,7 @@
-import styles from "./Footer.module.scss";
 import { Link } from "react-router-dom";
 import { routePath } from "../../shared/config/routePath";
 import logo from "../../shared/assets/logo.png";
+import styles from "./Footer.module.scss";
 
 export const Footer = () => {
   return (

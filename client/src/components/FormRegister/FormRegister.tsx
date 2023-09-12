@@ -1,21 +1,19 @@
-import styles from "./FormRegister.module.scss";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { AxiosError } from "axios";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { AuthButton } from "../../shared/ui/Buttons/AuthButton";
-import { routePath } from "../../shared/config/routePath";
-import { capitalizeFullName } from "../../shared/helpers/capitalizeFullName";
-import { errorMessageTranslate } from "../../shared/helpers/errorMessageTranslate";
-import { IRegisterRequest, RegisterType } from "../../pages/Register/types";
-import { $api } from "../../pages/Register/api";
 import { LuUser as LoginIcon } from "react-icons/lu";
 import { MdOutlineAlternateEmail as EmailIcon } from "react-icons/md";
 import { GoLock as PasswordIcon } from "react-icons/go";
 import { BsFillEyeFill as LockIcon } from "react-icons/bs";
 import { BsFillEyeSlashFill as UnLockIcon } from "react-icons/bs";
-import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { AuthButton } from "../../shared/ui/Buttons/AuthButton/AuthButton";
+import { capitalizeFullName } from "../../shared/helpers/capitalizeFullName";
+import { errorMessageTranslate } from "../../shared/helpers/errorMessageTranslate";
+import { RegisterType } from "../../pages/Register/types";
 import AuthService from "../../services/AuthService";
+import styles from "./FormRegister.module.scss";
 
 const schema = yup.object().shape({
   name: yup
@@ -92,9 +90,7 @@ export const FormRegister = () => {
     <form className={styles.formRegister} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.content}>
         {error.state && (
-          <div className={styles.errors}>
-            {errorMessageTranslate(error.message)}
-          </div>
+          <div className={styles.errors}>{errorMessageTranslate(error.message)}</div>
         )}
         {success && (
           <div className={styles.success}>

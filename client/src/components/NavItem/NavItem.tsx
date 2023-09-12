@@ -1,6 +1,6 @@
-import styles from "./NavItem.module.scss";
 import { Link } from "react-router-dom";
 import { IconType } from "react-icons";
+import styles from "./NavItem.module.scss";
 
 interface INavItem {
   className: string;
