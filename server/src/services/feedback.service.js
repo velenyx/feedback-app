@@ -3,8 +3,10 @@ const { Feedback, User, Category, MyFeedbacks } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 const createFeedback = async (feedbackBody) => {
-  const client = await User.findById(feedbackBody.clientId);
-  const existingCategory = await Category.findOne({ category: feedbackBody.category });
+  const { clientId, category, user } = feedbackBody;
+
+  const client = await User.findById(clientId);
+  const existingCategory = await Category.findOne({ category });
   if (!existingCategory) {
     throw new ApiError(httpStatus.NOT_FOUND, 'No such existing category');
   }
@@ -12,8 +14,8 @@ const createFeedback = async (feedbackBody) => {
     throw new ApiError(httpStatus.NOT_FOUND, 'Client not found');
   }
   await MyFeedbacks.findOneAndUpdate(
-    { creator: feedbackBody.user },
-    { $push: { feedbacks: { client: feedbackBody.clientId, category: feedbackBody.category } } }
+    { user },
+    { $push: { feedbacks: { client: clientId, category } } }
   );
   const feedback = await Feedback.create({ ...feedbackBody, client });
   return { feedback };

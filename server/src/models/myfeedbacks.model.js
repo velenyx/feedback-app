@@ -3,7 +3,7 @@ const { toJSON } = require('./plugins');
 
 const myFeedbacks = mongoose.Schema(
   {
-    creator: { type: mongoose.SchemaTypes.ObjectId, ref: 'Users', required: true },
+    user: { type: mongoose.SchemaTypes.ObjectId, ref: 'Users', required: true },
     feedbacks: [
       {
         client: { type: String, required: true },
