@@ -1,5 +1,5 @@
 const httpStatus = require('http-status');
-const { Feedback, User, Category } = require('../models');
+const { Feedback, User, Category, MyFeedbacks } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 const createFeedback = async (feedbackBody) => {
@@ -11,8 +11,12 @@ const createFeedback = async (feedbackBody) => {
   if (!client) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Client not found');
   }
+  await MyFeedbacks.findOneAndUpdate(
+    { creator: feedbackBody.user },
+    { $push: { feedbacks: { client: feedbackBody.clientId, category: feedbackBody.category } } }
+  );
   const feedback = await Feedback.create({ ...feedbackBody, client });
-  return feedback;
+  return { feedback };
 };
 
 const getFeedbackById = async (id) => {
