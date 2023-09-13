@@ -1,0 +1,32 @@
+.link {
+  margin:20px 0px;
+  .name {
+    color: var(--main-dark-color);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px; /* 100% */
+    display: flex;
+    gap: 15px;
+  }
+  .text {
+    color: var(--black-color);
+    font-size: 16px;
+    font-weight: 500;
+    margin: 15px 0px;
+  }
+  .info {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    color: var(--grey-color);
+  }
+  .count {
+    gap: 25px;
+    display: flex;
+  }
+  .countItem {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+}
