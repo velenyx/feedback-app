@@ -1,5 +1,12 @@
 .link {
-  margin:20px 0px;
+  .linkContainer {
+    background: #ffffff;
+    &:hover {
+      background: var(--white-hover);
+    }
+    padding: 28px 35px;
+    margin: 20px 0px;
+  }
   .name {
     color: var(--main-dark-color);
     font-size: 20px;
@@ -11,7 +18,7 @@
   .text {
     color: var(--black-color);
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
     margin: 15px 0px;
   }
   .info {
@@ -23,10 +30,10 @@
   .count {
     gap: 25px;
     display: flex;
-  }
-  .countItem {
-    display: flex;
-    align-items: center;
-    gap: 7px;
+    .countItem {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
   }
 }

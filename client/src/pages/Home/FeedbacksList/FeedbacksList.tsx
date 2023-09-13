@@ -1,8 +1,6 @@
 import FeedbackLink from "../../../components/FeedbackLink/FeedbackLink";
 
-type Props = {};
-
-const FeedbacksList = (props: Props) => {
+const FeedbacksList = () => {
   return (
     <div>
       <FeedbackLink
