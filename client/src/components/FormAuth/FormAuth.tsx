@@ -52,7 +52,7 @@ export const FormAuth = () => {
 
     AuthService.login(userData)
       .then((data) => {
-        console.log(data)
+        console.log(data);
         dispatch(setUser(data?.user));
         navigate("/", { replace: false });
       })
