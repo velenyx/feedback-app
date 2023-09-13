@@ -4,6 +4,7 @@ import viewIcon from "../../shared/assets/views_icon.svg";
 import commentIcon from "../../shared/assets/commenst_icon.svg";
 import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
 
 type FeedbacksLinkProps = {
   name: string;
@@ -12,6 +13,7 @@ type FeedbacksLinkProps = {
   views: number;
   comments: number;
   id: string;
+  rating: number;
 };
 
 const FeedbackLink: React.FC<FeedbacksLinkProps> = ({
@@ -21,19 +23,27 @@ const FeedbackLink: React.FC<FeedbacksLinkProps> = ({
   views,
   comments,
   id,
+  rating,
 }) => {
   return (
     <Link to={`feedback/${id}`} className={styles.link}>
       <div className={styles.linkContainer}>
         <div className={styles.name}>
-          {name} <Rating readOnly value={1} />
+          {name}
+          <Rating
+            readOnly
+            value={rating}
+            emptyIcon={
+              <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+            }
+          />
         </div>
         <div className={styles.text}>{text}</div>
         <div className={styles.info}>
           <div className={styles.info}>{category}</div>
           <div className={styles.count}>
             <div className={styles.countItem}>
-              {views} <img src={viewIcon} alt="" />{" "}
+              {views} <img src={viewIcon} alt="" />
             </div>
             <div className={styles.countItem}>
               {comments} <img src={commentIcon} alt="" />

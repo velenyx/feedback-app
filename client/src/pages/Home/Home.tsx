@@ -1,5 +1,5 @@
+import FeedbackLink from "../../components/FeedbackLink/FeedbackLink";
 import { MainLayout } from "../../layout/MainLayout";
-import FeedbacksList from "./FeedbacksList/FeedbacksList";
 import styles from "./Home.module.scss";
 
 export const Home = () => {
@@ -9,7 +9,17 @@ export const Home = () => {
         <div className={styles.container}>
           <h1>Home</h1>
 
-          <FeedbacksList />
+          <div className={styles.feedbacksList}>
+            <FeedbackLink
+              views={1}
+              rating={5}
+              id="1314"
+              comments={3}
+              category="Веб-программирование"
+              name="Some Name"
+              text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            />
+          </div>
         </div>
       </div>
     </MainLayout>
