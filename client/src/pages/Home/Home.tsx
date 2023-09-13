@@ -1,3 +1,4 @@
+import { Categories } from "../../components/Categories/Categories";
 import { MainLayout } from "../../layout/MainLayout";
 import styles from "./Home.module.scss";
 
@@ -6,7 +7,10 @@ export const Home = () => {
     <MainLayout>
       <div className={styles.home}>
         <div className={styles.container}>
-          <h1>Home</h1>
+          <div className={styles.wrapper}>
+            <Categories />
+            <div>Отзывы</div>
+          </div>
         </div>
       </div>
     </MainLayout>
