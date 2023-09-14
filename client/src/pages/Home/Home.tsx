@@ -1,4 +1,4 @@
-import FeedbackLink from "../../components/FeedbackLink/FeedbackLink";
+import FeedbackCard from "../../components/FeedbackCard/FeedbackCard";
 import { MainLayout } from "../../layout/MainLayout";
 import styles from "./Home.module.scss";
 
@@ -10,7 +10,8 @@ export const Home = () => {
           <h1>Home</h1>
 
           <div className={styles.feedbacksList}>
-            <FeedbackLink
+            <FeedbackCard
+              skeleton
               views={1}
               rating={5}
               id="1314"
