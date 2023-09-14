@@ -67,5 +67,8 @@ module.exports = {
       }
     },
     from: envVars.EMAIL_FROM
+  },
+  client: {
+    url: envVars.CLIENT_URL
   }
 };
