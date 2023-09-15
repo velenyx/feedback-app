@@ -35,7 +35,7 @@ export const Categories = () => {
   };
   const handleCategoryClick = (category: string): void => {
     setSelectedCategory(category);
-    setIsOpenCategories(true)
+    setIsOpenCategories(false);
   };
 
   return (
@@ -45,10 +45,7 @@ export const Categories = () => {
           <span>Категории</span>
           <CategoryIcon
             onClick={handleIsOpen}
-            className={classNames(
-              { [styles.activeSvg]: !!selectedCategory },
-              { [styles.activeSvg]: isOpenCategories }
-            )}
+            className={classNames({ [styles.activeSvg]: isOpenCategories })}
           />
         </div>
 
