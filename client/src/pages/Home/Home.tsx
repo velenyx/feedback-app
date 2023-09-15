@@ -1,5 +1,5 @@
-import { Categories } from "../../components/Categories/Categories.1";
 import { MainLayout } from "../../layout/MainLayout";
+import { Categories } from "../../components/Categories/Categories";
 import styles from "./Home.module.scss";
 
 export const Home = () => {

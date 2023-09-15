@@ -10,6 +10,13 @@
     grid-template-rows: 2fr;
     grid-column-gap: 20px;
     grid-row-gap: 0px;
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+      grid-column-gap: 0px;
+      grid-row-gap: 20px;
+    }
   }
 }
 .homeTape {

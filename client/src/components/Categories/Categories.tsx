@@ -28,9 +28,14 @@ const items = [
 ];
 export const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [isOpenCategories, setIsOpenCategories] = useState(false);
 
+  const handleIsOpen = () => {
+    setIsOpenCategories((prev) => !prev);
+  };
   const handleCategoryClick = (category: string): void => {
     setSelectedCategory(category);
+    setIsOpenCategories(true)
   };
 
   return (
@@ -39,12 +44,20 @@ export const Categories = () => {
         <div className={styles.title}>
           <span>Категории</span>
           <CategoryIcon
-            className={classNames({ [styles.activeSvg]: !!selectedCategory })}
+            onClick={handleIsOpen}
+            className={classNames(
+              { [styles.activeSvg]: !!selectedCategory },
+              { [styles.activeSvg]: isOpenCategories }
+            )}
           />
         </div>
 
         <div className={styles.divider}></div>
-        <ul className={styles.categoriesList}>
+        <ul
+          className={classNames(styles.categoriesList, {
+            [styles.isOpen]: isOpenCategories,
+          })}
+        >
           {items?.map((item) => (
             <li
               key={item.id}
