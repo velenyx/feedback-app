@@ -21,6 +21,7 @@ export const Header = () => {
     AuthService.logout();
     dispatch(removeUser());
     sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("refreshToken");
   }, []);
 
   return (

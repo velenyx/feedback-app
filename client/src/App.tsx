@@ -9,7 +9,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    AuthService.chechAuth()
+    AuthService.checkAuth()
       .then((user) => {
         dispatch(setUser(user));
       })
