@@ -13,7 +13,7 @@ const items = [
   { id: "6", category: "marketing" },
   { id: "7", category: "advertising" },
   { id: "8", category: "smm" },
-  { id: "9", category: "design photo" },
+  { id: "9", category: "design_photo" },
   { id: "10", category: "training" },
   { id: "11", category: "beauty_health" },
   { id: "12", category: "sales" },
