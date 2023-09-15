@@ -41,7 +41,7 @@ class AuthService {
   }
   static async logout() {
     const refreshToken = sessionStorage.getItem("refreshToken");
-     await $api.post(routePath.LOGOUT, {
+    await $api.post(routePath.LOGOUT, {
       refreshToken: refreshToken,
     });
   }
