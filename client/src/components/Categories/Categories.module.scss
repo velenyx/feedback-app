@@ -27,6 +27,12 @@
     }
     & svg {
       transition: all 0.3s ease;
+
+      @media (max-width: 767px) {
+        & {
+          cursor: pointer;
+        }
+      }
     }
     & .activeSvg {
       transform: rotate(45deg);
@@ -40,6 +46,11 @@
   }
   & .divider {
     border-bottom: 1px solid var(--border-color);
+    @media (max-width: 767px) {
+      & {
+        border: none;
+      }
+    }
   }
 }
 
