@@ -1,5 +1,7 @@
-import { categoryTranslations } from "../../shared/helpers/categoryTranslations";
+import { useState } from "react";
 import { BiCategoryAlt as CategoryIcon } from "react-icons/bi";
+import classNames from "classnames";
+import { categoryTranslations } from "../../shared/helpers/categoryTranslations";
 import styles from "./Categories.module.scss";
 
 const items = [
@@ -24,20 +26,33 @@ const items = [
   { id: "19", category: "nanny" },
   { id: "20", category: "other" },
 ];
-// https://297c2cda3254946b.mokky.dev/categories
-
 export const Categories = () => {
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const handleCategoryClick = (category: string): void => {
+    setSelectedCategory(category);
+  };
+
   return (
     <nav className={styles.categories}>
       <div className={styles.container}>
         <div className={styles.title}>
           <span>Категории</span>
-          <CategoryIcon />
+          <CategoryIcon
+            className={classNames({ [styles.activeSvg]: !!selectedCategory })}
+          />
         </div>
+
         <div className={styles.divider}></div>
         <ul className={styles.categoriesList}>
           {items?.map((item) => (
-            <li key={item.id} className={styles.categoryItem}>
+            <li
+              key={item.id}
+              onClick={() => handleCategoryClick(item.category)}
+              className={classNames(styles.categoryItem, {
+                [styles.active]: selectedCategory === item.category,
+              })}
+            >
               {categoryTranslations(item.category)}
             </li>
           ))}

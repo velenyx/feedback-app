@@ -1,6 +1,7 @@
 export type CategoriesSlice = {
-  categories: CategoriesType | null;
+  categories: CategoriesType[] | null;
   status: StatusEnum;
+  category: string | null;
 };
 
 export type CategoriesType = {
