@@ -1,50 +1,39 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { AxiosError } from "axios";
-import { LuUser as LoginIcon } from "react-icons/lu";
+import * as yup from "yup";
 import { MdOutlineAlternateEmail as EmailIcon } from "react-icons/md";
 import { GoLock as PasswordIcon } from "react-icons/go";
 import { BsFillEyeFill as LockIcon } from "react-icons/bs";
 import { BsFillEyeSlashFill as UnLockIcon } from "react-icons/bs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthButton } from "../../shared/ui/Buttons/AuthButton/AuthButton";
-import { capitalizeFullName } from "../../shared/helpers/capitalizeFullName";
-import { errorMessageTranslate } from "../../shared/helpers/errorMessageTranslate";
-import { RegisterType } from "../../pages/Register/types";
+import { errorMessageAuthTranslate } from "../../shared/helpers/errorMessageTranslate";
+import { setUser } from "../../app/store/slice/auth/authSlice";
+import { LoginType } from "../../app/store/slice/auth/authTypes";
 import AuthService from "../../services/AuthService";
-import styles from "./FormRegister.module.scss";
+import styles from "./FormAuth.module.scss";
 
 const schema = yup.object().shape({
-  name: yup
-    .string()
-    .required("Обязательное поле *")
-    .min(5, "ФИО должно содержать не менее 5 символов"),
   email: yup.string().required("Обязательное поле *").email("Некорректный email"),
   password: yup
     .string()
     .required("Обязательное поле *")
-    .min(8, "Пароль должен содержать не менее 8 символов")
-    .matches(
-      /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[\W_]).+$/,
-      "Пароль должен состоять минимум из 8 символов и содержать буквы, цифры и символы."
-    ),
+    .min(8, "Пароль должен содержать не менее 8 символов"),
 });
-const defaultFormValues = {
-  name: "",
-  email: "",
-  password: "",
-};
 
-export const FormRegister = () => {
+export const FormAuth = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [error, setError] = useState({ state: false, message: "" });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [hidePassword, setHidePassword] = useState(false);
 
-  const form = useForm<RegisterType>({
+  const form = useForm<LoginType>({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
@@ -55,27 +44,33 @@ export const FormRegister = () => {
 
   const resetFormState = () => {
     setLoading(true);
-    setSuccess(false);
     setError({ state: false, message: "" });
   };
-  const onSubmit = (userData: RegisterType) => {
+
+  const onSubmit = (userData: LoginType) => {
     resetFormState();
-    const normalizeData = { ...userData, name: capitalizeFullName(userData.name) };
 
-    AuthService.registration(normalizeData)
-      .then(() => {
-        setSuccess(true);
-        form.reset(defaultFormValues);
+    AuthService.login(userData)
+      .then((data) => {
+        dispatch(setUser(data?.user));
+        navigate("/", { replace: false });
       })
-      .catch((error) => {
-        if (error instanceof AxiosError && error.response) {
-          const { code, message } = error.response.data;
-
-          if (code === 400 || code === 401) {
-            setError({ state: true, message });
+      .catch((error: unknown) => {
+        if (error instanceof AxiosError) {
+          if (!error.response) {
+            setError({
+              state: true,
+              message: "canceled",
+            });
+          } else {
+            const { code, message } = error.response.data;
+            console.log("message", message);
+            if (code === 401) {
+              setError({ state: true, message: message });
+            }
           }
         } else {
-          setError({ state: true, message: "Ошибка при регистрации" });
+          setError({ state: true, message: "authorization error" });
         }
       })
       .finally(() => {
@@ -90,28 +85,8 @@ export const FormRegister = () => {
     <form className={styles.formRegister} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.content}>
         {error.state && (
-          <div className={styles.errors}>{errorMessageTranslate(error.message)}</div>
+          <div className={styles.errors}>{errorMessageAuthTranslate(error.message)}</div>
         )}
-        {success && (
-          <div className={styles.success}>
-            ✓ Регистрация прошла успешно. На почту отправлено письмо для подтверждения.
-          </div>
-        )}
-
-        <div className={styles.formItem}>
-          <div className={styles.inputContainer}>
-            <LoginIcon />
-            <input
-              id="name"
-              type="text"
-              placeholder="Имя и Фамилия"
-              {...register("name")}
-            />
-          </div>
-
-          {errors.name && <div className={styles.errors}>{errors.name.message}</div>}
-        </div>
-
         <div className={styles.formItem}>
           <div className={styles.inputContainer}>
             <EmailIcon />
@@ -138,7 +113,7 @@ export const FormRegister = () => {
           )}
         </div>
 
-        <AuthButton name="Зарегистрироваться" type="submit" loading={loading} />
+        <AuthButton name="Войти" type="submit" loading={loading} />
       </div>
     </form>
   );
