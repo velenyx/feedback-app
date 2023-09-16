@@ -1,4 +1,4 @@
-export const errorMessageTranslate = (message: string | null) => {
+export const errorMessageTranslate = (message: string | undefined) => {
   if (message === null) return "";
   if (message === "Email already taken") {
     return "Этот E-mail уже используется.";
@@ -10,6 +10,20 @@ export const errorMessageTranslate = (message: string | null) => {
     return "Введите корректный E-mail адрес";
   }
   if (message === "canceled") {
-    return "Возникли проблемы при прегистрации. Пожалуйста, попробуйте снова через 3 минуты";
+    return "Возникли проблемы при регистрации. Пожалуйста, попробуйте снова через 3 минуты";
   }
 };
+2;
+export const errorMessageAuthTranslate = (message: string | null) => {
+  if (message === "undefined") return "";
+  if (message === "Incorrect email or password") {
+    return "Некорректный логин или пароль";
+  }
+  if (message === "authorization error") {
+    return "Ошибка авторизации. Попробуйте через 2 минуты";
+  }
+  if (message === "canceled") {
+    return "Ошибка авторизации. Попробуйте через 2 минуты";
+  }
+};
+2;

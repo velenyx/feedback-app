@@ -1,6 +1,7 @@
 export const routePath = {
   HOME: "/",
   AUTH: "/auth/login",
+  ME: "/auth/me",
   REGISTRATION: "/auth/register",
   LOGOUT: "/auth/logout",
   REFRESH_TOKEN: "/auth/refresh-tokens",
