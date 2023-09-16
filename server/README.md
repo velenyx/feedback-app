@@ -7,7 +7,7 @@ Body: [string]
 Response:
 
 Codes:
---200: { categories:[string], errors:[string] }
+--200: { createdCategories:[string], errors:[string] }
 
 ## Quick Start
 
