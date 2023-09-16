@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const createCategory = {
   body: Joi.object().keys({
-    newCategory: Joi.string().required().min(3)
+    categories: Joi.array().min(1).items(Joi.string().min(3))
   })
 };
 
