@@ -1,6 +1,4 @@
-const httpStatus = require('http-status');
 const { Category } = require('../models');
-const ApiError = require('../utils/ApiError');
 
 const getCategories = async () => {
   const categories = await Category.find();
