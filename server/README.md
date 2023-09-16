@@ -1,5 +1,14 @@
 # It's a server docs
 
+## Create catogories
+
+Route: post /categoires
+Body: [string]
+Response:
+
+Codes:
+--200: { categories:[string], errors:[string] }
+
 ## Quick Start
 
 Clone the repo:
