@@ -1,4 +1,5 @@
 import { MainLayout } from "../../layout/MainLayout";
+import CreateFeedbackButton from "../../shared/ui/Buttons/CreateFeedbackButton/CreateFeedbackButton";
 import styles from "./Home.module.scss";
 
 export const Home = () => {
@@ -6,7 +7,7 @@ export const Home = () => {
     <MainLayout>
       <div className={styles.home}>
         <div className={styles.container}>
-          <h1>Home</h1>
+          <CreateFeedbackButton clickHandler={() => {}} />
         </div>
       </div>
     </MainLayout>
