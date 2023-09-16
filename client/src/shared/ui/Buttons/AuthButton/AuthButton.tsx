@@ -1,6 +1,6 @@
-import styles from "./AuthButton.module.scss";
 import classNames from "classnames";
 import { CircularProgress as Loading } from "@mui/material";
+import styles from "./AuthButton.module.scss";
 
 interface IAuthButtonProps {
   name: string;
