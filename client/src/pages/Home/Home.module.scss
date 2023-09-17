@@ -28,7 +28,6 @@
 }
 
 .widget {
-  padding: 20px;
   & .widgetContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -38,18 +37,18 @@
     width: 100%;
     overflow: hidden;
     overflow-x: scroll;
-    border-radius: 10px;
+    padding: 20px;
+  }
 
-    &::-webkit-scrollbar {
-      width: 0px; /* Ширина ползунка (может быть изменена в зависимости от требований) */
-    }
+  &::-webkit-scrollbar {
+    width: 0px; /* Ширина ползунка (может быть изменена в зависимости от требований) */
+  }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: transparent; /* Цвет ползунка */
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Цвет ползунка */
+  }
 
-    &::-webkit-scrollbar-track {
-      background-color: transparent; /* Цвет трека (фона) */
-    }
+  &::-webkit-scrollbar-track {
+    background-color: transparent; /* Цвет трека (фона) */
   }
 }
