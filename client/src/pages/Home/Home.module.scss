@@ -38,17 +38,19 @@
     overflow: hidden;
     overflow-x: scroll;
     padding: 20px;
+
+    &::-webkit-scrollbar {
+      width: 0px; /* Ширина ползунка (может быть изменена в зависимости от требований) */
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent; /* Цвет ползунка */
+    }
+  
+    &::-webkit-scrollbar-track {
+      background-color: transparent; /* Цвет трека (фона) */
+    }
   }
 
-  &::-webkit-scrollbar {
-    width: 0px; /* Ширина ползунка (может быть изменена в зависимости от требований) */
-  }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: transparent; /* Цвет ползунка */
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent; /* Цвет трека (фона) */
-  }
 }
