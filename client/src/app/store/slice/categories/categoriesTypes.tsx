@@ -10,6 +10,6 @@ export type CategoriesType = {
 };
 export enum StatusEnum {
   loading = "loading",
-  access = "access",
+  success = "success",
   rejected = "rejected",
 }

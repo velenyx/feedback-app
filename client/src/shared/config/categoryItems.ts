@@ -22,5 +22,7 @@ export const categoryItems: Categories = {
   repair: "Ремонт",
   construction: "Строительство",
   nanny: "Няня",
-  other: "Другие",
+  other: "Прочие",
 };
+
+export const skeletonItem = [...new Array(20)]

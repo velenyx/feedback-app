@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../..";
 import { fetchCategories } from "./categoriesThunk";
 import { CategoriesSlice, StatusEnum } from "./categoriesTypes";
-import { RootState } from "../..";
 
 const initialState: CategoriesSlice = {
   categories: null,
@@ -23,7 +23,7 @@ export const categoriesSlice = createSlice({
         state.status = StatusEnum.loading;
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.status = StatusEnum.access;
+        state.status = StatusEnum.success;
         state.categories = action.payload;
       })
       .addCase(fetchCategories.rejected, (state) => {

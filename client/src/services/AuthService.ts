@@ -1,15 +1,8 @@
-import axios from "axios";
 import { LoginResponseType, LoginType, User } from "../app/store/slice/auth/authTypes";
 import { RegisterResponseType, RegisterType } from "../pages/Register/types";
+import { $api } from "../shared/config/instance";
 import { routePath } from "../shared/config/routePath";
-import { BASE_URL } from "./../shared/config/url";
 
-const $api = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
 class AuthService {
   static async checkAuth() {
