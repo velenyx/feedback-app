@@ -24,7 +24,7 @@ export const Home = () => {
                   />
                   <Widget
                     title="Правила сообщества"
-                    description="Пожалуйста, ознакомтесь с правила сообщества"
+                    description="Пожалуйста, ознакомтесь с правилами сообщества"
                     linkTitle="Правила"
                     link={routePath.COMMUNNITY_RULES}
                     bgUrl="https://cmp.dns-shop.ru/images/78097831b51ec906c029.png"
