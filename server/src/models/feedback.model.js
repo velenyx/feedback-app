@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { toJSON } = require('./plugins');
+const { toJSON, paginate } = require('./plugins');
 
 const feedbackSchema = mongoose.Schema(
   {
@@ -25,12 +25,14 @@ const feedbackSchema = mongoose.Schema(
     views: {
       type: Number,
       default: 0
-    }
+    },
+    rating: { type: Number, default: 0 }
   },
   { timestamps: true }
 );
 
 feedbackSchema.plugin(toJSON);
+feedbackSchema.plugin(paginate);
 
 const Feedback = mongoose.model('Feedback', feedbackSchema);
 

@@ -18,11 +18,15 @@ const createFeedback = async (feedbackBody) => {
 const getFeedbackById = async (id) => {
   return Feedback.findById(id).populate(['client', 'user']).exec();
 };
-const getFeedbackByCategory = async (category) => {
+const getFeedbackByCategory = async (category, pageSize, page) => {
   if (!category || !category.trim()) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Set the category!');
   }
-  return Feedback.find({ category });
+  const paginateOptions = {
+    page: 2,
+    pagesize: 5
+  };
+  return Feedback.paginate({ category }, { page: 2, pagesize: 10 });
 };
 
 module.exports = { createFeedback, getFeedbackById, getFeedbackByCategory };
