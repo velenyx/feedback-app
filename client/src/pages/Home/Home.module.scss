@@ -1,7 +1,56 @@
 .home {
+  & .container {
+    max-width: 1220px;
+    padding: 0px 10px 0px 10px;
+    margin: 20px auto;
+  }
+  & .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 2fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+      grid-column-gap: 0px;
+      grid-row-gap: 20px;
+    }
+  }
 }
-.container {
-  max-width: 1020px;
-  padding: 0 10px;
-  margin: 0 auto;
+.homeTape {
+  height: 1067px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.11), 0 2px 1px rgba(0, 0, 0, 0.05);
+  overflow-x: hidden;
+}
+
+.widget {
+  & .widgetContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+    padding: 20px;
+
+    &::-webkit-scrollbar {
+      width: 0px; /* Ширина ползунка (может быть изменена в зависимости от требований) */
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent; /* Цвет ползунка */
+    }
+  
+    &::-webkit-scrollbar-track {
+      background-color: transparent; /* Цвет трека (фона) */
+    }
+  }
+
+
 }
