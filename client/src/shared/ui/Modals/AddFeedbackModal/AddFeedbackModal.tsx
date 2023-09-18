@@ -9,6 +9,9 @@ import { capitalizeFullName } from "../../../helpers/capitalizeFullName";
 import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
 import closeIcon from "../../../assets/close_icon.svg";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { createFeedbackForm } from "../../../../@types/createFeedbackForm";
+import { bannedWords } from "../../../helpers/bannedWords";
 type AddFeedbackModalProps = {
   isActive: boolean;
   setVisibility: () => void;
@@ -23,25 +26,38 @@ const AddFeedbackModal: React.FC<AddFeedbackModalProps> = ({
     <MenuItem value={item}>{capitalizeFullName(item)}</MenuItem>
   ));
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<createFeedbackForm>();
+  const onSubmit: SubmitHandler<createFeedbackForm> = (data) => {
+    alert(data.text);
+  };
+
   return (
     <div
       onClick={setVisibility}
       className={`${styles.modal} ${isActive ? styles.active : ""}`}
     >
       <div onClick={(e) => e.stopPropagation()} className={styles.content}>
-        <div className={styles.overflow}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.overflow}>
           <h3 className={styles.title}>
             Create feedback
             <img onClick={setVisibility} src={closeIcon} alt="" />
           </h3>
           <textarea
+            {...register("text", {
+              required: "Name is required",
+              pattern: {
+                value: bannedWords,
+                message: "Enter valid text",
+              },
+            })}
             className={styles.commentInput}
-            name=""
-            id=""
-            cols={30}
-            rows={10}
             placeholder="What do you think about think client?"
           ></textarea>
+          <div>{errors.text?.message}</div>
           <div className={styles.actions}>
             <FormControl sx={{ marginBottom: "16px", flex: "1 1 auto" }}>
               <InputLabel sx={{ width: "100px" }}>Категория</InputLabel>
@@ -57,12 +73,8 @@ const AddFeedbackModal: React.FC<AddFeedbackModalProps> = ({
               }
             />
           </div>
-          <CreateFeedbackButton
-            clickHandler={() => {
-              alert("hi");
-            }}
-          />
-        </div>
+          <CreateFeedbackButton clickHandler={() => {}} />
+        </form>
       </div>
     </div>
   );
