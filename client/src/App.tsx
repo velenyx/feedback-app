@@ -16,9 +16,10 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [dispatch]);
+
   return <Routing />;
 }
 
 export default App;
-2
+2;
