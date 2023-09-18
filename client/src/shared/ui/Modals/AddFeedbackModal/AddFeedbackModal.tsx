@@ -9,7 +9,7 @@ import { capitalizeFullName } from "../../../helpers/capitalizeFullName";
 import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
 import closeIcon from "../../../assets/close_icon.svg";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import { createFeedbackForm } from "../../../../@types/createFeedbackForm";
 import { bannedWords } from "../../../helpers/bannedWords";
 type AddFeedbackModalProps = {
@@ -32,9 +32,11 @@ const AddFeedbackModal: React.FC<AddFeedbackModalProps> = ({
     register,
     handleSubmit,
     formState: { errors },
+    control,
+    reset,
   } = useForm<createFeedbackForm>();
   const onSubmit: SubmitHandler<createFeedbackForm> = (data) => {
-    alert(data.category);
+    alert(data.rating);
   };
 
   return (
@@ -48,6 +50,7 @@ const AddFeedbackModal: React.FC<AddFeedbackModalProps> = ({
             Create feedback
             <img onClick={setVisibility} src={closeIcon} alt="" />
           </h3>
+
           <textarea
             {...register("text", {
               required: "Name is required",
@@ -59,13 +62,16 @@ const AddFeedbackModal: React.FC<AddFeedbackModalProps> = ({
             className={styles.commentInput}
             placeholder="What do you think about think client?"
           ></textarea>
+
           <div>{errors.category?.message}</div>
           <div className={styles.actions}>
             <FormControl sx={{ marginBottom: "16px", flex: "1 1 auto" }}>
               <InputLabel className={styles.select} sx={{ width: "100px" }}>
                 Категория
               </InputLabel>
+
               <Select
+                className={styles.select}
                 sx={{ color: "red" }}
                 {...register("category", {
                   required: "Category is required",
@@ -79,14 +85,21 @@ const AddFeedbackModal: React.FC<AddFeedbackModalProps> = ({
                 {categoriesSelectItems}
               </Select>
             </FormControl>
-            <Rating
-              name="hover-feedback"
-              value={4}
-              emptyIcon={
-                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-              }
+
+            <Controller
+              control={control}
+              name="rating"
+              render={({ field: { onChange, value } }) => (
+                <Rating
+                  name="hover-feedback"
+                  value={value}
+                  onChange={onChange}
+                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} />}
+                />
+              )}
             />
           </div>
+
           <CreateFeedbackButton clickHandler={() => {}} />
         </form>
       </div>
