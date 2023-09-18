@@ -32,6 +32,10 @@
   overflow: auto;
 }
 .title {
+  display: flex;
+  img {
+    justify-self: flex-end;
+  }
   color: var(--main-color);
   font-size: 22px;
   padding-top: 25px;
@@ -46,4 +50,11 @@
   padding: 15px;
   background: var(--bg-color);
   flex: 1 1 auto;
+}
+
+.actions{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding:0px 10px;
 }
