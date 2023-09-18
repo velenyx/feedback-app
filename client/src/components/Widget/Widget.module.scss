@@ -7,14 +7,14 @@
   flex-direction: column;
   position: relative;
   background-size: auto 65%;
+  background-repeat: no-repeat;
+  background-position: bottom right;
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.11), 0 2px 1px rgba(0, 0, 0, 0.05);
 
   @media (max-width: 567px) {
     & {
       background-size: auto 45%;
     }
-  }
-  & .container {
   }
 
   & .title {

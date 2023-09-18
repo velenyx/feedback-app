@@ -13,8 +13,6 @@ export const Widget = (props: IWidgetProps) => {
   const { title, description, linkTitle, link, bgUrl, bgColor } = props;
 
   const style = {
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: " bottom right",
     backgroundColor: bgColor,
     backgroundImage: `url(${bgUrl})`,
   };
