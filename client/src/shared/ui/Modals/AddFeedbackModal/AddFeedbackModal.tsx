@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./AddFeedbackModal.module.scss";
 import CreateFeedbackButton from "../../Buttons/CreateFeedbackButton/CreateFeedbackButton";
 import FormControl from "@mui/material/FormControl";
@@ -26,13 +26,15 @@ const AddFeedbackModal: React.FC<AddFeedbackModalProps> = ({
     <MenuItem value={item}>{capitalizeFullName(item)}</MenuItem>
   ));
 
+  const [category, setCategory] = useState("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<createFeedbackForm>();
   const onSubmit: SubmitHandler<createFeedbackForm> = (data) => {
-    alert(data.text);
+    alert(data.category);
   };
 
   return (
@@ -57,11 +59,23 @@ const AddFeedbackModal: React.FC<AddFeedbackModalProps> = ({
             className={styles.commentInput}
             placeholder="What do you think about think client?"
           ></textarea>
-          <div>{errors.text?.message}</div>
+          <div>{errors.category?.message}</div>
           <div className={styles.actions}>
             <FormControl sx={{ marginBottom: "16px", flex: "1 1 auto" }}>
-              <InputLabel sx={{ width: "100px" }}>Категория</InputLabel>
-              <Select value={20} label="Age" onChange={() => {}}>
+              <InputLabel className={styles.select} sx={{ width: "100px" }}>
+                Категория
+              </InputLabel>
+              <Select
+                sx={{ color: "red" }}
+                {...register("category", {
+                  required: "Category is required",
+                })}
+                value={category}
+                label="Age"
+                onChange={(event) => {
+                  setCategory(event?.target.value as string);
+                }}
+              >
                 {categoriesSelectItems}
               </Select>
             </FormControl>
