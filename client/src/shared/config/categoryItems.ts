@@ -23,6 +23,6 @@ export const categoryItems: Categories = {
   construction: "Строительство",
   nanny: "Няня",
   other: "Прочие",
-};
+} as const;
 
-export const skeletonItem = [...new Array(20)]
+export const skeletonItem = [...new Array(20)];
