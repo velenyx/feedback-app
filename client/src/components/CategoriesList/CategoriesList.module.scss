@@ -1,0 +1,46 @@
+.categoriesList {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px 0 20px;
+  transition: all 0.4s ease;
+  z-index: 10;
+  position: relative;
+  min-height: 509px;
+
+  &.isOpen {
+    margin-top: 0;
+  }
+
+  @media (max-width: 767px) {
+    & {
+      margin-top: -600px;
+    }
+  }
+}
+.categoryItem {
+  cursor: pointer;
+  color: var(--black-color);
+  font-family: var(--font-ptsans);
+  font-size: 14px;
+  line-height: 1.7;
+
+  &:hover {
+    color: var(--main-color);
+    font-weight: 700;
+  }
+  &:active {
+    color: var(--main-color-active);
+  }
+}
+
+.active {
+  color: var(--main-color);
+  font-weight: 700;
+}
+
+.skeleton:not(:last-child) {
+  margin-bottom: 9px;
+}
+.error {
+  font-size: 10px;
+}
