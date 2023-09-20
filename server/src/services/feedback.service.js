@@ -34,7 +34,7 @@ const getFeedbackByCategory = async (category, pageSize, page, sortByField) => {
     options.sortBy = sortByField; // Використовуємо передане поле для сортування
   }
 
-  return Feedback.paginate(query, options);
+  return Feedback.find().sort({ rating: -1, _id: 1 }).skip(0).limit(5);
 };
 
 module.exports = { createFeedback, getFeedbackById, getFeedbackByCategory };

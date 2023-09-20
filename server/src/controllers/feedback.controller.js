@@ -21,7 +21,7 @@ const getFeedback = catchAsync(async (req, res) => {
 
 const getFeedbackByCategory = catchAsync(async (req, res) => {
   const { category, page, pageSize } = req.query;
-  const feedbacks = await feedbackService.getFeedbackByCategory(category, pageSize, page);
+  const feedbacks = await feedbackService.getFeedbackByCategory(category, pageSize, page,"rating");
   res.status(httpStatus.FOUND).send(feedbacks);
 });
 
