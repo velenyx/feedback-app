@@ -19,22 +19,13 @@ const getFeedbackById = async (id) => {
   return Feedback.findById(id).populate(['client', 'user']).exec();
 };
 const getFeedbackByCategory = async (category, pageSize, page, sortByField) => {
-  if (!category || !category.trim()) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Set the category!');
-  }
-
-  const options = {
-    page: page || 1,
-    limit: pageSize || 5
-  };
-
-  const query = { category, rating: { $exists: true } };
-
-  if (sortByField) {
-    options.sortBy = sortByField; // Використовуємо передане поле для сортування
-  }
-
-  return Feedback.find().sort({ rating: -1, _id: 1 }).skip(0).limit(5);
+  // return Feedback.find().sort({ rating: -1, _id: 1 }).skip(0).limit(5);
+  return Feedback.paginate(
+    {
+      rating: { $exists: true }
+    },
+    { page: 2, sortBy: 'rating:asc' }
+  );
 };
 
 module.exports = { createFeedback, getFeedbackById, getFeedbackByCategory };
