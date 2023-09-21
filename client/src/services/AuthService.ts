@@ -1,52 +1,10 @@
-import { AxiosError } from "axios";
 import { LoginResponseType, LoginType, User } from "../app/store/slice/auth/authTypes";
-import { AuthTokens, RegisterResponseType, RegisterType } from "../pages/Register/types";
-import { $api } from "../shared/config/instance";
+import { RegisterResponseType, RegisterType } from "../pages/Register/types";
+import { $api } from "../shared/config/api";
 import { routePath } from "../shared/config/routePath";
-
-const saveTokensLocalStoare = (data: AuthTokens): void => {
-  localStorage.setItem("accessToken", data.access.token);
-  localStorage.setItem("refreshToken", data.refresh.token);
-};
+import { saveTokensLocalStoare } from "../shared/config/saveTokens";
 
 class AuthService {
-  static async checkAuth() {
-    const accessToken = localStorage.getItem("accessToken");
-    const refreshToken = localStorage.getItem("refreshToken");
-
-    if (accessToken && refreshToken) {
-      try {
-        const { data } = await $api.get<User>(routePath.ME, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        return data;
-      } catch (error: unknown) {
-        if (error instanceof AxiosError && error.response?.status === 401) {
-          // Токен доступа истек, попробуем обновить его
-          return await this.refreshAccessToken(refreshToken);
-        } else {
-          console.log("Failed check Auth", error);
-          return null;
-        }
-      }
-    }
-  }
-  static async refreshAccessToken(
-    refreshToken: string
-  ): Promise<User | null | undefined> {
-    try {
-      const { data } = await $api.post<AuthTokens>(routePath.REFRESH_TOKEN, {
-        refreshToken,
-      });
-      saveTokensLocalStoare(data);
-      return await this.checkAuth(); // Вернуть результат checkAuth
-    } catch (error) {
-      console.error("failed refresh access token", error);
-      throw error;
-    }
-  }
   static async login(userData: LoginType) {
     const response = await $api.post<LoginResponseType>(routePath.AUTH, userData);
     const { data } = response;
@@ -66,6 +24,15 @@ class AuthService {
     await $api.post(routePath.LOGOUT, {
       refreshToken: refreshToken,
     });
+  }
+  static async checkAuth() {
+    try {
+      const { data } = await $api.get<User>(routePath.ME);
+      return data;
+    } catch (error) {
+      console.log("Failed check Auth", error);
+      return null;
+    }
   }
 }
 export default AuthService;
