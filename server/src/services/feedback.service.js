@@ -21,8 +21,8 @@ const getFeedbackById = async (id) => {
 const getFeedbackByCategory = async (query) => {
   const { page, pageSize, category, sortBy, order } = query;
   const options = {
-    page: page | 1,
-    limit: pageSize | 10,
+    page,
+    limit: pageSize,
     sortBy: `${sortBy}:${order}`
   };
   const filter = {
