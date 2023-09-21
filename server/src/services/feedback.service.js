@@ -20,6 +20,9 @@ const getFeedbackById = async (id) => {
 };
 const getFeedbackByCategory = async (query) => {
   const { page, pageSize, category, sortBy, order } = query;
+  if (!category || !category.trim()) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Set the category!');
+  }
   const options = {
     page,
     limit: pageSize,
