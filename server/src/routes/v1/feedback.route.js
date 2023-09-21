@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.route('/').post(auth(), feedbackController.createFeedback);
 
+router.route('/:feedbackId').patch(feedbackController.incrementFeedbackViewsCount);
+
 router.route('/:feedbackId').get(feedbackController.getFeedback);
 
 router.route('/').get(feedbackController.getFeedbackByCategory);

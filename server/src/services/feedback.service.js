@@ -35,4 +35,18 @@ const getFeedbackByCategory = async (query) => {
   return Feedback.paginate(filter, options);
 };
 
-module.exports = { createFeedback, getFeedbackById, getFeedbackByCategory };
+const incrementFeedbackViewsCount = async (feedbackId) => {
+  const updatedFeedback = await Feedback.findOneAndUpdate(
+    { _id: feedbackId },
+    { $inc: { views: 1 } },
+    { new: true }
+  );
+  return updatedFeedback;
+};
+
+module.exports = {
+  createFeedback,
+  getFeedbackById,
+  getFeedbackByCategory,
+  incrementFeedbackViewsCount
+};

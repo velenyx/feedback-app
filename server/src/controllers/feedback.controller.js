@@ -24,8 +24,14 @@ const getFeedbackByCategory = catchAsync(async (req, res) => {
   res.status(httpStatus.FOUND).send(feedbacks);
 });
 
+const incrementFeedbackViewsCount = catchAsync(async (req, res) => {
+  const updatedFeedback = await feedbackService.incrementFeedbackViewsCount(req.params.feedbackId);
+  res.status(httpStatus.OK).send(updatedFeedback);
+});
+
 module.exports = {
   createFeedback,
   getFeedback,
-  getFeedbackByCategory
+  getFeedbackByCategory,
+  incrementFeedbackViewsCount
 };
