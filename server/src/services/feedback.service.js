@@ -18,14 +18,18 @@ const createFeedback = async (feedbackBody) => {
 const getFeedbackById = async (id) => {
   return Feedback.findById(id).populate(['client', 'user']).exec();
 };
-const getFeedbackByCategory = async (category, pageSize, page, sortByField) => {
-  // return Feedback.find().sort({ rating: -1, _id: 1 }).skip(0).limit(5);
-  return Feedback.paginate(
-    {
-      rating: { $exists: true }
-    },
-    { page: 2, sortBy: 'rating:asc' }
-  );
+const getFeedbackByCategory = async (query) => {
+  const { page, pageSize, category, sortBy, order } = query;
+  const options = {
+    page: page | 1,
+    limit: pageSize | 10,
+    sortBy: `${sortBy}:${order}`
+  };
+  const filter = {
+    rating: { $exists: true },
+    category
+  };
+  return Feedback.paginate(filter, options);
 };
 
 module.exports = { createFeedback, getFeedbackById, getFeedbackByCategory };
