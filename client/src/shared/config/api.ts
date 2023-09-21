@@ -1,8 +1,8 @@
 import axios from "axios";
+import { saveTokensLocalStorage } from "../helpers/saveTokens";
 import { AuthTokens } from "../../pages/Register/types";
 import { BASE_URL } from "./url";
 import { routePath } from "./routePath";
-import { saveTokensLocalStoare } from "../helpers/saveTokens";
 
 export const $api = axios.create({
   baseURL: BASE_URL,
@@ -33,7 +33,7 @@ $api.interceptors.response.use(
           const { data } = await $api.post<AuthTokens>(routePath.REFRESH_TOKEN, {
             refreshToken,
           });
-          saveTokensLocalStoare(data);
+          saveTokensLocalStorage(data);
           const originalRequest = error.config;
           originalRequest.headers.Authorization = `Bearer ${data.access.token}`;
           return $api(originalRequest);

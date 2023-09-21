@@ -2,13 +2,13 @@ import { LoginResponseType, LoginType, User } from "../app/store/slice/auth/auth
 import { RegisterResponseType, RegisterType } from "../pages/Register/types";
 import { $api } from "../shared/config/api";
 import { routePath } from "../shared/config/routePath";
-import { saveTokensLocalStoare } from "../shared/helpers/saveTokens";
+import { saveTokensLocalStorage } from "../shared/helpers/saveTokens";
 
 class AuthService {
   static async login(userData: LoginType) {
     const response = await $api.post<LoginResponseType>(routePath.AUTH, userData);
     const { data } = response;
-    saveTokensLocalStoare(data.tokens);
+    saveTokensLocalStorage(data.tokens);
     return data;
   }
   static async registration(userData: RegisterType) {
