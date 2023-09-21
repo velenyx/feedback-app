@@ -8,8 +8,8 @@ const getCategories = catchAsync(async (req, res) => {
 });
 
 const createCategory = catchAsync(async (req, res) => {
-  const { newCategory } = req.body;
-  const category = await categoryService.createCategory(newCategory.toLowerCase());
+  const { categories } = req.body;
+  const category = await categoryService.createCategory(categories);
 
   res.status(httpStatus.CREATED).send(category);
 });
