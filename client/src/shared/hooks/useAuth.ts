@@ -3,7 +3,7 @@ import { selectUser } from "../../app/store/slice/auth/authSlice";
 
 export const useAuth = () => {
   const user = useSelector(selectUser);
-  const token = sessionStorage.getItem("accessToken");
+  const token = localStorage.getItem("accessToken");
 
   return {
     isAuth: !!token,

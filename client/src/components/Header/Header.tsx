@@ -20,8 +20,8 @@ export const Header = () => {
   const signOut = useCallback(() => {
     AuthService.logout();
     dispatch(removeUser());
-    sessionStorage.removeItem("accessToken");
-    sessionStorage.removeItem("refreshToken");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
   }, []);
 
   return (
