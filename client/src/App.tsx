@@ -8,14 +8,20 @@ import AuthService from "./services/AuthService";
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    AuthService.checkAuth()
-      .then((user) => {
+  const checkAuthorization = async () => {
+        const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      try {
+        const user = await AuthService.checkAuth();
         dispatch(setUser(user));
-      })
-      .catch((error) => {
+      } catch (error) {
         console.log(error);
-      });
+      };
+    }
+  }
+
+  useEffect(() => {
+    checkAuthorization()
   }, [dispatch]);
 
   return <Routing />;
