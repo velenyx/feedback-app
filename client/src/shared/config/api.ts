@@ -2,7 +2,7 @@ import axios from "axios";
 import { AuthTokens } from "../../pages/Register/types";
 import { BASE_URL } from "./url";
 import { routePath } from "./routePath";
-import { saveTokensLocalStoare } from "./saveTokens";
+import { saveTokensLocalStoare } from "../helpers/saveTokens";
 
 export const $api = axios.create({
   baseURL: BASE_URL,
