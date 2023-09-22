@@ -27,8 +27,10 @@
   margin: 15px 0px;
   max-height: 3em;
   overflow: hidden;
-  text-wrap: wrap;
   word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .info {
   display: flex;

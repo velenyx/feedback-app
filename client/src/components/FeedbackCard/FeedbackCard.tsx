@@ -30,7 +30,7 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
     <Link to={`feedback/${id}`} className={styles.link}>
       <div className={styles.linkContainer}>
         <div className={styles.name}>
-          {name}
+          <span>{name}</span>
 
           <Rating
             readOnly
@@ -42,14 +42,15 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
         </div>
         <div className={styles.text}>{cutPresentText}</div>
         <div className={styles.info}>
-          {category}
+          <span>{category}</span>
 
           <div className={styles.statistics}>
             <div className={styles.statisticsMetric}>
-              {views} <img src={viewIcon} alt="" />
+              <span>{views} </span>
+              <img src={viewIcon} alt="" />
             </div>
             <div className={styles.statisticsMetric}>
-              {comments} <img src={commentIcon} alt="" />
+              <span>{comments}</span> <img src={commentIcon} alt="" />
             </div>
           </div>
         </div>
