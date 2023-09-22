@@ -1,0 +1,13 @@
+.feedbackPage {
+  height: 100%;
+  & .container {
+    max-width: 1220px;
+    padding: 20px 10px;
+    margin: 20px auto;
+    background-color: var(--white-color);
+    border-radius: 10px;
+    // box-shadow: 0 5px 14px rgba(0, 0, 0, 0.11), 0 2px 1px rgba(0, 0, 0, 0.05);
+    overflow-x: hidden;
+    height: calc(100% - 40px);
+  }
+}
