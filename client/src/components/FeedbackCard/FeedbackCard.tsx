@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 
-type FeedbackCardProps = {
+interface FeedbackCardProps {
   name: string;
   text: string;
   category: string;
@@ -14,9 +14,9 @@ type FeedbackCardProps = {
   comments: number;
   id: string;
   rating: number;
-};
+}
 
-const FeedbackCard: React.FC<FeedbackCardProps> = ({
+export const FeedbackCard: React.FC<FeedbackCardProps> = ({
   name,
   text,
   category,
@@ -27,36 +27,36 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
 }) => {
   const cutPresentText = text.substr(0, 300);
   return (
-    <Link to={`feedback/${id}`} className={styles.link}>
-      <div className={styles.linkContainer}>
-        <div className={styles.name}>
-          <span>{name}</span>
+    <article>
+      <Link to={`feedback/${id}`} className={styles.link}>
+        <div className={styles.linkContainer}>
+          <div className={styles.name}>
+            <span>{name}</span>
 
-          <Rating
-            readOnly
-            value={rating}
-            emptyIcon={
-              <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-            }
-          />
-        </div>
-        <div className={styles.text}>{cutPresentText}</div>
-        <div className={styles.info}>
-          <span>{category}</span>
+            <Rating
+              readOnly
+              value={rating}
+              emptyIcon={
+                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+              }
+            />
+          </div>
+          <p className={styles.text}>{cutPresentText}</p>
+          <div className={styles.info}>
+            <span>{category}</span>
 
-          <div className={styles.statistics}>
-            <div className={styles.statisticsMetric}>
-              <span>{views} </span>
-              <img src={viewIcon} alt="" />
-            </div>
-            <div className={styles.statisticsMetric}>
-              <span>{comments}</span> <img src={commentIcon} alt="" />
+            <div className={styles.statistics}>
+              <div className={styles.statisticsMetric}>
+                <span>{views} </span>
+                <img src={viewIcon} alt="views-icon" />
+              </div>
+              <div className={styles.statisticsMetric}>
+                <span>{comments}</span> <img src={commentIcon} alt="comment-icon" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </article>
   );
 };
-
-export default FeedbackCard;
