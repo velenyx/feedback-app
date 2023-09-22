@@ -1,9 +1,15 @@
+import { useSelector } from "react-redux";
+import { selectUser } from "../../app/store/slice/auth/authSlice";
+
 export const useAuth = () => {
+  const user = useSelector(selectUser);
+  const token = sessionStorage.getItem("accessToken");
+
   return {
-    isAuth: false,
-    name: "Сергей Иващенко",
-    email: "example@gmail.com",
-    token: "",
-    id: 1,
+    isAuth: !!token,
+    email: user?.email,
+    name: user?.name,
+    id: user?.id,
+    role: user?.role,
   };
 };

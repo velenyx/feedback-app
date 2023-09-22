@@ -12,7 +12,7 @@
   justify-content: space-between;
   height: 64px;
   padding: 10px 10px;
-  max-width: 1020px;
+  max-width: 1220px;
   margin: 0 auto;
 }
 .headerLogo {
@@ -47,6 +47,12 @@
 .navAuth {
   color: var(--black-color);
   font-weight: 600;
+
+  & .login {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 
   &:hover a {
     color: var(--main-color);
