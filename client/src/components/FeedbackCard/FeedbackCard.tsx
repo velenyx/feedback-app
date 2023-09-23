@@ -28,7 +28,7 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
   const cutPresentText = text.substr(0, 300);
   return (
     <article>
-      <Link to={`feedback/${id}`} className={styles.link}>
+      <Link to={`feedback/${id}`}>
         <div className={styles.linkContainer}>
           <div className={styles.name}>
             <span>{name}</span>
@@ -48,10 +48,11 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
             <div className={styles.statistics}>
               <div className={styles.statisticsMetric}>
                 <span>{views} </span>
-                <img src={viewIcon} alt="views-icon" />
+                <img src={viewIcon} alt="Иконка просмотров" />
               </div>
               <div className={styles.statisticsMetric}>
-                <span>{comments}</span> <img src={commentIcon} alt="comments-icon" />
+                <span>{comments}</span>
+                <img src={commentIcon} alt="Иконка комментариев" />
               </div>
             </div>
           </div>
