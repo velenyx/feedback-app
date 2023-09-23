@@ -21,7 +21,7 @@ const getFeedback = catchAsync(async (req, res) => {
 
 const getFeedbackByCategory = catchAsync(async (req, res) => {
   const feedbacks = await feedbackService.getFeedbackByCategory({ ...req.query });
-  res.status(httpStatus.FOUND).send(feedbacks);
+  res.status(httpStatus.OK).send(feedbacks);
 });
 
 const incrementFeedbackViewsCount = catchAsync(async (req, res) => {

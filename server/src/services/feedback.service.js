@@ -3,15 +3,11 @@ const { Feedback, User, Category } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 const createFeedback = async (feedbackBody) => {
-  const client = await User.findById(feedbackBody.clientId);
   const existingCategory = await Category.findOne({ category: feedbackBody.category });
   if (!existingCategory) {
     throw new ApiError(httpStatus.NOT_FOUND, 'No such existing category');
   }
-  if (!client) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Client not found');
-  }
-  const feedback = await Feedback.create({ ...feedbackBody, client });
+  const feedback = await Feedback.create({ ...feedbackBody });
   return feedback;
 };
 
@@ -46,7 +42,8 @@ const incrementFeedbackViewsCount = async (feedbackId) => {
 
 const rateFeedback = async (feedbackId, rating) => {
   const feedback = await getFeedbackById(feedbackId);
-  feedback.rating = feedback.rating + parseInt(rating);
+  console.log(feedback);
+  feedback.rating = rating;
   const ratedFeedback = await feedback.save();
   return ratedFeedback;
 };
