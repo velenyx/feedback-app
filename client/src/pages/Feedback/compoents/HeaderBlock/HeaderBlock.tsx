@@ -15,7 +15,13 @@ export const HeaderBlock = ({ userName, rating }: IHeaderProps) => {
         <figcaption>{userName}</figcaption>
       </figure>
 
-      <Rating name="read-only" size="small" value={rating} readOnly />
+      <Rating
+        name="half-rating-read"
+        size="small"
+        value={rating}
+        precision={0.5}
+        readOnly
+      />
     </header>
   );
 };

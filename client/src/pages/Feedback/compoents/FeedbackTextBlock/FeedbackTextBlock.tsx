@@ -1,3 +1,4 @@
+import {GoCommentDiscussion as FeedbackIcon} from "react-icons/go"
 import styles from "./FeedbackText.module.scss"
 
 interface IFeedbackTextProps {
@@ -7,7 +8,7 @@ interface IFeedbackTextProps {
 export const FeedbackTextBlock = ({text} : IFeedbackTextProps) => {
   return (
     <section className={styles.feedback}>
-    <h2>Отзыв</h2>
+    <h2><FeedbackIcon/> Отзыв</h2>
     <p className={styles.feedbackText}>{text}</p>
   </section>
   )

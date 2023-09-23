@@ -29,10 +29,10 @@
   & li {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 
     & a {
-      color: blue;
+      color: var(--main-color);
       &:hover {
         opacity: 0.7;
       }

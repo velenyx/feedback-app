@@ -21,7 +21,7 @@ const feedback: FeedbackType = {
     social_link: ["https://link-1", "https://link-2"],
   },
   text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate velit sequi.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam, dolorum consequatur? Veritatis reprehenderit molestiae et neque eius voluptatem pariatur culpa provident iste at beatae velit esse, quis inventore eum natus?",
-  rating: 4,
+  rating: 3.5,
   comments: [
     {
       id: "sdkljsfs45wefsd",
@@ -42,7 +42,7 @@ const feedback: FeedbackType = {
     name: "Василий Чепушиленко",
     email: "piterparker@mail.ru",
   },
-  views: 12,
+  views: 1370,
   tags: {
     recommend: false,
     discussed: false,
