@@ -21,7 +21,7 @@ const getFeedback = catchAsync(async (req, res) => {
 
 const getFeedbackByCategory = catchAsync(async (req, res) => {
   const feedbacks = await feedbackService.getFeedbackByCategory(req.query.category);
-  res.status(httpStatus.FOUND).send(feedbacks);
+  res.status(httpStatus.OK).send(feedbacks);
 });
 
 module.exports = {
