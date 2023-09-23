@@ -1,4 +1,4 @@
-import FeedbackCard from "../../components/FeedbackCard/FeedbackCard";
+import { FeedbackCard } from "../../components/FeedbackCard/FeedbackCard";
 import { MainLayout } from "../../layout/MainLayout";
 import { Categories } from "../../components/Categories/Categories";
 import { Widget } from "../../components/Widget/Widget";

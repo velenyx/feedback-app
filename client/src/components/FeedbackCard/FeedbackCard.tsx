@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import styles from "./FeedbackCard.module.scss";
 import viewIcon from "../../shared/assets/views_icon.svg";
 import commentIcon from "../../shared/assets/commenst_icon.svg";
@@ -51,7 +51,8 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
                 <img src={viewIcon} alt="views-icon" />
               </div>
               <div className={styles.statisticsMetric}>
-                <span>{comments}</span> <img src={commentIcon} alt="comment-icon" />
+                <span>{comments}</span>{" "}
+                <img src={commentIcon} alt="comment-icon" />
               </div>
             </div>
           </div>
