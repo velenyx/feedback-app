@@ -48,10 +48,10 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
             <div className={styles.statistics}>
               <div className={styles.statisticsMetric}>
                 <span>{views} </span>
-                <img src={viewIcon} alt="" />
+                <img src={viewIcon} alt="views-icon" />
               </div>
               <div className={styles.statisticsMetric}>
-                <span>{comments}</span> <img src={commentIcon} alt="" />
+                <span>{comments}</span> <img src={commentIcon} alt="comments-icon" />
               </div>
             </div>
           </div>
