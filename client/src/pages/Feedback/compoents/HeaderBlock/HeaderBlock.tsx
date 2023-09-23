@@ -1,4 +1,4 @@
-import { Rating } from "@mui/material";
+import { IconButton, Rating, Tooltip } from "@mui/material";
 import userIcon from "../../../../shared/assets/user.png";
 import styles from "./HeaderBlock.module.scss";
 
@@ -15,13 +15,17 @@ export const HeaderBlock = ({ userName, rating }: IHeaderProps) => {
         <figcaption>{userName}</figcaption>
       </figure>
 
-      <Rating
-        name="half-rating-read"
-        size="small"
-        value={rating}
-        precision={0.5}
-        readOnly
-      />
+      <Tooltip title="Рейтинг отзыва">
+        <div>
+          <Rating
+            name="half-rating-read"
+            size="small"
+            value={rating}
+            precision={0.5}
+            readOnly
+          />
+        </div>
+      </Tooltip>
     </header>
   );
 };
