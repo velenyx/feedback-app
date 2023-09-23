@@ -44,9 +44,17 @@ const incrementFeedbackViewsCount = async (feedbackId) => {
   return updatedFeedback;
 };
 
+const rateFeedback = async (feedbackId, rating) => {
+  const feedback = await getFeedbackById(feedbackId);
+  feedback.rating = feedback.rating + parseInt(rating);
+  const ratedFeedback = await feedback.save();
+  return ratedFeedback;
+};
+
 module.exports = {
   createFeedback,
   getFeedbackById,
   getFeedbackByCategory,
-  incrementFeedbackViewsCount
+  incrementFeedbackViewsCount,
+  rateFeedback
 };

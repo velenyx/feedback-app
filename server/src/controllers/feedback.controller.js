@@ -29,9 +29,15 @@ const incrementFeedbackViewsCount = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(updatedFeedback);
 });
 
+const rateFeedback = catchAsync(async (req, res) => {
+  const ratedFeedback = await feedbackService.rateFeedback(req.params.feedbackId, req.query.rating);
+  res.status(httpStatus.OK).send(ratedFeedback);
+});
+
 module.exports = {
   createFeedback,
   getFeedback,
   getFeedbackByCategory,
-  incrementFeedbackViewsCount
+  incrementFeedbackViewsCount,
+  rateFeedback
 };
