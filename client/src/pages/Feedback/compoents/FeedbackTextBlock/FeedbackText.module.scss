@@ -1,0 +1,25 @@
+.feedback {
+  border-top: 1px solid var(--border-color);
+  padding: 20px 20px;
+  @media (max-width: 567px) {
+    padding: 20px 20px;
+  }
+
+  & h2 {
+    color: var(--black-color);
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  & .feedbackText {
+    border-left: 3px solid var(--main-color);
+    padding-left: 10px;
+    color: var(--black-color);
+    font-size: 16px;
+    line-height: 1.5;
+
+    @media (max-width: 567px) {
+      font-size: 14px;
+    }
+  }
+}

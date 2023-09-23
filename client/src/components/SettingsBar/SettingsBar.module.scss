@@ -1,15 +1,13 @@
-.categories {
-  min-width: 226px;
+.settingsBar {
   background-color: var(--white-color);
   border-radius: 10px;
-  height: max-content;
-  overflow: hidden;
-  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.11), 0 2px 1px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+  z-index: 10;
+  position: relative;
 
-  & .container {
-    padding-bottom: 20px;
-    min-height: 50px;
-  }
   & .title {
     display: flex;
     justify-content: space-between;
@@ -28,30 +26,33 @@
     & span {
       margin-right: 10px;
     }
-    & svg {
-      transition: all 0.3s ease;
-
-      @media (max-width: 767px) {
-        & {
-          cursor: pointer;
-        }
-      }
-    }
-    & .activeSvg {
-      transform: rotate(45deg);
-    }
-    @media (max-width: 767px) {
-      & {
-        background: var(--main-color);
-        color: var(--white-color);
-      }
-    }
   }
+
   & .divider {
     border-bottom: 1px solid var(--border-color);
     @media (max-width: 767px) {
       & {
         border: none;
+      }
+    }
+  }
+  & .settingsList {
+    padding: 10px 20px;
+
+    & .settingItem {
+      cursor: pointer;
+      color: var(--black-color);
+      font-family: var(--font-ptsans);
+      font-size: 14px;
+      line-height: 1.7;
+
+      &:hover {
+        color: var(--main-color-hover);
+        font-weight: 700;
+      }
+      &.active {
+        color: var(--main-color-hover);
+        font-weight: 700;
       }
     }
   }

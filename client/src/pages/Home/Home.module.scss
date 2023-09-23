@@ -1,8 +1,10 @@
 .home {
+  height: 100%;
   & .container {
     max-width: 1220px;
-    padding: 0px 10px 0px 10px;
-    margin: 20px auto;
+    padding: 0px 10px;
+    margin: 0px auto;
+    height: 100%;
   }
   & .wrapper {
     display: grid;
@@ -10,17 +12,18 @@
     grid-template-rows: 2fr;
     grid-column-gap: 20px;
     grid-row-gap: 0px;
+    height: 100%;
 
     @media (max-width: 767px) {
       grid-template-columns: 1fr;
-      grid-template-rows: none;
+      grid-template-rows: 1fr 9fr;
       grid-column-gap: 0px;
       grid-row-gap: 20px;
     }
   }
 }
 .homeTape {
-  height: 1067px;
+  height: 100%;
   background: white;
   border-radius: 10px;
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.11), 0 2px 1px rgba(0, 0, 0, 0.05);
@@ -28,7 +31,6 @@
 }
 
 .widget {
-  padding: 20px;
   & .widgetContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -38,6 +40,7 @@
     width: 100%;
     overflow: hidden;
     overflow-x: scroll;
+    padding: 20px;
 
     &::-webkit-scrollbar {
       width: 0px; /* Ширина ползунка (может быть изменена в зависимости от требований) */

@@ -1,0 +1,42 @@
+.shared {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border-top: 1px solid var(--border-color);
+  padding: 10px 20px;
+  & .sharedText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  & .links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+
+    & svg {
+      cursor: pointer;
+    }
+  }
+
+  & .evaluate {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-style: italic;
+
+    @media (max-width: 567px) {
+      & .evaluateTitle {
+        display: none;
+      }
+    }
+  }
+}
