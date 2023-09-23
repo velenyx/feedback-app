@@ -2,9 +2,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-
   border-top: 1px solid var(--border-color);
   padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.11), 0 2px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin: 20px;
+
   & .sharedText {
     display: flex;
     justify-content: space-between;
@@ -12,6 +15,12 @@
     gap: 7px;
     font-size: 14px;
     font-style: italic;
+
+    @media (max-width: 567px) {
+      & svg {
+        display: none;
+      }
+    }
   }
 
   & .links {
@@ -36,6 +45,9 @@
     @media (max-width: 567px) {
       & .evaluateTitle {
         display: none;
+      }
+      & span {
+        font-size: 18px !important;
       }
     }
   }
