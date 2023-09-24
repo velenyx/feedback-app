@@ -1,5 +1,5 @@
 const httpStatus = require('http-status');
-const { Feedback, User, Category } = require('../models');
+const { Feedback, Category } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 const createFeedback = async (feedbackBody) => {
@@ -42,7 +42,6 @@ const incrementFeedbackViewsCount = async (feedbackId) => {
 
 const rateFeedback = async (feedbackId, rating) => {
   const feedback = await getFeedbackById(feedbackId);
-  console.log(feedback);
   feedback.rating = rating;
   const ratedFeedback = await feedback.save();
   return ratedFeedback;
