@@ -4,13 +4,15 @@ const auth = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.route('/').post(auth(), feedbackController.createFeedback);
+router
+  .route('/')
+  .post(auth(), feedbackController.createFeedback)
+  .get(feedbackController.getFeedbackByCategory);
 
-router.route('/:feedbackId').patch(feedbackController.incrementFeedbackViewsCount);
-router.route('/rate/:feedbackId').patch(feedbackController.rateFeedback);
-
-router.route('/:feedbackId').get(feedbackController.getFeedback);
-
-router.route('/').get(feedbackController.getFeedbackByCategory);
+router
+  .route('/:feedbackId')
+  .patch(feedbackController.incrementFeedbackViewsCount)
+  .get(feedbackController.getFeedback);
+router.route('/rate/:feedbackId').patch(auth(), feedbackController.rateFeedback);
 
 module.exports = router;
