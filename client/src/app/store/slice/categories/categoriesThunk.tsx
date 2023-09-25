@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { routePath } from "../../../../shared/config/routePath";
-import { $api } from "../../../../shared/config/instance";
+import { $api } from "../../../../shared/config/api";
 import { CategoriesType } from "./categoriesTypes";
 
 export const fetchCategories = createAsyncThunk(
