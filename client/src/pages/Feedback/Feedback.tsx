@@ -7,6 +7,7 @@ import { SharedBlock } from "./compoents/SharedBlock/SharedBlock";
 import styles from "./Feedback.module.scss";
 import { FeedbackTextBlock } from "./compoents/FeedbackTextBlock/FeedbackTextBlock";
 import { CommentsBlock } from "./compoents/CommentsBlock/CommentsBlock";
+import { CommentForm } from "./compoents/CommentForm/CommentForm";
 
 const feedback: FeedbackType = {
   id: "abn3mridamxienysf25",
@@ -61,6 +62,7 @@ export const Feedback = () => {
           <InfoBlock feedback={feedback} />
           <SharedBlock />
           <FeedbackTextBlock text={feedback.text} />
+          <CommentForm />
           <CommentsBlock commentsData={feedback.comments} />
         </div>
       </article>

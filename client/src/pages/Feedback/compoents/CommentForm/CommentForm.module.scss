@@ -1,0 +1,56 @@
+.commentForm {
+  & .container {
+    border-top: 1px solid var(--border-color);
+    padding: 20px 20px;
+
+    & .title {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--black-color);
+      font-size: 16px;
+      margin-bottom: 20px;
+
+      & svg {
+        font-size: 24px;
+      }
+    }
+  }
+
+  & .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    & textarea {
+      outline: none;
+      padding: 10px 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    & button {
+      background: var(--main-color);
+      color: var(--white-color);
+      cursor: pointer;
+      font-weight: 600;
+      height: 100%;
+      padding: 10px 30px;
+      transition: background-color 0.3s ease;
+      min-width: 130px;
+      width: max-content;
+
+      &:hover {
+        background: var(--main-color-hover);
+      }
+      &:active {
+        background: var(--main-color-active);
+      }
+
+      &.notAuth {
+        pointer-events: none;
+        background: gray;
+        color: var(--white-color);
+      }
+    }
+  }
+}
