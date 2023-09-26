@@ -68,7 +68,7 @@ module.exports = router;
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/FeedbackCreate'
+ *             $ref: '#/components/schemas/Feedback'
  *     responses:
  *       "201":
  *         description: Created
