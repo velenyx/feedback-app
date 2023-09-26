@@ -34,10 +34,17 @@ const rateFeedback = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(ratedFeedback);
 });
 
+const deleteFeedback = catchAsync(async (req, res) => {
+  console.log(req.user);
+  const deletedFeedback = await feedbackService.deleteFeedback(req.params.feedbackId, req.user);
+  res.status(httpStatus.OK).send(deletedFeedback);
+});
+
 module.exports = {
   createFeedback,
   getFeedback,
   getFeedbackByCategory,
   incrementFeedbackViewsCount,
-  rateFeedback
+  rateFeedback,
+  deleteFeedback
 };

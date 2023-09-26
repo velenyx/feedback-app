@@ -47,10 +47,21 @@ const rateFeedback = async (feedbackId, rating) => {
   return ratedFeedback;
 };
 
+const deleteFeedback = async (feedbackId, user) => {
+  const deleteOptions = {
+    _id: feedbackId,
+    ...(!(user.role === 'admin') && { user: user._id })
+  };
+
+  const deletedFeedback = await Feedback.findOneAndDelete(deleteOptions);
+  return deletedFeedback;
+};
+
 module.exports = {
   createFeedback,
   getFeedbackById,
   getFeedbackByCategory,
   incrementFeedbackViewsCount,
-  rateFeedback
+  rateFeedback,
+  deleteFeedback
 };
