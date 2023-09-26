@@ -25,6 +25,10 @@ export type CommentType = {
   sub_сomments?: CommentType[];
 };
 
+export type CommentTypeWithoutId = Omit<CommentType, "id">;
+
+
+
 export type FeedbackType = {
   id: string;
   category: string;

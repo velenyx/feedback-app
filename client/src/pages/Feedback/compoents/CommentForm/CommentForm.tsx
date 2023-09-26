@@ -1,21 +1,29 @@
 import { FormEvent, useState } from "react";
 import classNames from "classnames";
 import { BiMessageAdd as AddIcom } from "react-icons/bi";
+import { CommentTypeWithoutId } from "../../types";
 import { useAuth } from "../../../../shared/hooks/useAuth";
 import { bannedRegex } from "../../../../shared/utils/bannedWords";
+import { getFormattedDate } from "../../../../shared/helpers/formatDate";
 import styles from "./CommentForm.module.scss";
 
 export const CommentForm = () => {
   const [text, setText] = useState("");
-  const { isAuth } = useAuth();
+  const { isAuth, name, email, id } = useAuth();
 
   const handleSendComment = (event: FormEvent) => {
     event.preventDefault();
 
-    const newComment = {
-      text: text.replace(bannedRegex, "*".repeat(1)),
+    const newComment: CommentTypeWithoutId = {
+      user: {
+        id: id,
+        name: name,
+        email: email,
+      },
+      created_date: getFormattedDate(),
+      text: text.replace(bannedRegex, "*".repeat(3)),
+      sub_сomments: [],
     };
-
     console.log(newComment);
   };
 
