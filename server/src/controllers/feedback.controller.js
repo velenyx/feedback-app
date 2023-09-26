@@ -35,7 +35,6 @@ const rateFeedback = catchAsync(async (req, res) => {
 });
 
 const deleteFeedback = catchAsync(async (req, res) => {
-  console.log(req.user);
   const deletedFeedback = await feedbackService.deleteFeedback(req.params.feedbackId, req.user);
   res.status(httpStatus.OK).send(deletedFeedback);
 });

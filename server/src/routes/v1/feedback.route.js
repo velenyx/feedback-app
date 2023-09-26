@@ -55,7 +55,6 @@ module.exports = router;
  *           type: string
  *           format: date-time
  */
-
 /**
  * @swagger
  * /feedbacks:
@@ -101,7 +100,7 @@ module.exports = router;
  *           type: string
  *           enum:
  *           - asc
- *           - desc   
+ *           - desc
  *       - name: page
  *         in: query
  *         required: true
