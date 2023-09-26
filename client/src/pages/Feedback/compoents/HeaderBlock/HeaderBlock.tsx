@@ -1,4 +1,4 @@
-import { IconButton, Rating, Tooltip } from "@mui/material";
+import { Rating, Tooltip } from "@mui/material";
 import userIcon from "../../../../shared/assets/user.png";
 import styles from "./HeaderBlock.module.scss";
 
