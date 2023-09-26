@@ -17,3 +17,177 @@ router
 router.route('/rate/:feedbackId').patch(auth(), feedbackController.rateFeedback);
 
 module.exports = router;
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Feedback:
+ *       type: object
+ *       properties:
+ *         client:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *             phone:
+ *               type: string
+ *             country:
+ *               type: string
+ *             email:
+ *               type: string
+ *             social_links:
+ *               type: array
+ *               items:
+ *                 type: string
+ *         category:
+ *           type: string
+ *         text:
+ *           type: string
+ *         user:
+ *           type: string
+ *           format: uuid
+ *         views:
+ *           type: number
+ *         rating:
+ *           type: number
+ *         created_date:
+ *           type: string
+ *           format: date-time
+ */
+
+/**
+ * @swagger
+ * /feedbacks:
+ *   post:
+ *     summary: Create a new feedback
+ *     tags: [Feedback]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/FeedbackCreate'
+ *     responses:
+ *       "201":
+ *         description: Created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Feedback'
+ *   get:
+ *     summary: Get feedbacks by category
+ *     tags: [Feedback]
+ *     parameters:
+ *       - name: category
+ *         in: query
+ *         required: true
+ *         description: Feedback category
+ *         schema:
+ *           type: string
+ *     responses:
+ *       "200":
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Feedback'
+ */
+
+/**
+ * @swagger
+ * /feedbacks/{feedbackId}:
+ *   patch:
+ *     summary: Increment feedback views count
+ *     tags: [Feedback]
+ *     parameters:
+ *       - name: feedbackId
+ *         in: path
+ *         required: true
+ *         description: ID of the feedback
+ *         schema:
+ *           type: string
+ *     responses:
+ *       "200":
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Feedback'
+ *   get:
+ *     summary: Get feedback by ID
+ *     tags: [Feedback]
+ *     parameters:
+ *       - name: feedbackId
+ *         in: path
+ *         required: true
+ *         description: ID of the feedback
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     responses:
+ *       "200":
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Feedback'
+ *   delete:
+ *     summary: Delete feedback
+ *     tags: [Feedback]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: feedbackId
+ *         in: path
+ *         required: true
+ *         description: ID of the feedback
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     responses:
+ *       "200":
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Feedback'
+ */
+
+/**
+ * @swagger
+ * /feedbacks/rate/{feedbackId}:
+ *   patch:
+ *     summary: Rate feedback
+ *     tags: [Feedback]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: feedbackId
+ *         in: path
+ *         required: true
+ *         description: ID of the feedback
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *       - name: rating
+ *         in: query
+ *         required: true
+ *         description: Rating value
+ *         schema:
+ *           type: integer
+ *           format: int32
+ *           minimum: 1
+ *           maximum: 5
+ *     responses:
+ *       "200":
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Feedback'
+ */
