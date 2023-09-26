@@ -12,7 +12,11 @@ const createFeedback = async (feedbackBody) => {
 };
 
 const getFeedbackById = async (id) => {
-  return Feedback.findById(id).populate(['client', 'user']).exec();
+  const feedback = await Feedback.findById(id).populate(['client', 'user']).exec();
+  if (!feedback) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback does not exist!');
+  }
+  return feedback;
 };
 const getFeedbackByCategory = async (query) => {
   const { page, pageSize, category, sortBy, order } = query;
@@ -48,12 +52,17 @@ const rateFeedback = async (feedbackId, rating) => {
 };
 
 const deleteFeedback = async (feedbackId, user) => {
+  await getFeedbackById(feedbackId);
   const deleteOptions = {
-    _id: feedbackId,
-    ...(!(user.role === 'admin') && { user: user._id })
+    _id: feedbackId
   };
-
-  const deletedFeedback = await Feedback.findOneAndDelete(deleteOptions);
+  if (!(user.role === 'admin')) {
+    deleteOptions.user = user._id;
+  }
+  const deletedFeedback = await Feedback.deleteOne(deleteOptions);
+  if (!deletedFeedback.deletedCount) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not creator of this feedback!');
+  }
   return deletedFeedback;
 };
 

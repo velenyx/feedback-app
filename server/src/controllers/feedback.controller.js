@@ -13,9 +13,6 @@ const createFeedback = catchAsync(async (req, res) => {
 
 const getFeedback = catchAsync(async (req, res) => {
   const feedback = await feedbackService.getFeedbackById(req.params.feedbackId);
-  if (!feedback) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback not found');
-  }
   res.status(httpStatus.CREATED).send(feedback);
 });
 
