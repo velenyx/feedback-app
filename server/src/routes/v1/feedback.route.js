@@ -46,7 +46,7 @@ module.exports = router;
  *           type: string
  *         user:
  *           type: string
- *           format: uuid
+ *
  *         views:
  *           type: number
  *         rating:
@@ -87,6 +87,33 @@ module.exports = router;
  *         description: Feedback category
  *         schema:
  *           type: string
+ *       - name: sortBy
+ *         in: query
+ *         required: true
+ *         description: Sorting critery
+ *         schema:
+ *           type: string
+ *       - name: order
+ *         in: query
+ *         required: true
+ *         description: Sorting order
+ *         schema:
+ *           type: string
+ *           enum:
+ *           - asc
+ *           - desc   
+ *       - name: page
+ *         in: query
+ *         required: true
+ *         description: Current page
+ *         schema:
+ *           type: number
+ *       - name: pageSize
+ *         in: query
+ *         required: true
+ *         description: Page size
+ *         schema:
+ *           type: number
  *     responses:
  *       "200":
  *         description: Successful response
@@ -128,7 +155,7 @@ module.exports = router;
  *         description: ID of the feedback
  *         schema:
  *           type: string
- *           format: uuid
+ *
  *     responses:
  *       "200":
  *         description: Successful response
@@ -148,7 +175,7 @@ module.exports = router;
  *         description: ID of the feedback
  *         schema:
  *           type: string
- *           format: uuid
+ *
  *     responses:
  *       "200":
  *         description: Successful response
@@ -173,7 +200,7 @@ module.exports = router;
  *         description: ID of the feedback
  *         schema:
  *           type: string
- *           format: uuid
+ *
  *       - name: rating
  *         in: query
  *         required: true
