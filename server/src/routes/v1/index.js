@@ -4,7 +4,6 @@ const userRoute = require('./user.route');
 const feedbackRoute = require('./feedback.route');
 const categoryRoute = require('./categories.route');
 const docsRoute = require('./docs.route');
-const config = require('../../config/config');
 
 const router = express.Router();
 
