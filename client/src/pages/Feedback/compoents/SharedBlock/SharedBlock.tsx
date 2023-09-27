@@ -1,18 +1,24 @@
+import { memo } from "react";
 import { Rating } from "@mui/material";
 import { FaShare as ShareIcon } from "react-icons/fa";
-import { AiFillFacebook as FacebookIcon } from "react-icons/ai";
-import { AiFillTwitterSquare as XIcon } from "react-icons/ai";
+import { ShareFacebook } from "../../../../shared/ui/Buttons/ShareFacebook/ShareFacebook";
+import { ShareX } from "../../../../shared/ui/Buttons/ShareX/ShareX";
 import styles from "./SharedBlock.module.scss";
 
-export const SharedBlock = () => {
+interface ISharedProps {
+  name: string;
+}
+
+export const SharedBlock = memo(({ name }: ISharedProps) => {
+  const location = window.location.href;
   return (
     <section className={styles.shared}>
       <span className={styles.sharedText}>
         <ShareIcon /> Поделиться:
       </span>
       <div className={styles.links}>
-        <FacebookIcon />
-        <XIcon />
+        <ShareFacebook currentUrl={location} />
+        <ShareX currentUrl={location} name={name} />
       </div>
 
       <div className={styles.evaluate}>
@@ -27,4 +33,4 @@ export const SharedBlock = () => {
       </div>
     </section>
   );
-};
+});
