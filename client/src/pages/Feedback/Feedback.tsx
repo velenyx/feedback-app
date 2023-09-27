@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import { MainLayout } from "../../layout/MainLayout";
 import { HeaderBlock } from "./compoents/HeaderBlock/HeaderBlock";
-import { FeedbackType } from "./types";
 import { InfoBlock } from "./compoents/InfoBlock/InfoBlock";
 import { SharedBlock } from "./compoents/SharedBlock/SharedBlock";
-import styles from "./Feedback.module.scss";
 import { FeedbackTextBlock } from "./compoents/FeedbackTextBlock/FeedbackTextBlock";
 import { CommentsBlock } from "./compoents/CommentsBlock/CommentsBlock";
 import { CommentForm } from "./compoents/CommentForm/CommentForm";
+import { FeedbackType } from "./types";
+import styles from "./Feedback.module.scss";
 
 const feedback: FeedbackType = {
   id: "abn3mridamxienysf25",
