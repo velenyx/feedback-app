@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import qs from "qs";
 import { BsFillPatchCheckFill as CheckIcon } from "react-icons/bs";
 import { BiUser as ProfileIcon } from "react-icons/bi";
@@ -10,10 +10,14 @@ import verifyIcon from "../../shared/assets/verify-email.png";
 import styles from "./VerifyEmail.module.scss";
 
 export const VerifyEmail = () => {
+    const navigate = useNavigate()
+
   const requestVerifyEmail = async () => {
     const { token } = qs.parse(window.location.search, { ignoreQueryPrefix: true });
     if (token) {
       AuthService.verifyEmail(String(token));
+    } else {
+        navigate("/", {replace: false})
     }
   };
 
