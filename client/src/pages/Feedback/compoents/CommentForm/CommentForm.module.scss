@@ -26,6 +26,15 @@
       outline: none;
       padding: 10px 10px;
       border: 1px solid var(--border-color);
+      transition: border 0.3s ease;
+      border-radius: 10px;
+
+      &:focus {
+        border: 2px solid var(--main-color);
+      }
+      &:hover {
+        border: 2px solid var(--main-color);
+      }
     }
 
     & button {
@@ -38,6 +47,7 @@
       transition: background-color 0.3s ease;
       min-width: 130px;
       width: max-content;
+      border-radius: 10px;
 
       &:hover {
         background: var(--main-color-hover);

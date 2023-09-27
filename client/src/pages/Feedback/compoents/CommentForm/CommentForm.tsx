@@ -39,7 +39,7 @@ export const CommentForm = () => {
               value={text}
               onChange={(event) => setText(event.target.value)}
               rows={4}
-              placeholder="Комментарий..."
+              placeholder="Текс комментария"
               required
             />
             <button className={classNames({ [styles.notAuth]: !isAuth })} type="submit">
