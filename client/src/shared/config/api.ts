@@ -8,6 +8,10 @@ export const $api = axios.create({
   baseURL: BASE_URL,
 });
 
+export const $apiVerify = axios.create({
+  baseURL: BASE_URL,
+});
+
 $api.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem("accessToken");
