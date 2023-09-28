@@ -52,7 +52,10 @@ const rateFeedback = async (feedbackId, rating) => {
 };
 
 const deleteFeedback = async (feedbackId, user) => {
-  await getFeedbackById(feedbackId);
+  const feedback = await getFeedbackById(feedbackId);
+  if (feedback.user && !(user._id.toString() === feedback.user._id.toString())) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not creator of this feedback!');
+  }
   const deleteOptions = {
     _id: feedbackId
   };
@@ -60,9 +63,7 @@ const deleteFeedback = async (feedbackId, user) => {
     deleteOptions.user = user._id;
   }
   const deletedFeedback = await Feedback.deleteOne(deleteOptions);
-  if (!deletedFeedback.deletedCount) {
-    throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not creator of this feedback!');
-  }
+
   return deletedFeedback;
 };
 
