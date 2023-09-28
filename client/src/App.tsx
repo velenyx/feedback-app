@@ -5,8 +5,9 @@ import { Routing } from "./Routing";
 import AuthService from "./services/AuthService";
 import "./app/styles/app.scss";
 
-function App() {
+export const App = () => {
   const dispatch = useDispatch();
+  
   const checkAuthorization = async () => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
@@ -24,6 +25,4 @@ function App() {
   }, []);
 
   return <Routing />;
-}
-
-export default App;
+};

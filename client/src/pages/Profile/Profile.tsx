@@ -1,5 +1,12 @@
+import { MainLayout } from "../../layout/MainLayout";
 import styles from "./Profile.module.scss";
 
-export const Profile = () => {
-  return <div style={styles}>Profile</div>;
+const Profile = () => {
+  return (
+    <MainLayout>
+      <div className={styles.profile}>Profile</div>
+    </MainLayout>
+  );
 };
+
+export default Profile;

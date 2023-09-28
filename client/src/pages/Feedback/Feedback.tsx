@@ -60,7 +60,7 @@ export const Feedback = () => {
         <div className={styles.container}>
           <HeaderBlock userName={feedback.user_info.name} rating={feedback.rating} />
           <InfoBlock feedback={feedback} />
-          <SharedBlock name={feedback.client.name}/>
+          <SharedBlock name={feedback.client.name} />
           <FeedbackTextBlock text={feedback.text} />
           <CommentForm />
           <CommentsBlock commentsData={feedback.comments} />
