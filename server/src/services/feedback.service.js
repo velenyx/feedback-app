@@ -53,16 +53,16 @@ const rateFeedback = async (feedbackId, rating) => {
 
 const deleteFeedback = async (feedbackId, user) => {
   const feedback = await getFeedbackById(feedbackId);
-  if (feedback.user && !(user._id.toString() === feedback.user._id.toString())) {
+  const feedbackUser = feedback.user;
+  if (
+    (!(user.role === 'admin') &&
+      feedbackUser &&
+      !(user._id.toString() === feedbackUser._id.toString())) ||
+    (!(user.role === 'admin') && !feedbackUser)
+  ) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not creator of this feedback!');
   }
-  const deleteOptions = {
-    _id: feedbackId
-  };
-  if (!(user.role === 'admin')) {
-    deleteOptions.user = user._id;
-  }
-  const deletedFeedback = await Feedback.deleteOne(deleteOptions);
+  const deletedFeedback = await Feedback.deleteOne({ _id: feedbackId });
 
   return deletedFeedback;
 };
