@@ -4,6 +4,7 @@ import { RegisterResponseType, RegisterType } from "../pages/Register/types";
 import { $api } from "../shared/config/api";
 import { routePath } from "../shared/config/routePath";
 import { saveTokensLocalStorage } from "../shared/helpers/saveTokens";
+import { removeTokensLocalStorage } from "../shared/helpers/removeTokens";
 
 const notifyError = (text: string) =>
   toast.error(text, {
@@ -55,7 +56,7 @@ class AuthService {
       const { data } = await $api.get<User>(routePath.ME);
       return data;
     } catch (error) {
-      console.log("Failed check Auth", error);
+      removeTokensLocalStorage()
       notifyError("Токен клиента недействителен");
       return null;
     }

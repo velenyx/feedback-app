@@ -64,9 +64,14 @@ export const FormAuth = () => {
             });
           } else {
             const { code, message } = error.response.data;
-            console.log("message", message);
             if (code === 401) {
               setError({ state: true, message: message });
+            }
+            if (error.response.status === 429) {
+              setError({
+                state: true,
+                message: "Too many requests, please try again later.",
+              });
             }
           }
         } else {
