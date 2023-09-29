@@ -4,7 +4,6 @@ const userRoute = require('./user.route');
 const feedbackRoute = require('./feedback.route');
 const categoryRoute = require('./categories.route');
 const docsRoute = require('./docs.route');
-const config = require('../../config/config');
 
 const router = express.Router();
 
@@ -39,13 +38,9 @@ defaultRoutes.forEach((route) => {
   router.use(route.path, route.route);
 });
 
-/* istanbul ignore next */
-// TODO: вернуть на дев
-if (config.env !== 'development') {
-  devRoutes.forEach((route) => {
-    router.use(route.path, route.route);
-  });
-}
+devRoutes.forEach((route) => {
+  router.use(route.path, route.route);
+});
 
 router.use('/live', (req, res) => {
   res.status(200).send({ status: true });
