@@ -51,6 +51,10 @@ module.exports = router;
  *           type: number
  *         rating:
  *           type: number
+ *         tags:
+ *           type: array
+ *           items:
+ *             type: string  
  *         created_date:
  *           type: string
  *           format: date-time
