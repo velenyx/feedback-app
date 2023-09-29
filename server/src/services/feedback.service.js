@@ -17,7 +17,7 @@ const getFeedbackById = async (id) => {
 };
 const getFeedbackByCategory = async (query) => {
   const { page, limit, category, sortBy, order } = query;
-  const orderOrCriteryUndefined = !(sortBy && order);
+  const orderOrCriteryUndefined = (!sortBy && order) || (!order && sortBy);
   if (orderOrCriteryUndefined) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Sorting order or critery is missing!');
   }
@@ -27,11 +27,9 @@ const getFeedbackByCategory = async (query) => {
     sortBy: `${sortBy}:${order}`
   };
   const filter = {
-    rating: { $exists: true }
+    rating: { $exists: true },
+    category: category ?? { $exists: true }
   };
-  if (category) {
-    filter.category = category;
-  }
   return Feedback.paginate(filter, options);
 };
 
