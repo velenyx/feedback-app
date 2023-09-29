@@ -55,10 +55,10 @@ const deleteFeedback = async (feedbackId, user) => {
   const feedback = await getFeedbackById(feedbackId);
   const feedbackUser = feedback.user;
 
-  const isRequesterAuthor = user._id.toString() === feedbackUser?._id.toString();
+  const isRequesterAuthor = user._id.toString() === feedbackUser?._id.toString() ?? false;
   const requesterIsNotAdmin = user.role !== 'admin';
 
-  if (requesterIsNotAdmin && (!feedbackUser || !isRequesterAuthor)) {
+  if (requesterIsNotAdmin && !isRequesterAuthor) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not the creator of this feedback!');
   }
 
