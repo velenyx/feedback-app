@@ -1,10 +1,8 @@
 const request = require('supertest');
 const httpStatus = require('http-status');
 const app = require('../../src/app');
-const config = require('../../src/config/config');
 const setupTestDB = require('../utils/setupTestDB');
 const { insertFeedbacks } = require('../fixtures/categories.fixture');
-const { userOneAccessToken, adminAccessToken } = require('../fixtures/token.fixture');
 
 setupTestDB();
 
@@ -19,6 +17,20 @@ describe('Category routes', () => {
         .expect(httpStatus.OK);
 
       expect(res.body.length).not.toBe(0);
+    });
+  });
+  describe('POST /v1/categories', () => {
+    test('should create category and get 201', async () => {
+      const newCategory = {
+        category: 'test category'
+      };
+
+      const res = await request(app)
+        .post('/v1/categories')
+
+        .send(newCategory)
+        .expect(httpStatus.CREATED);
+      expect(res.body.category).toBe(newCategory.category);
     });
   });
 });
