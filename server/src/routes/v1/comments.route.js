@@ -4,6 +4,7 @@ const auth = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.route('/:commentId').post(auth(), commentsController.createComment);
+router.route('/:feedbackId').post(auth(), commentsController.createComment);
+router.route('/reply/:commentId').post(auth(), commentsController.createReply);
 
 module.exports = router;
