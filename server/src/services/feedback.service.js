@@ -12,7 +12,8 @@ const createFeedback = async (feedbackBody) => {
 };
 
 const getFeedbackById = async (id) => {
-  return Feedback.findById(id).populate(['client', 'user']).exec();
+  const feedback = await Feedback.findById(id).populate(['client', 'user']).exec();
+  return feedback;
 };
 const getFeedbackByCategory = async (query) => {
   const { page, pageSize, category, sortBy, order } = query;
@@ -42,9 +43,31 @@ const incrementFeedbackViewsCount = async (feedbackId) => {
 
 const rateFeedback = async (feedbackId, rating) => {
   const feedback = await getFeedbackById(feedbackId);
+  if (!feedback) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback does not exist!');
+  }
   feedback.rating = rating;
   const ratedFeedback = await feedback.save();
   return ratedFeedback;
+};
+
+const deleteFeedback = async (feedbackId, user) => {
+  const feedback = await getFeedbackById(feedbackId);
+  if (!feedback) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback does not exist!');
+  }
+  const feedbackUser = feedback.user;
+
+  const isRequesterAuthor = user._id.toString() === feedbackUser?._id.toString() ?? false;
+  const requesterIsNotAdmin = user.role !== 'admin';
+
+  if (requesterIsNotAdmin && !isRequesterAuthor) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not the creator of this feedback!');
+  }
+
+  const deletedFeedback = await Feedback.deleteOne({ _id: feedbackId });
+
+  return deletedFeedback;
 };
 
 module.exports = {
@@ -52,5 +75,6 @@ module.exports = {
   getFeedbackById,
   getFeedbackByCategory,
   incrementFeedbackViewsCount,
-  rateFeedback
+  rateFeedback,
+  deleteFeedback
 };
