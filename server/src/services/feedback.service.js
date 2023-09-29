@@ -41,6 +41,10 @@ const incrementFeedbackViewsCount = async (feedbackId) => {
   return updatedFeedback;
 };
 
+const incrementFeedbackCommentsCount = async (feedbackId) => {
+  await Feedback.updateOne({ _id: feedbackId }, { $inc: { commentsCount: 1 } });
+};
+
 const rateFeedback = async (feedbackId, rating) => {
   const feedback = await getFeedbackById(feedbackId);
   if (!feedback) {
@@ -75,6 +79,7 @@ module.exports = {
   getFeedbackById,
   getFeedbackByCategory,
   incrementFeedbackViewsCount,
+  incrementFeedbackCommentsCount,
   rateFeedback,
   deleteFeedback
 };

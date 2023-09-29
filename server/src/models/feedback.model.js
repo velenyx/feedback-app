@@ -40,6 +40,10 @@ const feedbackSchema = mongoose.Schema(
       type: Number,
       default: 0
     },
+    commentsCount: {
+      type: Number,
+      default: 0
+    },
     rating: { type: Number, default: 0 },
     created_date: { type: Date, default: Date.now }
   },
