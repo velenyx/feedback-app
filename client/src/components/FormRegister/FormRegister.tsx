@@ -70,9 +70,13 @@ export const FormRegister = () => {
       .catch((error) => {
         if (error instanceof AxiosError && error.response) {
           const { code, message } = error.response.data;
+          console.log(error.response);
 
           if (code === 400 || code === 401) {
             setError({ state: true, message });
+          }
+          if (error.response.status === 429) {
+            setError({ state: true, message: error.response.data });
           }
         } else {
           setError({ state: true, message: "Ошибка при регистрации" });
