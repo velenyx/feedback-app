@@ -45,7 +45,8 @@ export const InfoBlock = ({ feedback }: IInfoProps) => {
           <li>
             <CommentsIcon />
             <span>Комментарии:</span>
-            {feedback.comments.length}
+            {/* {feedback.comments.length} */}
+            {10000}
           </li>
         </ul>
       </section>

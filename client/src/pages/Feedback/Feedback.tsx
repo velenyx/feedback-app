@@ -23,22 +23,9 @@ const feedback: FeedbackType = {
   },
   text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate velit sequi.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam, dolorum consequatur? Veritatis reprehenderit molestiae et neque eius voluptatem pariatur culpa provident iste at beatae velit esse, quis inventore eum natus?",
   rating: 3.5,
-  comments: [
-    {
-      id: "sdkljsfs45wefsd",
-      created_date: "2023-06-15T11:14:31",
-      text: "Комментарий",
-      user: {
-        id: "dakjhakjsd",
-        name: "Frank Sinatra",
-        email: "frank.sinatra@gmail.com",
-      },
-      sub_сomments: [],
-    },
-  ],
   created_date: "2023-06-15T10:04:47",
   //user_info - это тот который пишет отзыв
-  user_info: {
+  user: {
     id: "dfjkh436kjhsf",
     name: "Василий Чепушиленко",
     email: "piterparker@mail.ru",
@@ -51,21 +38,23 @@ const feedback: FeedbackType = {
   },
 };
 
-export const Feedback = () => {
+const Feedback = () => {
   const { id } = useParams();
 
   return (
     <MainLayout>
       <article className={styles.feedbackPage}>
         <div className={styles.container}>
-          <HeaderBlock userName={feedback.user_info.name} rating={feedback.rating} />
+          <HeaderBlock userName={feedback.user.name} rating={feedback.rating} />
           <InfoBlock feedback={feedback} />
           <SharedBlock name={feedback.client.name} />
           <FeedbackTextBlock text={feedback.text} />
           <CommentForm />
-          <CommentsBlock commentsData={feedback.comments} />
+          {/* <CommentsBlock commentsData={[]} /> */}
         </div>
       </article>
     </MainLayout>
   );
 };
+
+export default Feedback;

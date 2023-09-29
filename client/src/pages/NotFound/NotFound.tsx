@@ -1,5 +1,6 @@
 import styles from "./NotFound.module.scss";
 
-export const NotFound = () => {
-  return <div style={styles}>NotFound</div>;
+const NotFound = () => {
+  return <div className={styles.notFound}>NotFound</div>;
 };
+export default NotFound;

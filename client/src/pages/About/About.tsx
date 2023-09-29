@@ -1,8 +1,9 @@
 import styles from "./About.module.scss"
 
-export const About = () => {
+ const About = () => {
   return (
-    <div style={styles}>About</div>
+    <div className={styles.about}>About</div>
   )
 }
 
+export default About;

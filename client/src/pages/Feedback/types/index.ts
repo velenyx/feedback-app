@@ -27,17 +27,14 @@ export type CommentType = {
 
 export type CommentTypeWithoutId = Omit<CommentType, "id">;
 
-
-
 export type FeedbackType = {
   id: string;
   category: string;
   client: ClientType;
   text: string;
-  comments: CommentType[];
   rating: number;
   created_date: string;
-  user_info: UserInfoType;
+  user: UserInfoType;
   views: number;
   tags: TagsType;
 };

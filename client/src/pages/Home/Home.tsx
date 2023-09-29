@@ -4,7 +4,7 @@ import { Widget } from "../../components/Widget/Widget";
 import { routePath } from "../../shared/config/routePath";
 import styles from "./Home.module.scss";
 
-export const Home = () => {
+const Home = () => {
   return (
     <MainLayout>
       <div className={styles.home}>
@@ -47,3 +47,5 @@ export const Home = () => {
     </MainLayout>
   );
 };
+
+export default Home;
