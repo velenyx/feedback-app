@@ -2,14 +2,14 @@ const request = require('supertest');
 const httpStatus = require('http-status');
 const app = require('../../src/app');
 const setupTestDB = require('../utils/setupTestDB');
-const { insertFeedbacks } = require('../fixtures/categories.fixture');
+const { insertCategories } = require('../fixtures/categories.fixture');
 
 setupTestDB();
 
 describe('Category routes', () => {
   describe('GET /v1/categories', () => {
     test('should get categories and 200', async () => {
-      await insertFeedbacks();
+      await insertCategories();
       const res = await request(app)
         .get('/v1/categories')
 

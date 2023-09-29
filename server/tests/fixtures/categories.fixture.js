@@ -1,10 +1,10 @@
 const { Category } = require('../../src/models');
 
-const insertFeedbacks = async () => {
+const insertCategories = async () => {
   await Category.create({
     category: 'freelance'
   });
 };
 module.exports = {
-  insertFeedbacks
+  insertCategories
 };
