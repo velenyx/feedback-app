@@ -70,9 +70,11 @@ export const FormRegister = () => {
       .catch((error) => {
         if (error instanceof AxiosError && error.response) {
           const { code, message } = error.response.data;
-
           if (code === 400 || code === 401) {
             setError({ state: true, message });
+          }
+          if (error.response.status === 429) {
+            setError({ state: true, message: error.response.data });
           }
         } else {
           setError({ state: true, message: "Ошибка при регистрации" });
@@ -94,7 +96,7 @@ export const FormRegister = () => {
         )}
         {success && (
           <div className={styles.success}>
-            ✓ Регистрация прошла успешно. На почту отправлено письмо для подтверждения.
+            На почту отправлено письмо для подтверждения.
           </div>
         )}
 
