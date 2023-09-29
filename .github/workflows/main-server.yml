@@ -27,7 +27,7 @@ jobs:
       - name: 🪖 Creating .env
         working-directory: ./server
         run: |
-          touch .env
+          touch .dev.env
           echo PORT=${{ secrets.PORT }} >> .env
           echo SMTP_HOST=${{ secrets.SMTP_HOST }} >> .env
           echo SMTP_USERNAME=${{ secrets.SMTP_USERNAME }} >> .env
@@ -41,7 +41,7 @@ jobs:
           echo JWT_REFRESH_EXPIRATION_DAYS=${{ secrets.JWT_REFRESH_EXPIRATION_DAYS }} >> .env
           echo JWT_RESET_PASSWORD_EXPIRATION_MINUTES=${{ secrets.JWT_RESET_PASSWORD_EXPIRATION_MINUTES }} >> .env
           echo JWT_VERIFY_EMAIL_EXPIRATION_MINUTES=${{ secrets.JWT_VERIFY_EMAIL_EXPIRATION_MINUTES }} >> .env
-          cat .env
+          cat .dev.env
 
       - name: install yarn
         run: npm install --global yarn
