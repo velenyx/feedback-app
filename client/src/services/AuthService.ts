@@ -1,8 +1,32 @@
+import { toast } from "react-toastify";
 import { LoginResponseType, LoginType, User } from "../app/store/slice/auth/authTypes";
 import { RegisterResponseType, RegisterType } from "../pages/Register/types";
 import { $api } from "../shared/config/api";
 import { routePath } from "../shared/config/routePath";
 import { saveTokensLocalStorage } from "../shared/helpers/saveTokens";
+
+const notifyError = (text: string) =>
+  toast.error(text, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+const notifySuccess = (text: string) =>
+  toast.success(text, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 
 class AuthService {
   static async login(userData: LoginType) {
@@ -16,6 +40,7 @@ class AuthService {
       routePath.REGISTRATION,
       userData
     );
+    notifySuccess("Вы успешно зарегистрированы!");
     const { data } = response;
     return data;
   }
@@ -31,6 +56,7 @@ class AuthService {
       return data;
     } catch (error) {
       console.log("Failed check Auth", error);
+      notifyError("Токен клиента недействителен");
       return null;
     }
   }
@@ -39,6 +65,7 @@ class AuthService {
       await $api.post(routePath.VERIFY_EMAIL + "?token=" + token);
     } catch (error) {
       console.log("Failed verify Email", error);
+      notifyError("Ошибка верификации");
       throw error;
     }
   }

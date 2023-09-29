@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { MainLayout } from "../../layout/MainLayout";
 import { FormRegister } from "../../components/FormRegister/FormRegister";
 import { routePath } from "../../shared/config/routePath";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./Register.module.scss";
 
 export const Register = () => {
@@ -20,6 +22,7 @@ export const Register = () => {
 
           <FormRegister />
         </div>
+        <ToastContainer />
       </div>
     </MainLayout>
   );

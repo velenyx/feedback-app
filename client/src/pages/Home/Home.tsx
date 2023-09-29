@@ -1,8 +1,9 @@
-import { FeedbackCard } from "../../components/FeedbackCard/FeedbackCard";
+import { ToastContainer } from "react-toastify";
 import { MainLayout } from "../../layout/MainLayout";
 import { Categories } from "../../components/Categories/Categories";
 import { Widget } from "../../components/Widget/Widget";
 import { routePath } from "../../shared/config/routePath";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./Home.module.scss";
 
 export const Home = () => {
@@ -46,6 +47,7 @@ export const Home = () => {
               </div>
             </div>
           </div>
+          <ToastContainer />
         </div>
       </div>
     </MainLayout>
