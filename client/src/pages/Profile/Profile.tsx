@@ -1,5 +1,3 @@
-import styles from "./Profile.module.scss";
+import styles from './Profile.module.scss';
 
-export const Profile = () => {
-  return <div style={styles}>Profile</div>;
-};
+export const Profile = () => <div style={styles}>Profile</div>;

@@ -1,10 +1,12 @@
-import React from "react";
-import styles from "./FeedbackCard.module.scss";
-import viewIcon from "../../shared/assets/views_icon.svg";
-import commentIcon from "../../shared/assets/commenst_icon.svg";
-import { Link } from "react-router-dom";
-import { Rating } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import StarIcon from '@mui/icons-material/Star';
+import { Rating } from '@mui/material';
+
+import styles from './FeedbackCard.module.scss';
+
+import commentIcon from '../../shared/assets/commenst_icon.svg';
+import viewIcon from '../../shared/assets/views_icon.svg';
 
 interface FeedbackCardProps {
   name: string;
@@ -17,15 +19,16 @@ interface FeedbackCardProps {
 }
 
 export const FeedbackCard: React.FC<FeedbackCardProps> = ({
-  name,
-  text,
   category,
-  views,
   comments,
   id,
+  name,
   rating,
+  text,
+  views,
 }) => {
-  const cutPresentText = text.substr(0, 300);
+  const cutPresentText = text.slice(0, 300);
+
   return (
     <article>
       <Link to={`feedback/${id}`}>
@@ -36,9 +39,7 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
             <Rating
               readOnly
               value={rating}
-              emptyIcon={
-                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-              }
+              emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
             />
           </div>
           <p className={styles.text}>{cutPresentText}</p>
@@ -48,11 +49,11 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
             <div className={styles.statistics}>
               <div className={styles.statisticsMetric}>
                 <span>{views} </span>
-                <img src={viewIcon} alt="Иконка просмотров" />
+                <img src={viewIcon} alt='Иконка просмотров' />
               </div>
               <div className={styles.statisticsMetric}>
                 <span>{comments}</span>
-                <img src={commentIcon} alt="Иконка комментариев" />
+                <img src={commentIcon} alt='Иконка комментариев' />
               </div>
             </div>
           </div>

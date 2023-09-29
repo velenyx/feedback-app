@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
-import { IconType } from "react-icons";
-import styles from "./NavItem.module.scss";
+import type { IconType } from 'react-icons';
+import { Link } from 'react-router-dom';
+
+import styles from './NavItem.module.scss';
 
 interface INavItemProps {
   className: string;
@@ -8,13 +9,11 @@ interface INavItemProps {
   title: string;
   Icon?: IconType;
 }
-export const NavItem = ({ className, path, title, Icon }: INavItemProps) => {
-  return (
-    <li className={className}>
-      <div className={styles.navWrapper}>
-        {Icon && <Icon />}
-        <Link to={path}>{title}</Link>
-      </div>
-    </li>
-  );
-};
+export const NavItem = ({ Icon, className, path, title }: INavItemProps) => (
+  <li className={className}>
+    <div className={styles.navWrapper}>
+      {Icon && <Icon />}
+      <Link to={path}>{title}</Link>
+    </div>
+  </li>
+);

@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import styles from "./Widget.module.scss";
+import { Link } from 'react-router-dom';
+
+import styles from './Widget.module.scss';
 
 interface IWidgetProps {
   title: string;
@@ -10,12 +11,13 @@ interface IWidgetProps {
   bgColor: string;
 }
 export const Widget = (props: IWidgetProps) => {
-  const { title, description, linkTitle, link, bgUrl, bgColor } = props;
+  const { bgColor, bgUrl, description, link, linkTitle, title } = props;
 
   const style = {
     backgroundColor: bgColor,
     backgroundImage: `url(${bgUrl})`,
   };
+
   return (
     <div className={styles.widget} style={style}>
       <div className={styles.container}>
