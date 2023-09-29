@@ -16,13 +16,13 @@ const getFeedbackById = async (id) => {
   return feedback;
 };
 const getFeedbackByCategory = async (query) => {
-  const { page, pageSize, category, sortBy, order } = query;
+  const { page, limit, category, sortBy, order } = query;
   if (!category || !category.trim()) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Set the category!');
   }
   const options = {
     page,
-    limit: pageSize,
+    limit,
     sortBy: `${sortBy}:${order}`
   };
   const filter = {

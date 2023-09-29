@@ -107,7 +107,7 @@ module.exports = router;
  *         description: Current page
  *         schema:
  *           type: number
- *       - name: pageSize
+ *       - name: limit
  *         in: query
  *         required: true
  *         description: Page size
