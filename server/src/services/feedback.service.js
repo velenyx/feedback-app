@@ -13,9 +13,6 @@ const createFeedback = async (feedbackBody) => {
 
 const getFeedbackById = async (id) => {
   const feedback = await Feedback.findById(id).populate(['client', 'user']).exec();
-  if (!feedback) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback does not exist!');
-  }
   return feedback;
 };
 const getFeedbackByCategory = async (query) => {
@@ -46,6 +43,9 @@ const incrementFeedbackViewsCount = async (feedbackId) => {
 
 const rateFeedback = async (feedbackId, rating) => {
   const feedback = await getFeedbackById(feedbackId);
+  if (!feedback) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback does not exist!');
+  }
   feedback.rating = rating;
   const ratedFeedback = await feedback.save();
   return ratedFeedback;
@@ -53,6 +53,9 @@ const rateFeedback = async (feedbackId, rating) => {
 
 const deleteFeedback = async (feedbackId, user) => {
   const feedback = await getFeedbackById(feedbackId);
+  if (!feedback) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback does not exist!');
+  }
   const feedbackUser = feedback.user;
 
   const isRequesterAuthor = user._id.toString() === feedbackUser?._id.toString() ?? false;
