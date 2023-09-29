@@ -4,7 +4,6 @@ import { HeaderBlock } from "./compoents/HeaderBlock/HeaderBlock";
 import { InfoBlock } from "./compoents/InfoBlock/InfoBlock";
 import { SharedBlock } from "./compoents/SharedBlock/SharedBlock";
 import { FeedbackTextBlock } from "./compoents/FeedbackTextBlock/FeedbackTextBlock";
-import { CommentsBlock } from "./compoents/CommentsBlock/CommentsBlock";
 import { CommentForm } from "./compoents/CommentForm/CommentForm";
 import { FeedbackType } from "./types";
 import styles from "./Feedback.module.scss";
@@ -31,11 +30,7 @@ const feedback: FeedbackType = {
     email: "piterparker@mail.ru",
   },
   views: 1370,
-  tags: {
-    recommend: false,
-    discussed: false,
-    сarefully: false,
-  },
+  tags: [],
 };
 
 const Feedback = () => {

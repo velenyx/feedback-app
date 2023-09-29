@@ -11,10 +11,15 @@ export type UserInfoType = {
   name: string;
   email: string;
 };
+// export type TagsType = {
+//   recommend: boolean; // TODO: Если рейтинг отзыва > 4
+//   discussed: boolean; // TODO: Если кол-во комментариев > 10
+//   сarefully: boolean; // TODO: Если рейтинг отзыва < 3
+// };
 export type TagsType = {
-  recommend: boolean; // TODO: Если рейтинг отзыва > 4
-  discussed: boolean; // TODO: Если кол-во комментариев > 10
-  сarefully: boolean; // TODO: Если рейтинг отзыва < 3
+  tag: string;
+  piture: string;
+  title: boolean;
 };
 
 export type CommentType = {
@@ -36,5 +41,5 @@ export type FeedbackType = {
   created_date: string;
   user: UserInfoType;
   views: number;
-  tags: TagsType;
+  tags: TagsType[];
 };
