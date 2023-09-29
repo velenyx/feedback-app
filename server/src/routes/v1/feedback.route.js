@@ -54,7 +54,7 @@ module.exports = router;
  *         tags:
  *           type: array
  *           items:
- *             type: string  
+ *             type: string
  *         created_date:
  *           type: string
  *           format: date-time
@@ -86,19 +86,19 @@ module.exports = router;
  *     parameters:
  *       - name: category
  *         in: query
- *         required: true
+ *         required: false
  *         description: Feedback category
  *         schema:
  *           type: string
  *       - name: sortBy
  *         in: query
- *         required: true
+ *         required: false
  *         description: Sorting critery
  *         schema:
  *           type: string
  *       - name: order
  *         in: query
- *         required: true
+ *         required: false
  *         description: Sorting order
  *         schema:
  *           type: string
@@ -126,6 +126,28 @@ module.exports = router;
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Feedback'
+ *       "400":
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 errorCode:
+ *                   type: string
+ *       "500":
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 errorCode:
+ *                   type: string
  */
 
 /**
@@ -148,6 +170,17 @@ module.exports = router;
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Feedback'
+ *       "404":
+ *         description: Feedback not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 errorCode:
+ *                   type: string
  *   get:
  *     summary: Get feedback by ID
  *     tags: [Feedback]
@@ -220,4 +253,15 @@ module.exports = router;
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Feedback'
+ *       "401":
+ *         description: Not authorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 errorCode:
+ *                   type: string
  */
