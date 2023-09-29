@@ -1,0 +1,9 @@
+{
+  "name": "feedback-app",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "semantic-release": "^22.0.5"
+  },
+  "version": "0.1.0"
+}

@@ -12,18 +12,24 @@ export const errorMessageTranslate = (message: string | undefined) => {
   if (message === "canceled") {
     return "Возникли проблемы при регистрации. Пожалуйста, попробуйте снова через 3 минуты";
   }
+  if (message === "Too many requests, please try again later.") {
+    return "Много попыток. Попробуйте снова через 10 минут";
+  }
 };
-2;
+
 export const errorMessageAuthTranslate = (message: string | null) => {
   if (message === "undefined") return "";
   if (message === "Incorrect email or password") {
     return "Некорректный логин или пароль";
   }
   if (message === "authorization error") {
-    return "Ошибка авторизации. Попробуйте через 2 минуты";
+    return "Ошибка авторизации. Попробуйте через 3 минуты";
   }
   if (message === "canceled") {
-    return "Ошибка авторизации. Попробуйте через 2 минуты";
+    return "Ошибка авторизации. Попробуйте через 3 минуты";
+  }
+  if (message === "Too many requests, please try again later.") {
+    return "Много попыток. Попробуйте снова через 10 минут";
   }
 };
 2;

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setUser } from "./app/store/slice/auth/authSlice";
+import { removeUser, setUser } from "./app/store/slice/auth/authSlice";
 import { Routing } from "./Routing";
 import AuthService from "./services/AuthService";
 import "./app/styles/app.scss";
@@ -14,6 +14,7 @@ function App() {
         const user = await AuthService.checkAuth();
         dispatch(setUser(user));
       } catch (error) {
+        dispatch(removeUser());
         console.log(error);
       }
     }

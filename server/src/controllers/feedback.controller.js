@@ -14,7 +14,7 @@ const createFeedback = catchAsync(async (req, res) => {
 const getFeedback = catchAsync(async (req, res) => {
   const feedback = await feedbackService.getFeedbackById(req.params.feedbackId);
   if (!feedback) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback not found');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback does not exist!');
   }
   res.status(httpStatus.CREATED).send(feedback);
 });
@@ -34,10 +34,16 @@ const rateFeedback = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(ratedFeedback);
 });
 
+const deleteFeedback = catchAsync(async (req, res) => {
+  const deletedFeedback = await feedbackService.deleteFeedback(req.params.feedbackId, req.user);
+  res.status(httpStatus.OK).send(deletedFeedback);
+});
+
 module.exports = {
   createFeedback,
   getFeedback,
   getFeedbackByCategory,
   incrementFeedbackViewsCount,
-  rateFeedback
+  rateFeedback,
+  deleteFeedback
 };

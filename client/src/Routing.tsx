@@ -7,6 +7,7 @@ import { Agremeent } from "./pages/Agremeent/Agremeent";
 import { CommunityRules } from "./pages/CommunityRules/CommunityRules";
 import { Feedback } from "./pages/Feedback/Feedback";
 import { About } from "./pages/About/About";
+import { VerifyEmail } from "./pages/VerifyEmail/VerifyEmail";
 import { Register } from "./pages/Register/Register";
 import { PrivateRouter } from "./shared/router/privateRouter";
 import { useAuth } from "./shared/hooks/useAuth";
@@ -31,6 +32,7 @@ export const Routing = () => {
       />
       <Route path={routePath.HOME} element={<Home />} />
       <Route path={routePath.FEEDBACK} element={<Feedback />} />
+      <Route path={routePath.VERIFY_EMAIL} element={<VerifyEmail />} />
       <Route path={routePath.AGREMEENT} element={<Agremeent />} />
       <Route path={routePath.COMMUNNITY_RULES} element={<CommunityRules />} />
       <Route path={routePath.ABOUT} element={<About />} />
