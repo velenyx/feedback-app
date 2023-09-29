@@ -27,7 +27,7 @@ const envVarsSchema = Joi.object()
     SMTP_USERNAME: Joi.string().description('username for email server'),
     SMTP_PASSWORD: Joi.string().description('password for email server'),
     EMAIL_FROM: Joi.string().description('the from field in the emails sent by the app'),
-    CLIENT_URL: Joi.string().description('client url'),
+    VERIFY_EMAIL_URL: Joi.string().description('url for verify email in frontend'),
     WAKE_UP_URL: Joi.string().description('url to wake up the server')
   })
   .unknown();
@@ -67,10 +67,8 @@ module.exports = {
         pass: envVars.SMTP_PASSWORD
       }
     },
-    from: envVars.EMAIL_FROM
-  },
-  client: {
-    url: envVars.CLIENT_URL
+    from: envVars.EMAIL_FROM,
+    url_verify: envVars.VERIFY_EMAIL_URL
   },
   wakeUpUrl: envVars.WAKE_UP_URL
 };
