@@ -1,6 +1,6 @@
 import { LoginResponseType, LoginType, User } from "../app/store/slice/auth/authTypes";
 import { RegisterResponseType, RegisterType } from "../pages/Register/types";
-import { $api, $apiVerify } from "../shared/config/api";
+import { $api } from "../shared/config/api";
 import { routePath } from "../shared/config/routePath";
 import { saveTokensLocalStorage } from "../shared/helpers/saveTokens";
 
@@ -36,7 +36,7 @@ class AuthService {
   }
   static async verifyEmail(token: string) {
     try {
-      await $apiVerify.post(routePath.VERIFY_EMAIL + "?token=" + token);
+      await $api.post(routePath.VERIFY_EMAIL + "?token=" + token);
     } catch (error) {
       console.log("Failed verify Email", error);
       throw error;

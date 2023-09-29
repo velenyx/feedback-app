@@ -7,9 +7,9 @@
     max-width: 545px;
     padding: 20px;
     margin: 20px auto;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.15);
+    border-radius: var(--border-radius);
+    background-color: var(--white-color);
+    box-shadow: var(--shadow);
     text-align: center;
 
     & .text {
