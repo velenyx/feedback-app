@@ -28,15 +28,7 @@ jobs:
         with:
           node-version: ${{matrix.node-version}}
 
-      - name: Cache Yarn dependencies
-        uses: actions/cache@v3.2.2
-        with:
-          path: ./client/node_modules
-          key: ${{ runner.os }}-npm-${{ hashFiles('./client/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
-
-      - name: Install yarn and dependencies
+      - name: Install npm and dependencies
         working-directory: ./client
         run: npm ci
 
