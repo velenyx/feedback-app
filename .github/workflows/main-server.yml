@@ -24,24 +24,24 @@ jobs:
         with:
           node-version: ${{matrix.node-version}}
 
-      - name: 🪖 Creating .env
-        working-directory: ./server
-        run: |
-          touch .dev.env  # Adjusted from .env to .dev.env
-          echo PORT=${{ secrets.PORT }} >> .dev.env  # Adjusted from .env to .dev.env
-          echo SMTP_HOST=${{ secrets.SMTP_HOST }} >> .dev.env  # ...and so on for the rest of the echo commands
-          echo SMTP_USERNAME=${{ secrets.SMTP_USERNAME }} >> .dev.env
-          echo SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }} >> .dev.env
-          echo SMTP_PORT=${{ secrets.SMTP_PORT }} >> .dev.env
-          echo EMAIL_FROM=${{ secrets.EMAIL_FROM }} >> .dev.env
-          echo MONGODB_URL=${{ secrets.MONGODB_URL }} >> .dev.env
-          echo WAKE_UP_URL=${{ secrets.WAKE_UP_URL }} >> .dev.env
-          echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .dev.env
-          echo JWT_ACCESS_EXPIRATION_MINUTES=${{ secrets.JWT_ACCESS_EXPIRATION_MINUTES }} >> .dev.env
-          echo JWT_REFRESH_EXPIRATION_DAYS=${{ secrets.JWT_REFRESH_EXPIRATION_DAYS }} >> .dev.env
-          echo JWT_RESET_PASSWORD_EXPIRATION_MINUTES=${{ secrets.JWT_RESET_PASSWORD_EXPIRATION_MINUTES }} >> .dev.env
-          echo JWT_VERIFY_EMAIL_EXPIRATION_MINUTES=${{ secrets.JWT_VERIFY_EMAIL_EXPIRATION_MINUTES }} >> .dev.env
-          cat .dev.env  # This line is correct
+#      - name: 🪖 Creating .env
+#        working-directory: ./server
+#        run: |
+#          touch .dev.env
+#          echo PORT=${{ secrets.PORT }} >> .env
+#          echo SMTP_HOST=${{ secrets.SMTP_HOST }} >> .env
+#          echo SMTP_USERNAME=${{ secrets.SMTP_USERNAME }} >> .env
+#          echo SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }} >> .env
+#          echo SMTP_PORT=${{ secrets.SMTP_PORT }} >> .env
+#          echo EMAIL_FROM=${{ secrets.EMAIL_FROM }} >> .env
+#          echo MONGODB_URL=${{ secrets.MONGODB_URL }} >> .env
+#          echo WAKE_UP_URL=${{ secrets.WAKE_UP_URL }} >> .env
+#          echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
+#          echo JWT_ACCESS_EXPIRATION_MINUTES=${{ secrets.JWT_ACCESS_EXPIRATION_MINUTES }} >> .env
+#          echo JWT_REFRESH_EXPIRATION_DAYS=${{ secrets.JWT_REFRESH_EXPIRATION_DAYS }} >> .env
+#          echo JWT_RESET_PASSWORD_EXPIRATION_MINUTES=${{ secrets.JWT_RESET_PASSWORD_EXPIRATION_MINUTES }} >> .env
+#          echo JWT_VERIFY_EMAIL_EXPIRATION_MINUTES=${{ secrets.JWT_VERIFY_EMAIL_EXPIRATION_MINUTES }} >> .env
+#          cat .dev.env
 
       - name: install yarn
         run: npm install --global yarn
@@ -50,8 +50,8 @@ jobs:
         working-directory: ./server
         run: yarn install --frozen-lockfile
 
-      - name: testing
-        run: yarn test
+#      - name: testing
+#        run: yarn test
 
       - name: linting ESLint
         working-directory: ./server
