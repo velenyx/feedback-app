@@ -70,8 +70,6 @@ export const FormRegister = () => {
       .catch((error) => {
         if (error instanceof AxiosError && error.response) {
           const { code, message } = error.response.data;
-          console.log(error.response);
-
           if (code === 400 || code === 401) {
             setError({ state: true, message });
           }

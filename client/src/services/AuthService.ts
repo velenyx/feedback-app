@@ -56,9 +56,9 @@ class AuthService {
       const { data } = await $api.get<User>(routePath.ME);
       return data;
     } catch (error) {
-      removeTokensLocalStorage()
+      removeTokensLocalStorage();
       notifyError("Токен клиента недействителен");
-      return null;
+      throw error;
     }
   }
   static async verifyEmail(token: string) {
