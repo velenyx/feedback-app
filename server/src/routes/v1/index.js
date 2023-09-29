@@ -47,4 +47,8 @@ if (config.env !== 'development') {
   });
 }
 
+router.use('/live', (req, res) => {
+  res.status(200).send({ status: true });
+});
+
 module.exports = router;
