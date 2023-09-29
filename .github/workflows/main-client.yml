@@ -30,11 +30,11 @@ jobs:
 
       - name: Install npm and dependencies
         working-directory: ./client
-        run: npm ci
+        run: npm install
 
       - name: Build project
         working-directory: ./client
-        run: yarn build
+        run: npm run build
 
   deploy:
     needs: pipeline
