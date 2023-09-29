@@ -1,12 +1,26 @@
 const mongoose = require('mongoose');
-const { toJSON } = require('./plugins');
+const { toJSON, paginate } = require('./plugins');
 
 const feedbackSchema = mongoose.Schema(
   {
     client: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'User',
-      required: true
+      name: {
+        type: String,
+        required: true
+      },
+      phone: {
+        type: String,
+        defaul: null
+      },
+      country: {
+        type: String,
+        default: null
+      },
+      email: {
+        type: String,
+        default: null
+      },
+      social_links: { type: [String], default: [] }
     },
     category: {
       type: String,
@@ -25,12 +39,16 @@ const feedbackSchema = mongoose.Schema(
     views: {
       type: Number,
       default: 0
-    }
+    },
+    rating: { type: Number, default: 0 },
+    created_date: { type: Date, default: Date.now }
   },
+
   { timestamps: true }
 );
 
 feedbackSchema.plugin(toJSON);
+feedbackSchema.plugin(paginate);
 
 const Feedback = mongoose.model('Feedback', feedbackSchema);
 

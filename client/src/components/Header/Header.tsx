@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { RxEnter as OutIcon } from "react-icons/rx";
 import { IoCreateOutline as CreateIcon } from "react-icons/io5";
 import { BiUser as ProfileIcon } from "react-icons/bi";
+import { removeTokensLocalStorage } from "../../shared/helpers/removeTokens";
 import { removeUser } from "../../app/store/slice/auth/authSlice";
 import { routePath } from "../../shared/config/routePath";
 import { useAuth } from "../../shared/hooks/useAuth";
@@ -20,9 +21,8 @@ export const Header = () => {
   const signOut = useCallback(() => {
     AuthService.logout();
     dispatch(removeUser());
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-  }, []);
+    removeTokensLocalStorage();
+  }, [dispatch]);
 
   return (
     <header className={styles.header}>

@@ -12,7 +12,7 @@ import { FeedbackLazy } from "./pages/Feedback/FeedbackLazy";
 import { CommunityRulesLazy } from "./pages/CommunityRules/CommunityRulesLazy";
 import { AgremeentLazy } from "./pages/Agremeent/AgremeentLazy";
 import { AboutLazy } from "./pages/About/AboutLazy";
-
+import { VerifyEmailLazy } from "./pages/VerifyEmail/VerifyEmailLazy";
 
 export const Routing = () => {
   const { isAuth } = useAuth();
@@ -33,10 +33,12 @@ export const Routing = () => {
         path={routePath.AUTH}
         element={!isAuth ? <Auth /> : <Navigate to={routePath.HOME} />}
       />
+
       <Route
         path={routePath.REGISTRATION}
         element={!isAuth ? <Register /> : <Navigate to={routePath.HOME} />}
       />
+
       <Route
         path={routePath.HOME}
         element={
@@ -51,6 +53,14 @@ export const Routing = () => {
         element={
           <Suspense fallback={"Загрузка..."}>
             <FeedbackLazy />
+          </Suspense>
+        }
+      />
+       <Route
+        path={routePath.VERIFY_EMAIL}
+        element={
+          <Suspense fallback={"Загрузка..."}>
+            <VerifyEmailLazy />
           </Suspense>
         }
       />
