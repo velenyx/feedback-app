@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: ${{matrix.node-version}}
 
-      - name: 🪖 Creating .dev.env for nodemailer/aws
+      - name: 🪖 Creating .env
         working-directory: ./server
         run: |
           touch .env
@@ -41,7 +41,7 @@ jobs:
           echo JWT_REFRESH_EXPIRATION_DAYS=${{ secrets.JWT_REFRESH_EXPIRATION_DAYS }} >> .env
           echo JWT_RESET_PASSWORD_EXPIRATION_MINUTES=${{ secrets.JWT_RESET_PASSWORD_EXPIRATION_MINUTES }} >> .env
           echo JWT_VERIFY_EMAIL_EXPIRATION_MINUTES=${{ secrets.JWT_VERIFY_EMAIL_EXPIRATION_MINUTES }} >> .env
-          cat .dev.env
+          cat .env
 
       - name: install yarn
         run: npm install --global yarn
