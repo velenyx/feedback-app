@@ -7,7 +7,6 @@
     background-color: var(--bg-color);
     border-bottom: 1px solid var(--border-color);
   }
-
 }
 
 .container {
@@ -57,6 +56,14 @@
     display: flex;
     align-items: center;
     gap: 5px;
+
+    &:focus-within {
+      color: var(--main-color);
+      text-decoration: underline;
+      & button {
+        color: var(--main-color);
+      }
+    }
   }
 
   &:hover a {
@@ -80,6 +87,14 @@
     text-decoration: underline;
   }
   &:hover a {
+    color: var(--main-color);
+    text-decoration: underline;
+  }
+  &:focus-within {
+    color: var(--main-color);
+    text-decoration: underline;
+  }
+  &:focus-within a {
     color: var(--main-color);
     text-decoration: underline;
   }

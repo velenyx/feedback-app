@@ -50,6 +50,10 @@
       color: var(--main-color);
       text-decoration: underline;
     }
+    & .linkItem:focus-within a {
+      color: var(--main-color);
+      text-decoration: underline;
+    }
   }
 }
 .credits {
