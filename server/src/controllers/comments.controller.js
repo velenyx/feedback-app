@@ -11,6 +11,16 @@ const createComment = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(comment);
 });
 
+const getComments = catchAsync(async (req, res) => {
+  const comments = await commentsService.getComments(req.params.feedbackId);
+  res.status(httpStatus.CREATED).send(comments);
+});
+
+const rateComment = catchAsync(async (req, res) => {
+  const ratedComment = await commentsService.rateComment(req.params.commentId,req.query.rateType);
+  res.status(httpStatus.CREATED).send(ratedComment);
+});
+
 const createReply = catchAsync(async (req, res) => {
   const reply = await commentsService.createReply(
     { ...req.body, creator: req.user },
@@ -21,5 +31,7 @@ const createReply = catchAsync(async (req, res) => {
 
 module.exports = {
   createComment,
+  getComments,
+  rateComment,
   createReply
 };
