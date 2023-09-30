@@ -1,7 +1,7 @@
-import styles from "./ProfileInfo.module.scss";
 import WorkIcon from "@mui/icons-material/Work";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
+import styles from "./ProfileInfo.module.scss";
 export const ProfileInfo = () => {
   return (
     <div className={styles.infoContainer}>

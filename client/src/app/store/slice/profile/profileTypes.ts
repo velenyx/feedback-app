@@ -15,3 +15,14 @@ export interface myFeedback {
   user: string;
   created_date: string;
 }
+
+export type getMyFeedbacksPayload = {
+  feedbacks: myFeedback[];
+  meta: {
+    page: number;
+    limit: number;
+    totalPages: number;
+    totalResults: number;
+  };
+};
+

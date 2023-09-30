@@ -10,14 +10,15 @@ export const MyFeedbacks = () => {
   const [page, setPage] = useState(1);
   const pageSize = 5;
   const dispatch = useDispatch<any>();
-  const { myFeedbacks } = useSelector(selectMyFeedbacks);
+  const { myFeedbacks, meta } = useSelector(selectMyFeedbacks);
+  const { totalPages } = meta;
   const currentMyFeedbacksPortion = myFeedbacks.slice(
     (page - 1) * pageSize,
     page * pageSize
   );
   useEffect(() => {
-    if (currentMyFeedbacksPortion.length !== pageSize) {
-      dispatch(fetchMyFeedbacks());
+    if (!currentMyFeedbacksPortion.length) {
+      dispatch(fetchMyFeedbacks({ page }));
     }
   }, [page]);
 
@@ -47,7 +48,7 @@ export const MyFeedbacks = () => {
       <div className={styles.pagination}>
         <Pagination
           color="secondary"
-          count={Math.ceil(myFeedbacks.length / pageSize)}
+          count={totalPages}
           page={page}
           onChange={handlePaginationChange}
         />
