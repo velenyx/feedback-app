@@ -5,12 +5,13 @@ import { FeedbackCard } from "../FeedbackCard/FeedbackCard";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMyFeedbacks } from "../../app/store/slice/profile/profileSlice";
 import { fetchMyFeedbacks } from "../../app/store/slice/profile/profileThunk";
+import { StatusEnum } from "../../app/store/slice/categories/categoriesTypes";
 
 export const MyFeedbacks = () => {
   const [page, setPage] = useState(1);
   const pageSize = 5;
   const dispatch = useDispatch<any>();
-  const { myFeedbacks, meta } = useSelector(selectMyFeedbacks);
+  const { myFeedbacks, meta, status } = useSelector(selectMyFeedbacks);
   const { totalPages } = meta;
   const currentMyFeedbacksPortion = myFeedbacks.slice(
     (page - 1) * pageSize,
@@ -43,7 +44,15 @@ export const MyFeedbacks = () => {
   };
   return (
     <div>
-      <div className={styles.feedbacksContainer}>{feedbackItems}</div>
+      <div className={styles.feedbacksContainer}>
+        {status === StatusEnum.loading && "loading"}
+        {status === StatusEnum.success &&
+          myFeedbacks.length > 0 &&
+          feedbackItems}
+        {status === StatusEnum.success &&
+          myFeedbacks.length < 1 &&
+          "You don't have created feedbacks"}
+      </div>
 
       <div className={styles.pagination}>
         <Pagination
