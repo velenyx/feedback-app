@@ -56,7 +56,7 @@ export const Routing = () => {
           </Suspense>
         }
       />
-       <Route
+      <Route
         path={routePath.VERIFY_EMAIL}
         element={
           <Suspense fallback={"Загрузка..."}>
