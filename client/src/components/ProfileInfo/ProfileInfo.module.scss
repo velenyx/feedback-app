@@ -1,5 +1,8 @@
 .infoContainer {
   display: flex;
+  margin-bottom:50px;
+  flex-wrap: wrap;
+  gap: 50px;
 }
 
 .mainInfo {
@@ -33,6 +36,7 @@
 }
 
 .addFeedbackButton,.editProfile {
+    gap: 10px;
     display: flex;
     align-items: center;
   /* styles for .addFeedbackButton */
