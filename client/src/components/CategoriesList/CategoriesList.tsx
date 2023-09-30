@@ -41,7 +41,15 @@ export const CategoriesList = memo(
         categories?.map(item => (
           <li
             key={item.id}
+            onKeyDown={event => {
+              if (event.key === 'Enter') {
+                handleCategoryClick(item.category);
+              }
+            }}
             onClick={() => handleCategoryClick(item.category)}
+            // eslint-disable-next-line
+            role='button'
+            tabIndex={0}
             className={classNames(styles.categoryItem, {
               [styles.active]: selectedCategory === item.category,
             })}

@@ -26,12 +26,12 @@ export const BurgerMenu = memo(({ signOut }: BurgerMenuProps) => {
 
   return (
     <>
-      <div
+      <button
         className={classNames(styles.headerBurger, { [styles.active]: burgerToggle })}
         onClick={handleBurgerMenu}
       >
         <span />
-      </div>
+      </button>
 
       <nav className={classNames(styles.headerMenu, { [styles.active]: burgerToggle })}>
         <div className={styles.headerMenuWrapper}>

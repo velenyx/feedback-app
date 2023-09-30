@@ -6,7 +6,6 @@ import { LuUser as LoginIcon } from 'react-icons/lu';
 import { MdOutlineAlternateEmail as EmailIcon } from 'react-icons/md';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AxiosError } from 'axios';
-import * as yup from 'yup';
 
 import type { RegisterType } from '../../pages/Register/types';
 
@@ -15,31 +14,12 @@ import { capitalizeFullName } from '../../shared/helpers/capitalizeFullName';
 import { errorMessageTranslate } from '../../shared/helpers/errorMessageTranslate';
 import { AuthButton } from '../../shared/ui/Buttons/AuthButton/AuthButton';
 
+import { defaultFormValues, resetError, schema } from './config/config';
+
 import styles from './FormRegister.module.scss';
 
-const schema = yup.object().shape({
-  email: yup.string().required('Обязательное поле *').email('Некорректный email'),
-  name: yup
-    .string()
-    .required('Обязательное поле *')
-    .min(5, 'ФИО должно содержать не менее 5 символов'),
-  password: yup
-    .string()
-    .required('Обязательное поле *')
-    .min(8, 'Пароль должен содержать не менее 8 символов')
-    .matches(
-      /^(?=.*\d)(?=.*[A-Za-z])(?=.*[\W_]).+$/,
-      'Пароль должен состоять минимум из 8 символов и содержать буквы, цифры и символы.'
-    ),
-});
-const defaultFormValues = {
-  email: '',
-  name: '',
-  password: '',
-};
-
 export const FormRegister = () => {
-  const [error, setError] = useState({ message: '', state: false });
+  const [error, setError] = useState(resetError);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [hidePassword, setHidePassword] = useState(false);
@@ -58,7 +38,10 @@ export const FormRegister = () => {
   const resetFormState = () => {
     setLoading(true);
     setSuccess(false);
-    setError({ message: '', state: false });
+    setError(resetError);
+  };
+  const handleHidePassword = () => {
+    setHidePassword(previous => !previous);
   };
   const onSubmit = (userData: RegisterType) => {
     resetFormState();
@@ -69,15 +52,15 @@ export const FormRegister = () => {
         setSuccess(true);
         form.reset(defaultFormValues);
       })
-      .catch(error => {
-        if (error instanceof AxiosError && error.response) {
-          const { code, message } = error.response.data;
+      .catch(error_ => {
+        if (error_ instanceof AxiosError && error_.response) {
+          const { code, message } = error_.response.data;
 
           if (code === 400 || code === 401) {
             setError({ message, state: true });
           }
-          if (error.response.status === 429) {
-            setError({ message: error.response.data, state: true });
+          if (error_.response.status === 429) {
+            setError({ message: error_.response.data, state: true });
           }
         } else {
           setError({ message: 'Ошибка при регистрации', state: true });
@@ -86,9 +69,6 @@ export const FormRegister = () => {
       .finally(() => {
         setLoading(false);
       });
-  };
-  const handleHidePassword = () => {
-    setHidePassword(previous => !previous);
   };
 
   return (

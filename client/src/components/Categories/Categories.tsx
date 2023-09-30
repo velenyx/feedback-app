@@ -21,6 +21,7 @@ export const Categories = () => {
   };
   const handleCategoryClick = useCallback(
     (category: string): void => {
+      console.log('handleCategoryClick');
       setSelectedCategory(category);
       setIsOpenCategories(false);
       dispatch(setCategory(category));

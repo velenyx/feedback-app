@@ -17,10 +17,12 @@ export const errorMessageTranslate = (message: string | undefined) => {
   if (message === 'Too many requests, please try again later.') {
     return 'Много попыток. Попробуйте снова через 10 минут';
   }
+
+  return '';
 };
 
 export const errorMessageAuthTranslate = (message: string | null) => {
-  if (message === 'undefined') {
+  if (message === 'undefined' || message === 'null') {
     return '';
   }
   if (message === 'Incorrect email or password') {
@@ -35,5 +37,6 @@ export const errorMessageAuthTranslate = (message: string | null) => {
   if (message === 'Too many requests, please try again later.') {
     return 'Много попыток. Попробуйте снова через 10 минут';
   }
+
+  return '';
 };
-2;

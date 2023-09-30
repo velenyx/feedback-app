@@ -57,15 +57,15 @@ export const FormAuth = () => {
         dispatch(setUser(data?.user));
         navigate('/', { replace: false });
       })
-      .catch((error: unknown) => {
-        if (error instanceof AxiosError) {
-          if (error.response) {
-            const { code, message } = error.response.data;
+      .catch((error_: unknown) => {
+        if (error_ instanceof AxiosError) {
+          if (error_.response) {
+            const { code, message } = error_.response.data;
 
             if (code === 401) {
               setError({ message, state: true });
             }
-            if (error.response.status === 429) {
+            if (error_.response.status === 429) {
               setError({
                 message: 'Too many requests, please try again later.',
                 state: true,
