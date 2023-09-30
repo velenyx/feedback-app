@@ -13,6 +13,7 @@ import { CommunityRulesLazy } from "./pages/CommunityRules/CommunityRulesLazy";
 import { AgremeentLazy } from "./pages/Agremeent/AgremeentLazy";
 import { AboutLazy } from "./pages/About/AboutLazy";
 import { VerifyEmailLazy } from "./pages/VerifyEmail/VerifyEmailLazy";
+import { LazyLoading } from "./components/LazyLoading/LazyLoading";
 
 export const Routing = () => {
   const { isAuth } = useAuth();
@@ -22,7 +23,7 @@ export const Routing = () => {
         <Route
           path={routePath.PROFILE}
           element={
-            <Suspense fallback={"Загрузка..."}>
+            <Suspense fallback={<LazyLoading />}>
               <ProfileLazy />
             </Suspense>
           }
@@ -38,11 +39,10 @@ export const Routing = () => {
         path={routePath.REGISTRATION}
         element={!isAuth ? <Register /> : <Navigate to={routePath.HOME} />}
       />
-
       <Route
         path={routePath.HOME}
         element={
-          <Suspense fallback={"Загрузка..."}>
+          <Suspense fallback={<LazyLoading />}>
             <HomeLazy />
           </Suspense>
         }
@@ -51,7 +51,7 @@ export const Routing = () => {
       <Route
         path={routePath.FEEDBACK}
         element={
-          <Suspense fallback={"Загрузка..."}>
+          <Suspense fallback={<LazyLoading />}>
             <FeedbackLazy />
           </Suspense>
         }
@@ -59,7 +59,7 @@ export const Routing = () => {
       <Route
         path={routePath.VERIFY_EMAIL}
         element={
-          <Suspense fallback={"Загрузка..."}>
+          <Suspense fallback={<LazyLoading />}>
             <VerifyEmailLazy />
           </Suspense>
         }
@@ -67,7 +67,7 @@ export const Routing = () => {
       <Route
         path={routePath.AGREMEENT}
         element={
-          <Suspense fallback={"Загрузка..."}>
+          <Suspense fallback={<LazyLoading />}>
             <AgremeentLazy />
           </Suspense>
         }
@@ -76,7 +76,7 @@ export const Routing = () => {
       <Route
         path={routePath.COMMUNNITY_RULES}
         element={
-          <Suspense fallback={"Загрузка..."}>
+          <Suspense fallback={<LazyLoading />}>
             <CommunityRulesLazy />
           </Suspense>
         }
@@ -84,7 +84,7 @@ export const Routing = () => {
       <Route
         path={routePath.ABOUT}
         element={
-          <Suspense fallback={"Загрузка..."}>
+          <Suspense fallback={<LazyLoading />}>
             <AboutLazy />
           </Suspense>
         }
@@ -92,7 +92,7 @@ export const Routing = () => {
       <Route
         path={routePath.NOT_FOUND}
         element={
-          <Suspense fallback={"Загрузка..."}>
+          <Suspense fallback={<LazyLoading />}>
             <NotFoundPageAsync />
           </Suspense>
         }
@@ -100,7 +100,7 @@ export const Routing = () => {
       <Route
         path="*"
         element={
-          <Suspense fallback={"Загрузка..."}>
+          <Suspense fallback={<LazyLoading />}>
             <Navigate to={routePath.NOT_FOUND} />
           </Suspense>
         }
