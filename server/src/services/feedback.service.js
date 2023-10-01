@@ -15,7 +15,7 @@ const getFeedbackById = async (id) => {
   const feedback = await Feedback.findById(id).populate(['client', 'user']).exec();
   return feedback;
 };
-const getFeedbackByCategory = async (query) => {
+const getPaginatedFeedbacks = async (query) => {
   const { page, limit, category, sortBy, order } = query;
   const orderOrCriteryUndefined = (!sortBy && order) || (!order && sortBy);
   if (orderOrCriteryUndefined) {
@@ -27,7 +27,6 @@ const getFeedbackByCategory = async (query) => {
     sortBy: `${sortBy}:${order}`
   };
   const filter = {
-    rating: { $exists: true },
     category: category ?? { $exists: true }
   };
   return Feedback.paginate(filter, options);
@@ -74,7 +73,7 @@ const deleteFeedback = async (feedbackId, user) => {
 module.exports = {
   createFeedback,
   getFeedbackById,
-  getFeedbackByCategory,
+  getPaginatedFeedbacks,
   incrementFeedbackViewsCount,
   rateFeedback,
   deleteFeedback

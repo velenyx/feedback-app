@@ -7,7 +7,7 @@ const router = express.Router();
 router
   .route('/')
   .post(auth(), feedbackController.createFeedback)
-  .get(feedbackController.getFeedbackByCategory);
+  .get(feedbackController.getPaginatedFeedbacks);
 
 router
   .route('/:feedbackId')

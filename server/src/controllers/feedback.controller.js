@@ -19,8 +19,8 @@ const getFeedback = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(feedback);
 });
 
-const getFeedbackByCategory = catchAsync(async (req, res) => {
-  const feedbacks = await feedbackService.getFeedbackByCategory({ ...req.query });
+const getPaginatedFeedbacks = catchAsync(async (req, res) => {
+  const feedbacks = await feedbackService.getPaginatedFeedbacks({ ...req.query });
   res.status(httpStatus.OK).send(feedbacks);
 });
 
@@ -42,7 +42,7 @@ const deleteFeedback = catchAsync(async (req, res) => {
 module.exports = {
   createFeedback,
   getFeedback,
-  getFeedbackByCategory,
+  getPaginatedFeedbacks,
   incrementFeedbackViewsCount,
   rateFeedback,
   deleteFeedback
