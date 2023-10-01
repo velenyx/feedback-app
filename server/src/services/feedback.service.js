@@ -15,21 +15,9 @@ const getFeedbackById = async (id) => {
   const feedback = await Feedback.findById(id).populate(['client', 'user']).exec();
   return feedback;
 };
-const getFeedbackByCategory = async (query) => {
-  const { page, pageSize, category, sortBy, order } = query;
-  if (!category || !category.trim()) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Set the category!');
-  }
-  const options = {
-    page,
-    limit: pageSize,
-    sortBy: `${sortBy}:${order}`
-  };
-  const filter = {
-    rating: { $exists: true },
-    category
-  };
-  return Feedback.paginate(filter, options);
+const queryFeedbacks = async (filter, options) => {
+  const feedbacks = await Feedback.paginate(filter, options);
+  return feedbacks;
 };
 
 const incrementFeedbackViewsCount = async (feedbackId) => {
@@ -73,7 +61,7 @@ const deleteFeedback = async (feedbackId, user) => {
 module.exports = {
   createFeedback,
   getFeedbackById,
-  getFeedbackByCategory,
+  queryFeedbacks,
   incrementFeedbackViewsCount,
   rateFeedback,
   deleteFeedback
