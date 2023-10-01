@@ -2,28 +2,22 @@ import Pagination from "@mui/material/Pagination";
 import { useEffect, useState } from "react";
 import styles from "./MyFeedbacks.module.scss";
 import { FeedbackCard } from "../FeedbackCard/FeedbackCard";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectMyFeedbacks } from "../../app/store/slice/profile/profileSlice";
 import { fetchMyFeedbacks } from "../../app/store/slice/profile/profileThunk";
 import { StatusEnum } from "../../app/store/slice/categories/categoriesTypes";
+import { useAppDispatch } from "../../app/store";
 
 export const MyFeedbacks = () => {
   const [page, setPage] = useState(1);
-  const pageSize = 5;
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const { myFeedbacks, meta, status } = useSelector(selectMyFeedbacks);
   const { totalPages } = meta;
-  const currentMyFeedbacksPortion = myFeedbacks.slice(
-    (page - 1) * pageSize,
-    page * pageSize
-  );
   useEffect(() => {
-    if (!currentMyFeedbacksPortion.length) {
-      dispatch(fetchMyFeedbacks({ page }));
-    }
+    dispatch(fetchMyFeedbacks({ page }));
   }, [page]);
 
-  const feedbackItems = currentMyFeedbacksPortion.map((feedback) => (
+  const feedbackItems = myFeedbacks.map((feedback) => (
     <FeedbackCard
       category={feedback.category}
       rating={feedback.rating}

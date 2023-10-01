@@ -36,7 +36,7 @@ export const profileSlice = createSlice({
       })
       .addCase(fetchMyFeedbacks.fulfilled, (state, action) => {
         state.status = StatusEnum.success;
-        state.myFeedbacks = [...state.myFeedbacks, ...action.payload.feedbacks];
+        state.myFeedbacks = [...action.payload.feedbacks];
         state.meta = { ...action.payload.meta };
       })
       .addCase(fetchMyFeedbacks.rejected, (state) => {
