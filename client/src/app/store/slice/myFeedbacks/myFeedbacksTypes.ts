@@ -1,6 +1,6 @@
 import { StatusEnum } from "../categories/categoriesTypes";
 
-export interface MyFeedback {
+export type MyFeedback = {
   category: string;
   client: {
     name: string;
@@ -16,14 +16,14 @@ export interface MyFeedback {
   views: number;
   user: string;
   created_date: string;
-}
+};
 
-export interface GetMyFeedbacksMeta {
+export type GetMyFeedbacksMeta = {
   page: number | null;
   limit: number | null;
   totalPages: number | null;
   totalResults: number | null;
-}
+};
 
 export type GetMyFeedbacksPayload = {
   feedbacks: MyFeedback[] | null;
