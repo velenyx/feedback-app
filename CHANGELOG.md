@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/velenyx/feedback-app/compare/v0.2.0...v0.2.1) (2023-10-01)
+
+
+### Bug Fixes
+
+* verify page ([#30](https://github.com/velenyx/feedback-app/issues/30)) ([ab32fde](https://github.com/velenyx/feedback-app/commit/ab32fde615a035be6196bdaafaf8d2ae5ae78a09))
+
 # [0.2.0](https://github.com/velenyx/feedback-app/compare/v0.1.0...v0.2.0) (2023-09-29)
 
 
