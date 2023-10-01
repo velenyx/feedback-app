@@ -1,24 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../..";
-import { myFeedback } from "./profileTypes";
+import { MyFeedback } from "./profileTypes";
 import { fetchMyFeedbacks } from "./profileThunk";
 import { StatusEnum } from "../categories/categoriesTypes";
 
 type initialState = {
-  myFeedbacks: myFeedback[];
+  myFeedbacks: MyFeedback[] | null;
   meta: {
     page: number;
     limit: number;
     totalPages: number;
     totalResults: number;
   };
-  status: string;
+  status: StatusEnum;
 };
 
 const initialState: initialState = {
-  myFeedbacks: [],
+  myFeedbacks: null,
   meta: {
-    page: 0,
+    page: 1,
     limit: 5,
     totalPages: 0,
     totalResults: 0,

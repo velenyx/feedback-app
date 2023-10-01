@@ -1,4 +1,4 @@
-export interface myFeedback {
+export interface MyFeedback {
   category: string;
   client: {
     name: string;
@@ -16,8 +16,8 @@ export interface myFeedback {
   created_date: string;
 }
 
-export type getMyFeedbacksPayload = {
-  feedbacks: myFeedback[];
+export type GetMyFeedbacksPayload = {
+  feedbacks: MyFeedback[];
   meta: {
     page: number;
     limit: number;

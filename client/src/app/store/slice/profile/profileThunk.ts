@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { routePath } from "../../../../shared/config/routePath";
 import { $api } from "../../../../shared/config/api";
-import { getMyFeedbacksPayload } from "./profileTypes";
+import { GetMyFeedbacksPayload } from "./profileTypes";
 
 export const fetchMyFeedbacks = createAsyncThunk(
-  "feedbacks/myFeedbacks",
+  "feedbacks/fetchMyFeedbacks",
   async ({ page }: { page: number }) => {
-    const { data } = await $api.get<getMyFeedbacksPayload>(
+    const { data } = await $api.get<GetMyFeedbacksPayload>(
       `${routePath.MY_FEEDBACKS}?page=${page}&limit=5`
     );
     return data;

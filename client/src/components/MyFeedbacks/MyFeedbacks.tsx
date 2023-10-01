@@ -17,7 +17,7 @@ export const MyFeedbacks = () => {
     dispatch(fetchMyFeedbacks({ page }));
   }, [page]);
 
-  const feedbackItems = myFeedbacks.map((feedback) => (
+  const feedbackItems = myFeedbacks?.map((feedback) => (
     <FeedbackCard
       category={feedback.category}
       rating={feedback.rating}
@@ -40,11 +40,9 @@ export const MyFeedbacks = () => {
     <div>
       <div className={styles.feedbacksContainer}>
         {status === StatusEnum.loading && "loading"}
+        {status === StatusEnum.success && myFeedbacks && feedbackItems}
         {status === StatusEnum.success &&
-          myFeedbacks.length > 0 &&
-          feedbackItems}
-        {status === StatusEnum.success &&
-          myFeedbacks.length < 1 &&
+          !myFeedbacks &&
           "You don't have created feedbacks"}
       </div>
 
@@ -53,7 +51,7 @@ export const MyFeedbacks = () => {
           color="secondary"
           count={totalPages}
           page={page}
-          onChange={handlePaginationChange}
+          onChange={(_, num) => setPage(num)}
         />
       </div>
     </div>
