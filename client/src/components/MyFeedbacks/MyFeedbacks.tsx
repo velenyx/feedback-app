@@ -45,7 +45,7 @@ export const MyFeedbacks = () => {
       <div className={styles.pagination}>
         <Pagination
           color="secondary"
-          count={totalPages}
+          count={totalPages ?? 0}
           page={page}
           onChange={(_, num) => setPage(num)}
         />

@@ -1,3 +1,5 @@
+import { StatusEnum } from "../categories/categoriesTypes";
+
 export interface MyFeedback {
   category: string;
   client: {
@@ -5,7 +7,7 @@ export interface MyFeedback {
     email?: string;
     phone?: string;
     country?: string;
-    social_links: string[];
+    social_links?: string[];
   };
   text: string;
   rating: number;
@@ -16,12 +18,19 @@ export interface MyFeedback {
   created_date: string;
 }
 
+export interface GetMyFeedbacksMeta {
+  page: number | null;
+  limit: number | null;
+  totalPages: number | null;
+  totalResults: number | null;
+}
+
 export type GetMyFeedbacksPayload = {
   feedbacks: MyFeedback[] | null;
-  meta: {
-    page: number;
-    limit: number;
-    totalPages: number;
-    totalResults: number;
-  };
+  meta: GetMyFeedbacksMeta;
+};
+export type myFeedacksSliceInitialState = {
+  myFeedbacks: MyFeedback[] | null;
+  meta: GetMyFeedbacksMeta;
+  status: StatusEnum;
 };

@@ -1,27 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../..";
-import { MyFeedback } from "./myFeedbacksTypes";
+import { myFeedacksSliceInitialState } from "./myFeedbacksTypes";
 import { fetchMyFeedbacks } from "./myFeedbacksThunk";
 import { StatusEnum } from "../categories/categoriesTypes";
 
-type initialState = {
-  myFeedbacks: MyFeedback[] | null;
-  meta: {
-    page: number;
-    limit: number;
-    totalPages: number;
-    totalResults: number;
-  };
-  status: StatusEnum;
-};
-
-const initialState: initialState = {
+const initialState: myFeedacksSliceInitialState = {
   myFeedbacks: null,
   meta: {
-    page: 1,
-    limit: 5,
-    totalPages: 0,
-    totalResults: 0,
+    limit:null,
+    page:null,
+    totalPages:null,
+    totalResults:null
+
   },
   status: StatusEnum.loading,
 };
@@ -38,7 +28,7 @@ export const myFeedbacksSlice = createSlice({
       .addCase(fetchMyFeedbacks.fulfilled, (state, action) => {
         state.status = StatusEnum.success;
         state.myFeedbacks = action.payload.feedbacks;
-        state.meta = { ...action.payload.meta };
+        state.meta = action.payload.meta;
       })
       .addCase(fetchMyFeedbacks.rejected, (state) => {
         state.status = StatusEnum.rejected;
