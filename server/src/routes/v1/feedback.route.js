@@ -9,6 +9,8 @@ router
   .post(auth(), feedbackController.createFeedback)
   .get(feedbackController.getFeedbackByCategory);
 
+router.route('/my').get(auth(), feedbackController.getMyFeedbacks);
+
 router
   .route('/:feedbackId')
   .patch(feedbackController.incrementFeedbackViewsCount)

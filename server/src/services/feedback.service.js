@@ -32,6 +32,21 @@ const getFeedbackByCategory = async (query) => {
   return Feedback.paginate(filter, options);
 };
 
+const getMyFeedbacks = async (userId, query) => {
+  const options = {
+    ...query
+  };
+  const filter = {
+    user: userId
+  };
+  const { results, limit, page, totalPages, totalResults } = await Feedback.paginate(
+    filter,
+    options
+  );
+
+  return { feedbacks: results, meta: { page, limit, totalPages, totalResults } };
+};
+
 const incrementFeedbackViewsCount = async (feedbackId) => {
   const updatedFeedback = await Feedback.findOneAndUpdate(
     { _id: feedbackId },
@@ -74,6 +89,7 @@ module.exports = {
   createFeedback,
   getFeedbackById,
   getFeedbackByCategory,
+  getMyFeedbacks,
   incrementFeedbackViewsCount,
   rateFeedback,
   deleteFeedback
