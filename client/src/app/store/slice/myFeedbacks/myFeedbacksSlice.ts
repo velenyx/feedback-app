@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../..";
-import { myFeedacksSliceInitialState } from "./myFeedbacksTypes";
+import { IMyFeedacksSliceInitialState } from "./myFeedbacksTypes";
 import { fetchMyFeedbacks } from "./myFeedbacksThunk";
 import { StatusEnum } from "../categories/categoriesTypes";
 
-const initialState: myFeedacksSliceInitialState = {
+const initialState: IMyFeedacksSliceInitialState = {
   myFeedbacks: null,
   meta: {
     limit:null,
@@ -16,7 +16,7 @@ const initialState: myFeedacksSliceInitialState = {
   status: StatusEnum.loading,
 };
 export const myFeedbacksSlice = createSlice({
-  name: "profile",
+  name: "myFeedbacks",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

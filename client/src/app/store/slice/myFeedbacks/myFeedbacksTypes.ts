@@ -18,7 +18,7 @@ export type MyFeedback = {
   created_date: string;
 };
 
-export type GetMyFeedbacksMeta = {
+export type MyFeedbacksMeta = {
   page: number | null;
   limit: number | null;
   totalPages: number | null;
@@ -27,10 +27,10 @@ export type GetMyFeedbacksMeta = {
 
 export type GetMyFeedbacksPayload = {
   feedbacks: MyFeedback[] | null;
-  meta: GetMyFeedbacksMeta;
+  meta: MyFeedbacksMeta;
 };
-export type myFeedacksSliceInitialState = {
+export interface IMyFeedacksSliceInitialState {
   myFeedbacks: MyFeedback[] | null;
-  meta: GetMyFeedbacksMeta;
+  meta: MyFeedbacksMeta;
   status: StatusEnum;
-};
+}
