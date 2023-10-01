@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import styles from "./MyFeedbacks.module.scss";
 import { FeedbackCard } from "../FeedbackCard/FeedbackCard";
 import { useSelector } from "react-redux";
-import { selectMyFeedbacks } from "../../app/store/slice/profile/profileSlice";
+import {
+  selectMyFeedbacks,
+  selectMyFeedbacksMeta,
+} from "../../app/store/slice/profile/profileSlice";
 import { fetchMyFeedbacks } from "../../app/store/slice/profile/profileThunk";
 import { StatusEnum } from "../../app/store/slice/categories/categoriesTypes";
 import { useAppDispatch } from "../../app/store";
@@ -11,8 +14,8 @@ import { useAppDispatch } from "../../app/store";
 export const MyFeedbacks = () => {
   const [page, setPage] = useState(1);
   const dispatch = useAppDispatch();
-  const { myFeedbacks, meta, status } = useSelector(selectMyFeedbacks);
-  const { totalPages } = meta;
+  const { myFeedbacks, status } = useSelector(selectMyFeedbacks);
+  const { totalPages } = useSelector(selectMyFeedbacksMeta);
   useEffect(() => {
     dispatch(fetchMyFeedbacks({ page }));
   }, [page]);
@@ -29,13 +32,6 @@ export const MyFeedbacks = () => {
       key={feedback.id}
     />
   ));
-
-  const handlePaginationChange = (
-    event: React.ChangeEvent<unknown>,
-    value: number
-  ) => {
-    setPage(value);
-  };
   return (
     <div>
       <div className={styles.feedbacksContainer}>

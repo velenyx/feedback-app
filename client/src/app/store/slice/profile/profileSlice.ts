@@ -45,4 +45,5 @@ export const profileSlice = createSlice({
   },
 });
 export const selectMyFeedbacks = (state: RootState) => state.profile;
+export const selectMyFeedbacksMeta = (state: RootState) => state.profile.meta;
 export default profileSlice.reducer;

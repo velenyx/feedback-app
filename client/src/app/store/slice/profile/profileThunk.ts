@@ -7,7 +7,7 @@ export const fetchMyFeedbacks = createAsyncThunk(
   "feedbacks/fetchMyFeedbacks",
   async ({ page }: { page: number }) => {
     const { data } = await $api.get<GetMyFeedbacksPayload>(
-      `${routePath.MY_FEEDBACKS}?page=${page}&limit=5`
+      `${routePath.MY_FEEDBACKS}?limit=5&page=${page}`
     );
     return data;
   }
