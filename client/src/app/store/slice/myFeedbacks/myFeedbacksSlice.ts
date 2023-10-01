@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../..";
-import { MyFeedback } from "./profileTypes";
-import { fetchMyFeedbacks } from "./profileThunk";
+import { MyFeedback } from "./myFeedbacksTypes";
+import { fetchMyFeedbacks } from "./myFeedbacksThunk";
 import { StatusEnum } from "../categories/categoriesTypes";
 
 type initialState = {
@@ -25,7 +25,7 @@ const initialState: initialState = {
   },
   status: StatusEnum.loading,
 };
-export const profileSlice = createSlice({
+export const myFeedbacksSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {},
@@ -33,17 +33,20 @@ export const profileSlice = createSlice({
     builder
       .addCase(fetchMyFeedbacks.pending, (state) => {
         state.status = StatusEnum.loading;
+        state.myFeedbacks = null;
       })
       .addCase(fetchMyFeedbacks.fulfilled, (state, action) => {
         state.status = StatusEnum.success;
-        state.myFeedbacks = [...action.payload.feedbacks];
+        state.myFeedbacks = action.payload.feedbacks;
         state.meta = { ...action.payload.meta };
       })
       .addCase(fetchMyFeedbacks.rejected, (state) => {
         state.status = StatusEnum.rejected;
+        state.myFeedbacks = null;
       });
   },
 });
-export const selectMyFeedbacks = (state: RootState) => state.profile;
-export const selectMyFeedbacksMeta = (state: RootState) => state.profile.meta;
-export default profileSlice.reducer;
+export const selectMyFeedbacks = (state: RootState) => state.myFeedbacks;
+export const selectMyFeedbacksMeta = (state: RootState) =>
+  state.myFeedbacks.meta;
+export default myFeedbacksSlice.reducer;

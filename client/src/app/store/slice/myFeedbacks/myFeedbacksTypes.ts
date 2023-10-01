@@ -17,7 +17,7 @@ export interface MyFeedback {
 }
 
 export type GetMyFeedbacksPayload = {
-  feedbacks: MyFeedback[];
+  feedbacks: MyFeedback[] | null;
   meta: {
     page: number;
     limit: number;
@@ -25,4 +25,3 @@ export type GetMyFeedbacksPayload = {
     totalResults: number;
   };
 };
-

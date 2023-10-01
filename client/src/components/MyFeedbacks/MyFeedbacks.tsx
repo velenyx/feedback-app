@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 import {
   selectMyFeedbacks,
   selectMyFeedbacksMeta,
-} from "../../app/store/slice/profile/profileSlice";
-import { fetchMyFeedbacks } from "../../app/store/slice/profile/profileThunk";
+} from "../../app/store/slice/myFeedbacks/myFeedbacksSlice";
+import { fetchMyFeedbacks } from "../../app/store/slice/myFeedbacks/myFeedbacksThunk";
 import { StatusEnum } from "../../app/store/slice/categories/categoriesTypes";
 import { useAppDispatch } from "../../app/store";
 
