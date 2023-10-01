@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { IAuthSlice } from "./authTypes";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IAuthSlice, User } from "./authTypes";
 import { RootState } from "../..";
 
 const initialState: IAuthSlice = {
@@ -9,7 +9,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser(state, action) {
+    setUser(state, action: PayloadAction<User>) {
       state.user = action.payload;
     },
     removeUser(state) {

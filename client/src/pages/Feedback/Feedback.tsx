@@ -29,6 +29,7 @@ const feedback: FeedbackType = {
     name: "Василий Чепушиленко",
     email: "piterparker@mail.ru",
   },
+  commentsCount: 0,
   views: 1370,
   tags: [],
 };

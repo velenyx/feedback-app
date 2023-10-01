@@ -3,7 +3,6 @@ export type CategoriesSlice = {
   status: StatusEnum;
   category: string | null;
 };
-
 export type CategoriesType = {
   id: string;
   category: string;

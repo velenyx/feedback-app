@@ -38,4 +38,6 @@ export type FeedbackType = {
   user: UserInfoType;
   views: number;
   tags: TagsType[];
+  commentsCount: number;
+  
 };

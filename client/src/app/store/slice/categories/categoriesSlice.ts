@@ -21,6 +21,7 @@ export const categoriesSlice = createSlice({
     builder
       .addCase(fetchCategories.pending, (state) => {
         state.status = StatusEnum.loading;
+        state.categories = null;
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.status = StatusEnum.success;
@@ -28,6 +29,7 @@ export const categoriesSlice = createSlice({
       })
       .addCase(fetchCategories.rejected, (state) => {
         state.status = StatusEnum.rejected;
+        state.categories = null;
       });
   },
 });
