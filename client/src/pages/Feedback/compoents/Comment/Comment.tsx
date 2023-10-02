@@ -1,9 +1,10 @@
-import { useMemo, memo } from "react";
+import { useMemo, memo, useState } from "react";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import { BsArrowReturnRight as AnswerIcon } from "react-icons/bs";
 import { CommentType } from "../../../../@types/global_types";
 import { calculateTimeElapsed } from "../../../../shared/helpers/calculateTimeElapsed";
 import styles from "./Comment.module.scss";
+import { SubComment } from "../SubComment/SubComment";
 
 interface ICommentProps {
   data: CommentType;
@@ -11,6 +12,7 @@ interface ICommentProps {
 
 export const Comment = memo(({ data }: ICommentProps) => {
   const { text, user, created_date } = data;
+  const [answerToogle, setAnswerToogle] = useState(false);
 
   const commentTime = useMemo(() => {
     return calculateTimeElapsed(new Date(created_date));
@@ -36,9 +38,11 @@ export const Comment = memo(({ data }: ICommentProps) => {
       <p className={styles.text} aria-label="Текст комментария">
         {text}
       </p>
-      <button className={styles.answer}>
+      <button onClick={() => setAnswerToogle((prev) => !prev)} className={styles.answer}>
         <AnswerIcon /> Ответить
       </button>
+
+      {answerToogle && <SubComment isOpen={setAnswerToogle} />}
     </article>
   );
 });
