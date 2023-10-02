@@ -12,6 +12,7 @@ export const routePath = {
   ADD_FEEDBACK: "/add_feedback",
   PROFILE: "/profile",
   FEEDBACK_PAGE: "/feedbacks/:id",
+  FEEDBACK_RATE: "/feedbacks/rate/",
   FEEDBACK: "/feedbacks/",
   AGREMEENT: "/agreement",
   COMMUNNITY_RULES: "сommunity_rules",

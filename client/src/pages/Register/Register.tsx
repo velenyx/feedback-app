@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import { MainLayout } from "../../layout/MainLayout";
 import { FormRegister } from "../../components/FormRegister/FormRegister";
 import { routePath } from "../../shared/config/routePath";
@@ -19,10 +18,8 @@ export const Register = () => {
               Регистрация
             </Link>
           </div>
-
           <FormRegister />
         </div>
-        <ToastContainer />
       </div>
     </MainLayout>
   );
