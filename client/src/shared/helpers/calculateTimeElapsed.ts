@@ -7,7 +7,7 @@ export function calculateTimeElapsed(postDate: Date, currentDate = new Date()) {
     const days = Math.floor(hours / 24);
 
     if (days > 0) {
-      return `${days} дней назад`;
+      return `${days} ${dayWord(days)} назад`;
     } else if (hours > 0) {
       return `${hours} час назад`;
     } else if (minutes > 0) {
@@ -18,3 +18,10 @@ export function calculateTimeElapsed(postDate: Date, currentDate = new Date()) {
   }
   return "";
 }
+
+const dayWord = (day: number) => {
+  if (day === 1) return "день";
+  if (day >= 2 && day < 5) return "дня";
+  if (day >= 5) return "дней";
+  return "день";
+};

@@ -1,5 +1,5 @@
 .comment {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .user {
@@ -32,11 +32,14 @@
 }
 .answer {
   margin-top: 10px;
+  margin-left: 55px;
   display: flex;
   align-items: center;
   gap: 5px;
-  padding-left: 55px;
   transition: color 0.3s ease;
+  background: var(--border-color);
+  padding: 5px 15px;
+  border-radius: 10px;
 
   &:hover {
     color: #6164ec;
