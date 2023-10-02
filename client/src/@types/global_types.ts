@@ -11,13 +11,11 @@ export type UserInfoType = {
   name: string;
   email: string;
 };
-
 export type TagsType = {
   tag: string;
   piture: string;
   title: boolean;
 };
-
 export type CommentType = {
   id: string;
   created_date: string;
@@ -25,9 +23,6 @@ export type CommentType = {
   user: UserInfoType;
   sub_сomments?: CommentType[];
 };
-
-export type CommentTypeWithoutId = Omit<CommentType, "id">;
-
 export type FeedbackType = {
   id: string;
   category: string;
@@ -40,3 +35,14 @@ export type FeedbackType = {
   tags: TagsType[];
   commentsCount: number;
 };
+export enum StatusEnum {
+  loading = "loading",
+  success = "success",
+  rejected = "rejected",
+}
+export type CommentTypeWithoutId = Omit<CommentType, "id">;
+
+export type CreateFeedbackType = Omit<
+  FeedbackType,
+  "id" | "rating" | "views" | "commentsCount"
+>;

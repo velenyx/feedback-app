@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import classNames from "classnames";
 import { BiMessageAdd as AddIcom } from "react-icons/bi";
-import { CommentTypeWithoutId } from "../../types";
+import type { CommentTypeWithoutId } from "../../../../@types/global_types";
 import { useAuth } from "../../../../shared/hooks/useAuth";
 import { bannedRegex } from "../../../../shared/utils/bannedWords";
 import { getFormattedDate } from "../../../../shared/helpers/formatDate";

@@ -6,7 +6,6 @@ import {
   fetchFeedbackById,
   incrementFeedbackViewsCount,
 } from "../../app/store/slice/feedbackPage/feedbackPageThunk";
-import { StatusEnum } from "../../app/store/slice/categories/categoriesTypes";
 import { selectFeedbackPage } from "../../app/store/slice/feedbackPage/feedbackPageSlice";
 import { MainLayout } from "../../layout/MainLayout";
 import { Loading } from "../../components/Loading/Loading";
@@ -16,6 +15,7 @@ import { SharedBlock } from "./compoents/SharedBlock/SharedBlock";
 import { FeedbackTextBlock } from "./compoents/FeedbackTextBlock/FeedbackTextBlock";
 import { CommentForm } from "./compoents/CommentForm/CommentForm";
 import styles from "./Feedback.module.scss";
+import { StatusEnum } from "../../@types/global_types";
 
 const Feedback = () => {
   const dispatch = useAppDispatch();

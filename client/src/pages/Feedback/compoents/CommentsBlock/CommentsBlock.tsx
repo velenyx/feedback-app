@@ -1,4 +1,4 @@
-import { CommentType } from "../../types";
+import type { CommentType } from "../../../../@types/global_types";
 import styles from "./CommentsBlock.module.scss";
 
 interface IComments {

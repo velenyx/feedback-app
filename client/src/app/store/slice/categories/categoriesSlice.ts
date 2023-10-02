@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../..";
 import { fetchCategories } from "./categoriesThunk";
-import { CategoriesSlice, StatusEnum } from "./categoriesTypes";
+import { CategoriesSlice } from "./categoriesTypes";
+import { StatusEnum } from "../../../../@types/global_types";
 
 const initialState: CategoriesSlice = {
   categories: null,

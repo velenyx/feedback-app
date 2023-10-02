@@ -1,10 +1,8 @@
 import { memo } from "react";
 import classNames from "classnames";
 import { Skeleton } from "@mui/material";
-import {
-  CategoriesType,
-  StatusEnum,
-} from "../../app/store/slice/categories/categoriesTypes";
+import type { CategoriesType } from "../../app/store/slice/categories/categoriesTypes";
+import { StatusEnum } from "../../@types/global_types";
 import { categoryTranslations } from "../../shared/helpers/categoryTranslations";
 import { skeletonItem } from "../../shared/config/categoryItems";
 import styles from "./CategoriesList.module.scss";

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { routePath } from "../../../../shared/config/routePath";
 import { $api } from "../../../../shared/config/api";
-import { FeedbackType } from "../../../../pages/Feedback/types";
+import { FeedbackType } from "../../../../@types/global_types";
 
 export const fetchFeedbackById = createAsyncThunk(
   "categories/fetchFeedbackById",

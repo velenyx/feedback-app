@@ -1,5 +1,4 @@
-import { FeedbackType } from "../../../../pages/Feedback/types";
-import { StatusEnum } from "../categories/categoriesTypes";
+import type { FeedbackType, StatusEnum } from "../../../../@types/global_types";
 
 export type FeedbackPageSlice = {
   feedback: FeedbackType | null;

@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../..";
-import { StatusEnum } from "../categories/categoriesTypes";
 import { FeedbackPageSlice } from "./feedbackPageTypes";
 import { fetchFeedbackById } from "./feedbackPageThunk";
+import { StatusEnum } from "../../../../@types/global_types";
 
 const initialState: FeedbackPageSlice = {
   feedback: null,
   status: StatusEnum.loading,
 };
 export const feedbackPageSlice = createSlice({
-  name: "feedbackPageS",
+  name: "feedbackPage",
   initialState,
   reducers: {},
 
@@ -29,6 +29,6 @@ export const feedbackPageSlice = createSlice({
       });
   },
 });
-export const {} = feedbackPageSlice.actions;
+// export const {} = feedbackPageSlice.actions;
 export const selectFeedbackPage = (state: RootState) => state.feedbackPage;
 export default feedbackPageSlice.reducer;

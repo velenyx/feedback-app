@@ -8,7 +8,7 @@ import { IoPhonePortraitOutline as PhoneIcon } from "react-icons/io5";
 import { HiOutlineMail as EmailIcon } from "react-icons/hi";
 import { AiOutlineLink as LinksIcon } from "react-icons/ai";
 import { ImEarth as CountryIcon } from "react-icons/im";
-import { FeedbackType } from "../../types";
+import type { FeedbackType } from "../../../../@types/global_types";
 import { formatDate } from "../../../../shared/helpers/formatDate";
 import { categoryTranslations } from "../../../../shared/helpers/categoryTranslations";
 import styles from "./InfoBlock.module.scss";
