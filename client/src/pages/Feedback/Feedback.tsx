@@ -1,8 +1,11 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, batch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../app/store";
-import { fetchFeedbackById } from "../../app/store/slice/feedbackPage/feedbackPageThunk";
+import {
+  fetchFeedbackById,
+  incrementFeedbackViewsCount,
+} from "../../app/store/slice/feedbackPage/feedbackPageThunk";
 import { StatusEnum } from "../../app/store/slice/categories/categoriesTypes";
 import { selectFeedbackPage } from "../../app/store/slice/feedbackPage/feedbackPageSlice";
 import { MainLayout } from "../../layout/MainLayout";
@@ -21,7 +24,10 @@ const Feedback = () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(fetchFeedbackById(id));
+      batch(() => {
+        dispatch(fetchFeedbackById(id));
+        dispatch(incrementFeedbackViewsCount(id));
+      });
     }
   }, [id]);
 

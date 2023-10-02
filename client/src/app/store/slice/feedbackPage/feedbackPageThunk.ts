@@ -10,3 +10,9 @@ export const fetchFeedbackById = createAsyncThunk(
     return data;
   }
 );
+export const incrementFeedbackViewsCount = createAsyncThunk(
+  "categories/incrementFeedbackViewsCount",
+  async (id: string) => {
+    await $api.patch<FeedbackType>(routePath.FEEDBACK + id);
+  }
+);
