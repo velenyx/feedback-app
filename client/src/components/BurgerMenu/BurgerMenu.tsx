@@ -1,13 +1,16 @@
-import { memo, useState } from "react";
-import classNames from "classnames";
-import { Link } from "react-router-dom";
-import { RxEnter as OutIcon } from "react-icons/rx";
-import { IoCreateOutline as CreateIcon } from "react-icons/io5";
-import { BiUser as ProfileIcon } from "react-icons/bi";
-import { routePath } from "../../shared/config/routePath";
-import { useAuth } from "../../shared/hooks/useAuth";
-import { NavItem } from "../NavItem/NavItem";
-import styles from "./BurgerMenu.module.scss";
+import { memo, useState } from 'react';
+import { BiUser as ProfileIcon } from 'react-icons/bi';
+import { IoCreateOutline as CreateIcon } from 'react-icons/io5';
+import { RxEnter as OutIcon } from 'react-icons/rx';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+
+import { useAuth } from '../../shared/hooks/useAuth';
+
+import { routePath } from '../../shared/config/routePath';
+import { NavItem } from '../NavItem/NavItem';
+
+import styles from './BurgerMenu.module.scss';
 
 interface BurgerMenuProps {
   signOut: () => void;
@@ -18,16 +21,17 @@ export const BurgerMenu = memo(({ signOut }: BurgerMenuProps) => {
   const [burgerToggle, setBurgerToggle] = useState(false);
 
   const handleBurgerMenu = () => {
-    setBurgerToggle((prev) => !prev);
+    setBurgerToggle(previous => !previous);
   };
+
   return (
     <>
-      <div
+      <button
         className={classNames(styles.headerBurger, { [styles.active]: burgerToggle })}
         onClick={handleBurgerMenu}
       >
-        <span></span>
-      </div>
+        <span />
+      </button>
 
       <nav className={classNames(styles.headerMenu, { [styles.active]: burgerToggle })}>
         <div className={styles.headerMenuWrapper}>
@@ -44,14 +48,14 @@ export const BurgerMenu = memo(({ signOut }: BurgerMenuProps) => {
                 <ul className={styles.authContainer}>
                   <NavItem
                     className={styles.navAuth}
-                    title="Войти"
+                    title='Войти'
                     path={routePath.AUTH}
                     Icon={OutIcon}
                   />
                   или
                   <NavItem
                     className={styles.navAuth}
-                    title="зарегистрироваться"
+                    title='зарегистрироваться'
                     path={routePath.REGISTRATION}
                   />
                 </ul>
@@ -63,13 +67,13 @@ export const BurgerMenu = memo(({ signOut }: BurgerMenuProps) => {
             <ul className={styles.profileItem}>
               <NavItem
                 className={styles.navProfile}
-                title={name || ""}
+                title={name || ''}
                 path={routePath.PROFILE}
                 Icon={ProfileIcon}
               />
               <NavItem
                 className={styles.navMyFeedback}
-                title="Мои отзывы"
+                title='Мои отзывы'
                 path={routePath.PROFILE}
                 Icon={CreateIcon}
               />

@@ -1,8 +1,3 @@
-import styles from "./About.module.scss"
+import styles from './About.module.scss';
 
-export const About = () => {
-  return (
-    <div style={styles}>About</div>
-  )
-}
-
+export const About = () => <div style={styles}>About</div>;

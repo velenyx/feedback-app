@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
+
 export const useTitle = (title: string | undefined) => {
   useEffect(() => {
     if (title) {

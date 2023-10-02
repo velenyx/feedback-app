@@ -1,28 +1,28 @@
-import { User } from "../../../app/store/slice/auth/authTypes";
+import type { User } from '../../../app/store/slice/auth/authTypes';
 
-export type RegisterType = {
+export interface RegisterType {
   name: string;
   email: string;
   password: string;
-};
+}
 
-export type RegisterResponseType = {
+export interface RegisterResponseType {
   user: User;
   tokens: AuthTokens;
 }
 
-export type AuthTokens = {
+export interface AuthTokens {
   access: Token;
   refresh: Token;
-};
-export type Token = {
+}
+export interface Token {
   token: string;
   expires: string;
-};
+}
 
-export type Error = {
+export interface Error {
   code: number;
   message: string;
-};
+}
 
-export type RefreshTokenResponseType = AuthTokens
+export type RefreshTokenResponseType = AuthTokens;

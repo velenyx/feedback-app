@@ -1,8 +1,3 @@
-import styles from "./Agremeent.module.scss"
+import styles from './Agremeent.module.scss';
 
-export const Agremeent = () => {
-  return (
-    <div style={styles}>Agremeent</div>
-  )
-}
-
+export const Agremeent = () => <div style={styles}>Agremeent</div>;

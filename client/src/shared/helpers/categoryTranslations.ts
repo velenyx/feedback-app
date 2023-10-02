@@ -1,5 +1,4 @@
-import { categoryItems } from "../config/categoryItems";
+import { categoryItems } from '../config/categoryItems';
 
-export const categoryTranslations = (category: string): string => {
-  return categoryItems[category] || "Прочие";
-};
+export const categoryTranslations = (category: string): string =>
+  categoryItems[category] || 'Прочие';

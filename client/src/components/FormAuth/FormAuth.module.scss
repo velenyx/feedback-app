@@ -1,22 +1,17 @@
 .formAuth {
 }
 
-input {
-  width: 100%;
-}
-
 .content {
   position: relative;
   padding: 40px 40px 28px 40px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+
   @media (max-width: 576px) {
     padding: 24px 16px 40px 16px;
   }
 
-  & .formItem {
-  }
   & .inputContainer {
     display: flex;
     align-items: center;

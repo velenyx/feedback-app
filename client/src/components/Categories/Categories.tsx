@@ -1,30 +1,33 @@
-import { useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import classNames from "classnames";
-import { BiCategoryAlt as CategoryIcon } from "react-icons/bi";
-import { CategoriesList } from "../CategoriesList/CategoriesList";
-import { useAppDispatch } from "../../app/store";
-import {
-  selectCategories,
-  setCategory,
-} from "../../app/store/slice/categories/categoriesSlice";
-import { fetchCategories } from "../../app/store/slice/categories/categoriesThunk";
-import styles from "./Categories.module.scss";
+import { useCallback, useEffect, useState } from 'react';
+import { BiCategoryAlt as CategoryIcon } from 'react-icons/bi';
+import { useSelector } from 'react-redux';
+import classNames from 'classnames';
+
+import { useAppDispatch } from '../../app/store';
+import { selectCategories, setCategory } from '../../app/store/slice/categories/categoriesSlice';
+import { fetchCategories } from '../../app/store/slice/categories/categoriesThunk';
+import { CategoriesList } from '../CategoriesList/CategoriesList';
+
+import styles from './Categories.module.scss';
 
 export const Categories = () => {
   const dispatch = useAppDispatch();
   const { categories, status } = useSelector(selectCategories);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [isOpenCategories, setIsOpenCategories] = useState(false);
 
   const handleIsOpen = () => {
-    setIsOpenCategories((prev) => !prev);
+    setIsOpenCategories(previous => !previous);
   };
-  const handleCategoryClick = useCallback((category: string): void => {
-    setSelectedCategory(category);
-    setIsOpenCategories(false);
-    dispatch(setCategory(category));
-  }, []);
+  const handleCategoryClick = useCallback(
+    (category: string): void => {
+      console.log('handleCategoryClick');
+      setSelectedCategory(category);
+      setIsOpenCategories(false);
+      dispatch(setCategory(category));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -40,7 +43,7 @@ export const Categories = () => {
             className={classNames({ [styles.activeSvg]: isOpenCategories })}
           />
         </div>
-        <div className={styles.divider}></div>
+        <div className={styles.divider} />
 
         <CategoriesList
           status={status}

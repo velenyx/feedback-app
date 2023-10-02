@@ -1,28 +1,26 @@
-interface Categories {
-  [key: string]: string;
-}
+type Categories = Record<string, string>;
 
 export const categoryItems: Categories = {
-  targeting: "Таргетинг",
-  copywriting: "Копирайтинг",
-  development: "Разработка",
-  seo: "SEO",
-  it_services: "IT-услуги",
-  marketing: "Маркетинг",
-  advertising: "Реклама",
-  smm: "SMM",
-  design_photo: "Дизайн и фото",
-  training: "Обучение",
-  beauty_health: "Красота и здоровье",
-  sales: "Продажи",
-  tourism_recreation: "Туризм и отдых",
-  sport: "Спорт",
-  cleaning: "Клининг",
-  tattoo: "Татуировки",
-  repair: "Ремонт",
-  construction: "Строительство",
-  nanny: "Няня",
-  other: "Прочие",
+  advertising: 'Реклама',
+  beauty_health: 'Красота и здоровье',
+  cleaning: 'Клининг',
+  construction: 'Строительство',
+  copywriting: 'Копирайтинг',
+  design_photo: 'Дизайн и фото',
+  development: 'Разработка',
+  it_services: 'IT-услуги',
+  marketing: 'Маркетинг',
+  nanny: 'Няня',
+  other: 'Прочие',
+  repair: 'Ремонт',
+  sales: 'Продажи',
+  seo: 'SEO',
+  smm: 'SMM',
+  sport: 'Спорт',
+  targeting: 'Таргетинг',
+  tattoo: 'Татуировки',
+  tourism_recreation: 'Туризм и отдых',
+  training: 'Обучение',
 } as const;
 
-export const skeletonItem = [...new Array(20)];
+export const skeletonItem = Array.from({ length: 20 });
