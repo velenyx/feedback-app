@@ -47,7 +47,8 @@ export const CategoriesList = memo(
               }
             }}
             onClick={() => handleCategoryClick(item.category)}
-            // eslint-disable-next-line
+            /* eslint-disable unicorn/no-abusive-eslint-disable */
+            /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
             role='button'
             tabIndex={0}
             className={classNames(styles.categoryItem, {

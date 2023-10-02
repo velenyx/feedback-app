@@ -8,10 +8,11 @@ import qs from 'qs';
 import { MainLayout } from '../../layout/MainLayout';
 import AuthService from '../../services/AuthService';
 import { routePath } from '../../shared/config/routePath';
-import verifyIcon from '../../shared/assets/verify-email.png';
 
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './VerifyEmail.module.scss';
+
+import verifyIcon from '../../shared/assets/verify-email.png';
 
 export const VerifyEmail = () => {
   const navigate = useNavigate();

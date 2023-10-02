@@ -52,15 +52,17 @@ export const FormRegister = () => {
         setSuccess(true);
         form.reset(defaultFormValues);
       })
-      .catch(error_ => {
-        if (error_ instanceof AxiosError && error_.response) {
-          const { code, message } = error_.response.data;
+      /* eslint-disable unicorn/filename-case */
+      /* eslint-disable @typescript-eslint/no-shadow */
+      .catch(error => {
+        if (error instanceof AxiosError && error.response) {
+          const { code, message } = error.response.data;
 
           if (code === 400 || code === 401) {
             setError({ message, state: true });
           }
-          if (error_.response.status === 429) {
-            setError({ message: error_.response.data, state: true });
+          if (error.response.status === 429) {
+            setError({ message: error.response.data, state: true });
           }
         } else {
           setError({ message: 'Ошибка при регистрации', state: true });

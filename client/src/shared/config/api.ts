@@ -68,8 +68,7 @@ $api.interceptors.response.use(
             // Обновляем заголовок Authorization для оригинального запроса
             originalRequest.headers.Authorization = `Bearer ${data.access.token}`;
 
-            // Вызываем все функции-подписчики с новым токеном
-            // eslint-disable-next-line
+            //  Вызываем все функции-подписчики с новым токеном
             for (const callback of refreshSubscribers) {
               callback(data.access.token);
             }
