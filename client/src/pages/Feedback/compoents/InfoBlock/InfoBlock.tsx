@@ -45,8 +45,7 @@ export const InfoBlock = ({ feedback }: IInfoProps) => {
           <li>
             <CommentsIcon />
             <span>Комментарии:</span>
-            {/* {feedback.comments.length} */}
-            {10000}
+            {feedback.commentsCount}
           </li>
         </ul>
       </section>
@@ -72,7 +71,7 @@ export const InfoBlock = ({ feedback }: IInfoProps) => {
           <li>
             <LinksIcon />
             <span>Соц. сети:</span>
-            {feedback.client.social_link?.map((link, index) => (
+            {feedback.client.social_links?.map((link, index) => (
               <a key={index} href={link} target="_black">
                 Ссылка {index + 1},
               </a>

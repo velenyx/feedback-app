@@ -49,7 +49,7 @@ export const Routing = () => {
       />
 
       <Route
-        path={routePath.FEEDBACK}
+        path={routePath.FEEDBACK_PAGE}
         element={
           <Suspense fallback={<LazyLoading />}>
             <FeedbackLazy />

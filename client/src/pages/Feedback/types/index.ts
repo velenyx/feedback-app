@@ -4,7 +4,7 @@ export type ClientType = {
   phone?: string;
   email?: string;
   coutry: string;
-  social_link?: string[];
+  social_links?: string[];
 };
 export type UserInfoType = {
   id: string;
@@ -39,5 +39,4 @@ export type FeedbackType = {
   views: number;
   tags: TagsType[];
   commentsCount: number;
-  
 };
