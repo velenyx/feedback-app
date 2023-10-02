@@ -1,0 +1,44 @@
+.comment {
+  margin-bottom: 20px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+
+  & svg {
+    font-size: 46px;
+    fill: var(--main-color) !important;
+  }
+
+  & div {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    gap: 5px;
+
+    & time {
+      font-size: 13px;
+    }
+  }
+}
+
+.text {
+  padding-left: 55px;
+  line-height: 1.5;
+  font-weight: 300;
+}
+.answer {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 55px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #6164ec;
+  }
+}

@@ -20,7 +20,7 @@ export const feedbackPageSlice = createSlice({
         state.feedback = null;
       })
       .addCase(fetchFeedbackById.fulfilled, (state, action) => {
-        state.status = StatusEnum.success;
+        state.status = StatusEnum.rejected;
         state.feedback = action.payload;
       })
       .addCase(fetchFeedbackById.rejected, (state) => {

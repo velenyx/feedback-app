@@ -5,7 +5,7 @@ import qs from "qs";
 import { BsFillPatchCheckFill as CheckIcon } from "react-icons/bs";
 import { BiUser as ProfileIcon } from "react-icons/bi";
 import AuthService from "../../services/AuthService";
-import { MainLayout } from "../../layout/MainLayout";
+import { MainLayout } from "../../layout/MainLayout/MainLayout";
 import { routePath } from "../../shared/config/routePath";
 import verifyIcon from "../../shared/assets/verify-email.png";
 import "react-toastify/dist/ReactToastify.css";

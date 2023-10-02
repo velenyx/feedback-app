@@ -1,0 +1,15 @@
+.mainLayout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main {
+  height: auto;
+  margin: 20px 0px;
+  @media (max-width: 567px) {
+    margin-top: 80px;
+    height: auto;
+  }
+}

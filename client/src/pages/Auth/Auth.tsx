@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MainLayout } from "../../layout/MainLayout";
+import { MainLayout } from "../../layout/MainLayout/MainLayout";
 import { FormAuth } from "../../components/FormAuth/FormAuth";
 import { routePath } from "../../shared/config/routePath";
 import styles from "./Auth.module.scss";

@@ -1,4 +1,4 @@
-.mainLayout {
+.loadingLayout {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,6 +10,5 @@ main {
   margin: 20px 0px;
   @media (max-width: 567px) {
     margin-top: 80px;
-    height: auto;
   }
 }

@@ -1,5 +1,5 @@
 import { ToastContainer } from "react-toastify";
-import { MainLayout } from "../../layout/MainLayout";
+import { MainLayout } from "../../layout/MainLayout/MainLayout";
 import { Categories } from "../../components/Categories/Categories";
 import { Widget } from "../../components/Widget/Widget";
 import { routePath } from "../../shared/config/routePath";

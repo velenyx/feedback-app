@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MainLayout } from "../../layout/MainLayout";
+import { MainLayout } from "../../layout/MainLayout/MainLayout";
 import { FormRegister } from "../../components/FormRegister/FormRegister";
 import { routePath } from "../../shared/config/routePath";
 import "react-toastify/dist/ReactToastify.css";

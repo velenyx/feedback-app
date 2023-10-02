@@ -1,4 +1,4 @@
-import { MainLayout } from "../../layout/MainLayout";
+import { MainLayout } from "../../layout/MainLayout/MainLayout";
 import styles from "./Profile.module.scss";
 
 const Profile = () => {

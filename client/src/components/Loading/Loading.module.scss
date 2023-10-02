@@ -8,7 +8,4 @@
   & span {
     color: var(--main-color);
   }
-  @media (max-width: 567px) {
-    height: calc(100vh - 400px);
-  }
 }
