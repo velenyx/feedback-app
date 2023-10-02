@@ -14,7 +14,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <ToastContainer />
       <div className={styles.mainLayout}>
         <Header />
-        <main>{children}</main>
+        <main className={styles.main}>{children}</main>
         <Footer />
       </div>
     </>

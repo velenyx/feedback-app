@@ -10,7 +10,7 @@ export const LoadingLayout = ({ children }: ILoadingLayoutProps) => {
   return (
     <div className={styles.loadingLayout}>
       <Header />
-      <main>{children}</main>
+      <main className={styles.loadingMain}>{children}</main>
       <Footer />
     </div>
   );

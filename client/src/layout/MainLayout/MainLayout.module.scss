@@ -5,11 +5,9 @@
   justify-content: space-between;
 }
 
-main {
-  height: auto;
+.main {
   margin: 20px 0px;
   @media (max-width: 567px) {
     margin-top: 80px;
-    height: auto;
   }
 }
