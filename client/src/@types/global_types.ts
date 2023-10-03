@@ -33,7 +33,7 @@ export type FeedbackType = {
   user: UserInfoType;
   views: number;
   tags: TagsType[];
-  commentsCount: number;
+  comments_сount: number;
 };
 export enum StatusEnum {
   loading = "loading",
@@ -44,5 +44,5 @@ export type CommentTypeWithoutId = Omit<CommentType, "id">;
 
 export type CreateFeedbackType = Omit<
   FeedbackType,
-  "id" | "rating" | "views" | "commentsCount"
+  "id" | "rating" | "views" | "comments_сount"
 >;
