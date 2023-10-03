@@ -3,6 +3,7 @@ import styles from "./SubComment.module.scss";
 import { getFormattedDate } from "../../../../shared/helpers/formatDate";
 import { bannedRegex } from "../../../../shared/utils/bannedWords";
 import { CommentTypeWithoutId } from "../../../../@types/global_types";
+import { notifySuccess } from "../../../../shared/utils/notify";
 
 interface ISubCommentProps {
   isOpen: (toogle: boolean) => void;
@@ -23,6 +24,7 @@ export const SubComment = ({ isOpen }: ISubCommentProps) => {
       created_date: getFormattedDate(),
       text: text.replace(bannedRegex, "*".repeat(3)),
     };
+    notifySuccess("Комментарий отправлен");
     isOpen(false);
   };
 

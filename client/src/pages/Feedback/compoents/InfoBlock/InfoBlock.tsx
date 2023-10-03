@@ -80,7 +80,7 @@ export const InfoBlock = ({ feedback }: IInfoProps) => {
           <li>
             <CountryIcon />
             <span>Страна:</span>
-            {feedback.client.coutry}
+            {feedback.client.country}
           </li>
         </ul>
       </section>

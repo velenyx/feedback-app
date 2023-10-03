@@ -25,4 +25,15 @@
   & .text {
     color: var(--black-color);
   }
+
+  @media (max-width: 567px) {
+    & .image {
+      & img {
+        width: 150px;
+      }
+    }
+    & .text {
+      font-size: 14px;
+    }
+  }
 }

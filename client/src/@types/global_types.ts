@@ -3,7 +3,7 @@ export type ClientType = {
   name: string;
   phone?: string;
   email?: string;
-  coutry: string;
+  country: string;
   social_links?: string[];
 };
 export type UserInfoType = {

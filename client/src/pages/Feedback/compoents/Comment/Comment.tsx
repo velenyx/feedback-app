@@ -5,6 +5,8 @@ import { CommentType } from "../../../../@types/global_types";
 import { calculateTimeElapsed } from "../../../../shared/helpers/calculateTimeElapsed";
 import styles from "./Comment.module.scss";
 import { SubComment } from "../SubComment/SubComment";
+import { useAuth } from "../../../../shared/hooks/useAuth";
+import { notifyWarning } from "../../../../shared/utils/notify";
 
 interface ICommentProps {
   data: CommentType;
@@ -13,10 +15,19 @@ interface ICommentProps {
 export const Comment = memo(({ data }: ICommentProps) => {
   const { text, user, created_date } = data;
   const [answerToogle, setAnswerToogle] = useState(false);
+  const { isAuth } = useAuth();
 
   const commentTime = useMemo(() => {
     return calculateTimeElapsed(new Date(created_date));
   }, [created_date]);
+
+  const handleAnswer = () => {
+    if (isAuth) {
+      setAnswerToogle((prev) => !prev);
+    } else {
+      notifyWarning("Авторизуйтесь!");
+    }
+  };
 
   return (
     <article className={styles.comment}>
@@ -38,7 +49,7 @@ export const Comment = memo(({ data }: ICommentProps) => {
       <p className={styles.text} aria-label="Текст комментария">
         {text}
       </p>
-      <button onClick={() => setAnswerToogle((prev) => !prev)} className={styles.answer}>
+      <button onClick={handleAnswer} className={styles.answer}>
         <AnswerIcon /> Ответить
       </button>
 
