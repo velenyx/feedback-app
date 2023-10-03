@@ -1,13 +1,15 @@
 const express = require('express');
 const { feedbackController } = require('../../controllers');
 const auth = require('../../middlewares/auth');
+const validate = require('../../middlewares/validate');
+const { feedbackValidation } = require('../../validations');
 
 const router = express.Router();
 
 router
   .route('/')
   .post(auth(), feedbackController.createFeedback)
-  .get(feedbackController.getFeedbackByCategory);
+  .get(validate(feedbackValidation.getFeedbacks), feedbackController.getFeedbacks);
 
 router
   .route('/:feedbackId')
