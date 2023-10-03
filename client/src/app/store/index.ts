@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import authSlice from "./slice/auth/authSlice";
 import categoriesSlice from "./slice/categories/categoriesSlice";
-import myFeedbacksSlice from "./slice/myFeedbacks/myFeedbacksSlice";
+import myFeedbacksSlice from "./slice/profileFeedbacks/profileFeedbacksSlice";
 
 export const store = configureStore({
   reducer: {

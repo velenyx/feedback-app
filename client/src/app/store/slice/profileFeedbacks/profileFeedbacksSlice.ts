@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../..";
-import { IMyFeedacksSliceInitialState } from "./myFeedbacksTypes";
-import { fetchMyFeedbacks } from "./myFeedbacksThunk";
+import { IProfileFeedacksSliceInitialState } from "./profileFeedbacksTypes";
+import { fetchMyFeedbacks } from "./profileFeedbacksThunk";
 import { StatusEnum } from "../categories/categoriesTypes";
 
-const initialState: IMyFeedacksSliceInitialState = {
+const initialState: IProfileFeedacksSliceInitialState = {
   myFeedbacks: null,
   meta: {
     limit:null,

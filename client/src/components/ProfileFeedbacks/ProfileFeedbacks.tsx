@@ -1,23 +1,23 @@
 import Pagination from "@mui/material/Pagination";
 import { useEffect, useState } from "react";
-import styles from "./MyFeedbacks.module.scss";
+import styles from "./ProfileFeedbacks.module.scss";
 import { FeedbackCard } from "../FeedbackCard/FeedbackCard";
 import { useSelector } from "react-redux";
 import {
   selectMyFeedbacks,
   selectMyFeedbacksMeta,
-} from "../../app/store/slice/myFeedbacks/myFeedbacksSlice";
-import { fetchMyFeedbacks } from "../../app/store/slice/myFeedbacks/myFeedbacksThunk";
+} from "../../app/store/slice/profileFeedbacks/profileFeedbacksSlice";
+import { fetchMyFeedbacks } from "../../app/store/slice/profileFeedbacks/profileFeedbacksThunk";
 import { StatusEnum } from "../../app/store/slice/categories/categoriesTypes";
 import { useAppDispatch } from "../../app/store";
 
-export const MyFeedbacks = () => {
+export const ProfileFeedbacks = () => {
   const [page, setPage] = useState(1);
   const dispatch = useAppDispatch();
   const { myFeedbacks, status } = useSelector(selectMyFeedbacks);
   const { totalPages } = useSelector(selectMyFeedbacksMeta);
   useEffect(() => {
-    dispatch(fetchMyFeedbacks({ page }));
+    dispatch(fetchMyFeedbacks({ page, limit: 5 }));
   }, [page]);
 
   const feedbackItems = myFeedbacks?.map((feedback) => (
@@ -25,7 +25,7 @@ export const MyFeedbacks = () => {
       category={feedback.category}
       rating={feedback.rating}
       text={feedback.text}
-      comments={feedback.commentsCount}
+      comments={feedback.comments_count}
       views={feedback.views}
       id={feedback.id}
       name={feedback.client.name}
