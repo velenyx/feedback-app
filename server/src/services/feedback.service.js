@@ -32,17 +32,13 @@ const getFeedbackByCategory = async (query) => {
   return Feedback.paginate(filter, options);
 };
 
-const incrementFeedbackViewsCount = async (feedbackId) => {
-  const updatedFeedback = await Feedback.findOneAndUpdate(
-    { _id: feedbackId },
-    { $inc: { views: 1 } },
+const incrementFeedbackMetricCount = async (feedbackId, field) => {
+  const updatedFeedback = await Feedback.findByIdAndUpdate(
+    feedbackId,
+    { $inc: { [field]: 1 } },
     { new: true }
   );
   return updatedFeedback;
-};
-
-const incrementFeedbackCommentsCount = async (feedbackId) => {
-  return Feedback.findByIdAndUpdate(feedbackId, { $inc: { commentsCount: 1 } });
 };
 
 const rateFeedback = async (feedbackId, rating) => {
@@ -78,8 +74,7 @@ module.exports = {
   createFeedback,
   getFeedbackById,
   getFeedbackByCategory,
-  incrementFeedbackViewsCount,
-  incrementFeedbackCommentsCount,
+  incrementFeedbackMetricCount,
   rateFeedback,
   deleteFeedback
 };

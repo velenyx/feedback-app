@@ -25,7 +25,10 @@ const getFeedbackByCategory = catchAsync(async (req, res) => {
 });
 
 const incrementFeedbackViewsCount = catchAsync(async (req, res) => {
-  const updatedFeedback = await feedbackService.incrementFeedbackViewsCount(req.params.feedbackId);
+  const updatedFeedback = await feedbackService.incrementFeedbackMetricCount(
+    req.params.feedbackId,
+    'views'
+  );
   res.status(httpStatus.OK).send(updatedFeedback);
 });
 
