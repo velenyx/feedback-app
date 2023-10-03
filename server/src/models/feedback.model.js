@@ -40,7 +40,7 @@ const feedbackSchema = mongoose.Schema(
       type: Number,
       default: 0
     },
-    commentsCount: {
+    comments_count: {
       type: Number,
       default: 0
     },
