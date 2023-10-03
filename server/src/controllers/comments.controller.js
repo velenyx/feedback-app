@@ -17,7 +17,7 @@ const getComments = catchAsync(async (req, res) => {
 });
 
 const rateComment = catchAsync(async (req, res) => {
-  const ratedComment = await commentsService.rateComment(req.params.commentId,req.query.rateType);
+  const ratedComment = await commentsService.rateComment(req.params.commentId, req.query.rateType);
   res.status(httpStatus.CREATED).send(ratedComment);
 });
 

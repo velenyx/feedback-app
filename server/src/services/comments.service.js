@@ -1,8 +1,13 @@
+const httpStatus = require('http-status');
 const { feedbackService } = require('.');
 const { Comment, Reply } = require('../models');
+const ApiError = require('../utils/ApiError');
 
 const createComment = async (commentBody) => {
-  await feedbackService.incrementFeedbackCommentsCount(commentBody.feedback);
+  const feedback = await feedbackService.incrementFeedbackCommentsCount(commentBody.feedback);
+  if (!feedback) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback is not found!');
+  }
   const comment = await Comment.create(commentBody);
   return comment;
 };
@@ -18,6 +23,10 @@ const rateComment = async (commentId, rateType) => {
 };
 
 const createReply = async (replyBody, commentId) => {
+  const comment = await Comment.findByIdAndUpdate(commentId, { $inc: { replies_count: 1 } });
+  if (!comment) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Comment is not found!');
+  }
   const reply = Reply.create({ ...replyBody, comment: commentId });
   return reply;
 };

@@ -42,7 +42,7 @@ const incrementFeedbackViewsCount = async (feedbackId) => {
 };
 
 const incrementFeedbackCommentsCount = async (feedbackId) => {
-  await Feedback.updateOne({ _id: feedbackId }, { $inc: { commentsCount: 1 } });
+  return Feedback.findByIdAndUpdate(feedbackId, { $inc: { commentsCount: 1 } });
 };
 
 const rateFeedback = async (feedbackId, rating) => {
