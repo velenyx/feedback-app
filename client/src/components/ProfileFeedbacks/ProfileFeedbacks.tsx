@@ -1,6 +1,5 @@
 import Pagination from "@mui/material/Pagination";
 import { useEffect, useState } from "react";
-import styles from "./ProfileFeedbacks.module.scss";
 import { FeedbackCard } from "../FeedbackCard/FeedbackCard";
 import { useSelector } from "react-redux";
 import {
@@ -9,11 +8,12 @@ import {
 } from "../../app/store/slice/profileFeedbacks/profileFeedbacksSlice";
 import { fetchMyFeedbacks } from "../../app/store/slice/profileFeedbacks/profileFeedbacksThunk";
 import { useAppDispatch } from "../../app/store";
+import styles from "./ProfileFeedbacks.module.scss";
 
 export const ProfileFeedbacks = () => {
   const [page, setPage] = useState(1);
   const dispatch = useAppDispatch();
-  const { myFeedbacks, status } = useSelector(selectMyFeedbacks);
+  const { myFeedbacks } = useSelector(selectMyFeedbacks);
   const { totalPages } = useSelector(selectMyFeedbacksMeta);
   useEffect(() => {
     dispatch(fetchMyFeedbacks({ page, limit: 5 }));

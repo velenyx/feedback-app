@@ -1,17 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../..";
+import { StatusEnum } from "../categories/categoriesTypes";
 import { IProfileFeedacksSliceInitialState } from "./profileFeedbacksTypes";
 import { fetchMyFeedbacks } from "./profileFeedbacksThunk";
-import { StatusEnum } from "../categories/categoriesTypes";
 
 const initialState: IProfileFeedacksSliceInitialState = {
   myFeedbacks: null,
   meta: {
-    limit:null,
-    page:null,
-    totalPages:null,
-    totalResults:null
-
+    limit: null,
+    page: null,
+    totalPages: null,
+    totalResults: null,
   },
   status: StatusEnum.loading,
 };
