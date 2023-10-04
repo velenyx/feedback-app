@@ -8,7 +8,6 @@ import {
   selectMyFeedbacksMeta,
 } from "../../app/store/slice/profileFeedbacks/profileFeedbacksSlice";
 import { fetchMyFeedbacks } from "../../app/store/slice/profileFeedbacks/profileFeedbacksThunk";
-import { StatusEnum } from "../../app/store/slice/categories/categoriesTypes";
 import { useAppDispatch } from "../../app/store";
 
 export const ProfileFeedbacks = () => {
@@ -34,13 +33,7 @@ export const ProfileFeedbacks = () => {
   ));
   return (
     <div>
-      <div className={styles.feedbacksContainer}>
-        {status === StatusEnum.loading && "loading"}
-        {status === StatusEnum.success && myFeedbacks && feedbackItems}
-        {status === StatusEnum.success &&
-          !myFeedbacks &&
-          "You don't have created feedbacks"}
-      </div>
+      <div className={styles.feedbacksContainer}>{feedbackItems}</div>
 
       <div className={styles.pagination}>
         <Pagination

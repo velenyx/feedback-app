@@ -1,7 +1,7 @@
 import { FeedbackType, PaginationMeta } from "../../../../@types/global_types";
 import { StatusEnum } from "../categories/categoriesTypes";
 
-export type GetProfileFeedbacksResponse = {
+export type FetchProfileFeedbacksResponse = {
   feedbacks: FeedbackType[] | null;
   meta: PaginationMeta;
 };
