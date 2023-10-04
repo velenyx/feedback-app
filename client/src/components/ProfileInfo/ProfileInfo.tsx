@@ -4,10 +4,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import React from "react";
 import styles from "./ProfileInfo.module.scss";
 
-
 interface IProfileInfoProps {
   occupation: string;
-  name: string | undefined;
+  name?: string;
 }
 
 export const ProfileInfo: React.FC<IProfileInfoProps> = ({
