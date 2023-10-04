@@ -1,11 +1,10 @@
 import axios from "axios";
 import { saveTokensLocalStorage } from "../helpers/saveTokens";
 import { AuthTokens } from "../../pages/Register/types";
-import { BASE_URL } from "./url";
 import { routePath } from "./routePath";
 
 export const $api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 $api.interceptors.request.use(
