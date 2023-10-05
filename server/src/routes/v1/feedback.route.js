@@ -16,7 +16,9 @@ router
   .patch(feedbackController.incrementFeedbackViewsCount)
   .get(feedbackController.getFeedback)
   .delete(auth(), feedbackController.deleteFeedback);
-router.route('/rate/:feedbackId').patch(auth(), feedbackController.rateFeedback);
+router
+  .route('/rate/:feedbackId')
+  .patch(auth(), validate(feedbackValidation.rateFeedback), feedbackController.rateFeedback);
 
 module.exports = router;
 
