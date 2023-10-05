@@ -7,14 +7,19 @@ const createComment = async (commentBody) => {
   return comment;
 };
 
-const getCommentsByFeedbackId = async (feedbackId) => {
-  const comments = await Comment.find({ target_id: feedbackId });
+const getCommentsByTargetId = async (target_id) => {
+  const comments = await Comment.find({ target_id });
   return comments;
 };
 
 const rateComment = async (commentId, rateType) => {
   const ratedComment = await Comment.findByIdAndUpdate(commentId, { $inc: { [rateType]: 1 } });
   return ratedComment;
+};
+
+const getRepliesByCommentId = async (commentId) => {
+  const replies = Reply.find({ comment: commentId });
+  return replies;
 };
 
 const createReply = async (replyBody, commentId) => {
@@ -31,4 +36,11 @@ const rateReply = async (replyId, rateType) => {
   return ratedReply;
 };
 
-module.exports = { createComment, getCommentsByFeedbackId, rateComment, createReply, rateReply };
+module.exports = {
+  createComment,
+  getCommentsByTargetId,
+  rateComment,
+  getRepliesByCommentId,
+  createReply,
+  rateReply
+};

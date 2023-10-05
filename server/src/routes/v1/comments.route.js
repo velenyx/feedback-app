@@ -7,13 +7,14 @@ const router = express.Router();
 router
   .route('/:targetId')
   .post(auth(), commentsController.createComment)
-  .get(commentsController.getCommentsByFeedbackId);
+  .get(commentsController.getCommentsByTargetId);
 
 router.route('/:commentId').patch(auth(), commentsController.rateComment);
 
 router
   .route('/reply/:id')
+  .get(commentsController.getRepliesByCommentId)
   .post(auth(), commentsController.createReply)
-  .patch(commentsController.rateReply);
+  .patch(auth(), commentsController.rateReply);
 
 module.exports = router;
