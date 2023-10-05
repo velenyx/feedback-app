@@ -1,5 +1,4 @@
 const httpStatus = require('http-status');
-const { feedbackService } = require('.');
 const { Comment, Reply } = require('../models');
 const ApiError = require('../utils/ApiError');
 
@@ -8,7 +7,7 @@ const createComment = async (commentBody) => {
   return comment;
 };
 
-const getComments = async (feedbackId) => {
+const getCommentsByFeedbackId = async (feedbackId) => {
   const comments = await Comment.find({ target_id: feedbackId });
   return comments;
 };
@@ -32,4 +31,4 @@ const rateReply = async (replyId, rateType) => {
   return ratedReply;
 };
 
-module.exports = { createComment, getComments, rateComment, createReply, rateReply };
+module.exports = { createComment, getCommentsByFeedbackId, rateComment, createReply, rateReply };
