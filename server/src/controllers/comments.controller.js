@@ -6,7 +6,7 @@ const createComment = catchAsync(async (req, res) => {
   const comment = await commentsService.createComment({
     ...req.body,
     creator: req.user,
-    feedback: req.params.feedbackId
+    target_id: req.params.feedbackId
   });
   res.status(httpStatus.CREATED).send(comment);
 });

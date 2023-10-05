@@ -4,19 +4,12 @@ const { Comment, Reply } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 const createComment = async (commentBody) => {
-  const feedback = await feedbackService.incrementFeedbackMetricCount(
-    commentBody.feedback,
-    'commentsCount'
-  );
-  if (!feedback) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Feedback is not found!');
-  }
   const comment = await Comment.create(commentBody);
   return comment;
 };
 
 const getComments = async (feedbackId) => {
-  const comments = await Comment.find({ feedback: feedbackId });
+  const comments = await Comment.find({ target_id: feedbackId });
   return comments;
 };
 
