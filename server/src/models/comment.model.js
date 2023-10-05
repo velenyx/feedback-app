@@ -4,7 +4,7 @@ const { toJSON } = require('./plugins');
 const commentSchema = mongoose.Schema(
   {
     creator: { type: mongoose.SchemaTypes.ObjectId, ref: 'Users', required: true },
-    target_id: { type: mongoose.SchemaTypes.ObjectId, required: true },
+    targetId: { type: mongoose.SchemaTypes.ObjectId, required: true },
     text: { type: String, required: true },
     replies_count: { type: Number, default: 0 },
     likes: { type: Number, default: 0 },

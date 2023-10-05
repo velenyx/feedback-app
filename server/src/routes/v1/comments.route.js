@@ -10,8 +10,6 @@ router
   .patch(auth(), commentsController.rateComment)
   .get(commentsController.getCommentsByTargetId);
 
-
-
 router
   .route('/reply/:id')
   .get(commentsController.getRepliesByCommentId)

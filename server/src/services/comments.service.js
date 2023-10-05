@@ -7,8 +7,8 @@ const createComment = async (commentBody) => {
   return comment;
 };
 
-const getCommentsByTargetId = async (target_id) => {
-  const comments = await Comment.find({ target_id });
+const getCommentsByTargetId = async (targetId) => {
+  const comments = await Comment.find({ targetId });
   return comments;
 };
 

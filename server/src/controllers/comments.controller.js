@@ -6,7 +6,7 @@ const createComment = catchAsync(async (req, res) => {
   const comment = await commentsService.createComment({
     ...req.body,
     creator: req.user,
-    target_id: req.params.targetId
+    targetId: req.params.targetId
   });
   res.status(httpStatus.CREATED).send(comment);
 });
@@ -28,7 +28,7 @@ const getRepliesByCommentId = catchAsync(async (req, res) => {
 
 const createReply = catchAsync(async (req, res) => {
   const reply = await commentsService.createReply(
-    { ...req.body, creator: req.user, },
+    { ...req.body, creator: req.user },
     req.params.id
   );
   res.status(httpStatus.CREATED).send(reply);
