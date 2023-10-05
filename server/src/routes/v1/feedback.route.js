@@ -53,6 +53,19 @@ module.exports = router;
  *           type: number
  *         rating:
  *           type: number
+ *         rating_counts:
+ *           type: object
+ *           properties:
+ *             1:
+ *               type: number
+ *             2:
+ *               type: number
+ *             3:
+ *               type: number
+ *             4:
+ *               type: number
+ *             5:
+ *               type: number
  *         created_date:
  *           type: string
  *           format: date-time
