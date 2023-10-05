@@ -5,7 +5,7 @@ const replySchema = mongoose.Schema(
   {
     creator: { type: mongoose.SchemaTypes.ObjectId, ref: 'Users', required: true },
     comment: { type: mongoose.SchemaTypes.ObjectId, ref: 'Comment', required: true },
-    reply_to: { type: mongoose.SchemaTypes.ObjectId, ref: 'USers', default: null },
+    reply_to: { type: mongoose.SchemaTypes.ObjectId, ref: 'Users', default: null },
     text: { type: String, required: true },
     likes: { type: Number, default: 0 },
     dislikes: { type: Number, default: 0 },

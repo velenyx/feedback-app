@@ -17,18 +17,18 @@ const getCommentsByTargetId = catchAsync(async (req, res) => {
 });
 
 const rateComment = catchAsync(async (req, res) => {
-  const ratedComment = await commentsService.rateComment(req.params.commentId, req.query.rateType);
+  const ratedComment = await commentsService.rateComment(req.params.targetId, req.query.rateType);
   res.status(httpStatus.CREATED).send(ratedComment);
 });
 
 const getRepliesByCommentId = catchAsync(async (req, res) => {
-  const replies = await commentsService.rateComment(req.params.id);
+  const replies = await commentsService.getRepliesByCommentId(req.params.id);
   res.status(httpStatus.OK).send(replies);
 });
 
 const createReply = catchAsync(async (req, res) => {
   const reply = await commentsService.createReply(
-    { ...req.body, creator: req.user },
+    { ...req.body, creator: req.user, },
     req.params.id
   );
   res.status(httpStatus.CREATED).send(reply);

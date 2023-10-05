@@ -7,9 +7,10 @@ const router = express.Router();
 router
   .route('/:targetId')
   .post(auth(), commentsController.createComment)
+  .patch(auth(), commentsController.rateComment)
   .get(commentsController.getCommentsByTargetId);
 
-router.route('/:commentId').patch(auth(), commentsController.rateComment);
+
 
 router
   .route('/reply/:id')

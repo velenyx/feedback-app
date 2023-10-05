@@ -13,7 +13,11 @@ const getCommentsByTargetId = async (target_id) => {
 };
 
 const rateComment = async (commentId, rateType) => {
-  const ratedComment = await Comment.findByIdAndUpdate(commentId, { $inc: { [rateType]: 1 } });
+  const ratedComment = await Comment.findByIdAndUpdate(
+    commentId,
+    { $inc: { [rateType]: 1 } },
+    { new: true }
+  );
   return ratedComment;
 };
 
