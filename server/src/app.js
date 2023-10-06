@@ -64,6 +64,4 @@ app.use(errorConverter);
 // handle error
 app.use(errorHandler);
 
-app.disable('etag');
-
 module.exports = app;
