@@ -1,11 +1,3 @@
-export const errorMessageTranslate = (message: string): string => {
-  return registerErrorMsg[message];
-};
-
-export const errorMessageAuthTranslate = (message: string): string => {
-  return authErrorMsg[message];
-};
-
 type ErrorMsgType = {
   [key: string]: string;
 };
@@ -17,7 +9,6 @@ const authErrorMsg: ErrorMsgType = {
     "Много попыток. Попробуйте снова через 10 минут",
   canceled: "Ошибка авторизации. Попробуйте через 3 минуты",
   undefined: "Неизвестная ошибка!",
-  "": "Неизвестная ошибка!",
 };
 
 const registerErrorMsg: ErrorMsgType = {
@@ -26,8 +17,14 @@ const registerErrorMsg: ErrorMsgType = {
   "email must be a valid email'": "Введите корректный E-mail адрес",
   "Too many requests, please try again later.":
     "Много попыток. Попробуйте снова через 10 минут",
-  "": "",
   canceled: "Ошибка регистрации. Попробуйте через 3 минуты",
   undefined: "Неизвестная ошибка!",
-  "": "Неизвестная ошибка!",
+};
+
+export const errorMessageTranslate = (message: string): string => {
+  return registerErrorMsg[message] || "Неизвестная ошибка";
+};
+
+export const errorMessageAuthTranslate = (message: string): string => {
+  return authErrorMsg[message] || "Неизвестная ошибка";
 };
