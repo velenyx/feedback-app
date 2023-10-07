@@ -27,7 +27,6 @@ const getRepliesByCommentId = catchAsync(async (req, res) => {
 });
 
 const createReply = catchAsync(async (req, res) => {
-  console.log(req.user);
   const reply = await commentsService.createReply(
     { ...req.body, creator: req.user },
     req.params.id
