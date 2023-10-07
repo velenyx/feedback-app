@@ -18,10 +18,7 @@ import styles from "./FormAuth.module.scss";
 
 const schema = yup.object().shape({
   email: yup.string().required("Обязательное поле *").email("Некорректный email"),
-  password: yup
-    .string()
-    .required("Обязательное поле *")
-    .min(8, "Пароль должен содержать не менее 8 символов"),
+  password: yup.string().required("Обязательное поле *"),
 });
 
 export const FormAuth = () => {

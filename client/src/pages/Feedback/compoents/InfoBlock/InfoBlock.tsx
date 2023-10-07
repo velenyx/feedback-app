@@ -8,16 +8,31 @@ import { IoPhonePortraitOutline as PhoneIcon } from "react-icons/io5";
 import { HiOutlineMail as EmailIcon } from "react-icons/hi";
 import { AiOutlineLink as LinksIcon } from "react-icons/ai";
 import { ImEarth as CountryIcon } from "react-icons/im";
-import type { FeedbackType } from "../../../../@types/global_types";
 import { formatDate } from "../../../../shared/helpers/formatDate";
 import { categoryTranslations } from "../../../../shared/helpers/categoryTranslations";
 import styles from "./InfoBlock.module.scss";
+import type { FeedbackType } from "../../../../@types/global_types";
 
 interface IInfoProps {
   feedback: FeedbackType;
 }
 
 export const InfoBlock = ({ feedback }: IInfoProps) => {
+
+  const  getSocialMediaName = (link: string): string => {
+    if (link.includes("facebook")) {
+      return "Facebook";
+    } else if (link.includes("instagram")) {
+      return "Instagram";
+    } else if (link.includes("vk")) {
+      return "VK";
+    } else if (link.includes("twitter")) {
+      return "Twitter";
+    } else {
+      return "  ";
+    }
+  }
+
   return (
     <div className={styles.infoWrapper}>
       <section className={styles.block}>
@@ -71,9 +86,10 @@ export const InfoBlock = ({ feedback }: IInfoProps) => {
           <li>
             <LinksIcon />
             <span>Соц. сети:</span>
+
             {feedback.client.social_links?.map((link, index) => (
               <a key={index} href={link} target="_black">
-                Ссылка {index + 1},
+                {getSocialMediaName(link)}
               </a>
             ))}
           </li>
