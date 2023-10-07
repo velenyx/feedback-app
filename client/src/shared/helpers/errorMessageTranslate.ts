@@ -1,35 +1,33 @@
-export const errorMessageTranslate = (message: string | undefined) => {
-  if (message === null) return "";
-  if (message === "Email already taken") {
-    return "Этот E-mail уже используется.";
-  }
-  if (message === "password must be at least 8 characters") {
-    return "Пароль должен содержать не менее 8 символов";
-  }
-  if (message === '"email" must be a valid email') {
-    return "Введите корректный E-mail адрес";
-  }
-  if (message === "canceled") {
-    return "Возникли проблемы при регистрации. Пожалуйста, попробуйте снова через 3 минуты";
-  }
-  if (message === "Too many requests, please try again later.") {
-    return "Много попыток. Попробуйте снова через 10 минут";
-  }
+export const errorMessageTranslate = (message: string): string => {
+  return registerErrorMsg[message];
 };
 
-export const errorMessageAuthTranslate = (message: string | null) => {
-  if (message === "undefined") return "";
-  if (message === "Incorrect email or password") {
-    return "Некорректный логин или пароль";
-  }
-  if (message === "authorization error") {
-    return "Ошибка авторизации. Попробуйте через 3 минуты";
-  }
-  if (message === "canceled") {
-    return "Ошибка авторизации. Попробуйте через 3 минуты";
-  }
-  if (message === "Too many requests, please try again later.") {
-    return "Много попыток. Попробуйте снова через 10 минут";
-  }
+export const errorMessageAuthTranslate = (message: string): string => {
+  return authErrorMsg[message];
 };
-2;
+
+type ErrorMsgType = {
+  [key: string]: string;
+};
+
+const authErrorMsg: ErrorMsgType = {
+  "Incorrect email or password": "Некорректный логин или пароль",
+  "authorization error": "Ошибка авторизации. Попробуйте через 3 минуты",
+  "Too many requests, please try again later.":
+    "Много попыток. Попробуйте снова через 10 минут",
+  canceled: "Ошибка авторизации. Попробуйте через 3 минуты",
+  undefined: "Неизвестная ошибка!",
+  "": "Неизвестная ошибка!",
+};
+
+const registerErrorMsg: ErrorMsgType = {
+  "Email already taken": "Данный E-mail уже используется",
+  "password must be at least 8 characters": "Пароль должен содержать не менее 8 символов",
+  "email must be a valid email'": "Введите корректный E-mail адрес",
+  "Too many requests, please try again later.":
+    "Много попыток. Попробуйте снова через 10 минут",
+  "": "",
+  canceled: "Ошибка регистрации. Попробуйте через 3 минуты",
+  undefined: "Неизвестная ошибка!",
+  "": "Неизвестная ошибка!",
+};
