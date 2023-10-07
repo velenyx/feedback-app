@@ -143,7 +143,7 @@ module.exports = router;
 *         '500':
 *           description: Internal Server Error
 
-*   /comments/{targetId}/reply/{id}:
+*   /comments/reply/{id}:
 *     get:
 *       tags:
 *         - Replies
@@ -176,18 +176,18 @@ module.exports = router;
 *       description: Create a new reply for a specific comment
 *       security:
 *         - bearerAuth: []
+*       requestBody:
+*         required: true
+*         content:
+*           application/json:
+*             schema:
+*               $ref: '#/components/schemas/Comment'
 *       parameters:
 *         - in: path
 *           name: id
 *           description: ID of the comment
 *           required: true
 *           type: string
-*         - in: body
-*           name: reply
-*           description: Reply object
-*           required: true
-*           schema:
-*             $ref: '#/definitions/Reply'
 *       responses:
 *         '201':
 *           description: Created
