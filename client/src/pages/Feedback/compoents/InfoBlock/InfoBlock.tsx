@@ -10,6 +10,7 @@ import { AiOutlineLink as LinksIcon } from "react-icons/ai";
 import { ImEarth as CountryIcon } from "react-icons/im";
 import { formatDate } from "../../../../shared/helpers/formatDate";
 import { categoryTranslations } from "../../../../shared/helpers/categoryTranslations";
+import { getSocialMediaName } from "../../../../shared/helpers/getSocialMediaName";
 import styles from "./InfoBlock.module.scss";
 import type { FeedbackType } from "../../../../@types/global_types";
 
@@ -18,20 +19,6 @@ interface IInfoProps {
 }
 
 export const InfoBlock = ({ feedback }: IInfoProps) => {
-
-  const  getSocialMediaName = (link: string): string => {
-    if (link.includes("facebook")) {
-      return "Facebook";
-    } else if (link.includes("instagram")) {
-      return "Instagram";
-    } else if (link.includes("vk")) {
-      return "VK";
-    } else if (link.includes("twitter")) {
-      return "Twitter";
-    } else {
-      return "  ";
-    }
-  }
 
   return (
     <div className={styles.infoWrapper}>

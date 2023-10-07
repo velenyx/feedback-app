@@ -48,6 +48,9 @@
   &:hover {
     color: #6164ec;
   }
+  &:focus {
+    color: #6164ec;
+  }
   @media (max-width: 567px) {
     margin-left: 0;
   }

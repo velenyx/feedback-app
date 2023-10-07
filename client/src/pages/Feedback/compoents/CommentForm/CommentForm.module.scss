@@ -55,6 +55,9 @@
       &:active {
         background: var(--main-color-active);
       }
+      &:focus {
+        background: var(--main-color-active);
+      }
 
       &.notAuth {
         pointer-events: none;

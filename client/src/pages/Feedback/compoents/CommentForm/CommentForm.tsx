@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
 import classNames from "classnames";
 import { BiMessageAdd as AddIcom } from "react-icons/bi";
-import type { CommentTypeWithoutId } from "../../../../@types/global_types";
 import { useAuth } from "../../../../shared/hooks/useAuth";
 import { bannedRegex } from "../../../../shared/utils/bannedWords";
 import { getFormattedDate } from "../../../../shared/helpers/formatDate";
 import styles from "./CommentForm.module.scss";
+import type { CommentTypeWithoutId } from "../../../../@types/global_types";
 
 export const CommentForm = () => {
   const [text, setText] = useState("");
@@ -42,7 +42,7 @@ export const CommentForm = () => {
               placeholder="Текс комментария"
               required
             />
-            <button className={classNames({ [styles.notAuth]: !isAuth })} type="submit">
+            <button tabIndex={0} className={classNames({ [styles.notAuth]: !isAuth })} type="submit">
               Добавить
             </button>
           </form>

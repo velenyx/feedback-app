@@ -1,17 +1,19 @@
+type SocialMediaNamesType = {
+  [key: string]: string;
+};
+
+const socialMediaNames: SocialMediaNamesType = {
+  facebook: "Facebook",
+  instagram: "Instagram",
+  vk: "VK",
+  twitter: "Twitter",
+  linkedin: "Linkedin",
+  "t.me": "Telegram",
+};
+
 export const getSocialMediaName = (link: string): string => {
-  if (link.includes("facebook")) {
-    return "Facebook";
-  } else if (link.includes("instagram")) {
-    return "Instagram";
-  } else if (link.includes("vk")) {
-    return "VK";
-  } else if (link.includes("twitter")) {
-    return "Twitter";
-  } else if (link.includes("linkedin")) {
-    return "Linkedin";
-  } else if (link.includes("t.me")) {
-    return "Telegram";
-  } else {
-    return "Другие сети";
-  }
+  const socialMediaName = Object.keys(socialMediaNames).find((name) =>
+    link.includes(name)
+  );
+  return socialMediaName ? socialMediaNames[socialMediaName] : "Другие сети";
 };
