@@ -6,11 +6,7 @@ export type ClientType = {
   country: string;
   social_links?: string[];
 };
-export type UserInfoType = {
-  id: string;
-  name: string;
-  email: string;
-};
+
 export type TagsType = {
   tag: string;
   piture: string;
@@ -23,6 +19,14 @@ export type CommentType = {
   user: UserInfoType;
   sub_сomments?: CommentType[];
 };
+
+export type UserInfoType = {
+  id: string;
+  name: string;
+  email: string;
+  isEmailVerified: boolean;
+};
+
 export type FeedbackType = {
   id: string;
   category: string;

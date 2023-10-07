@@ -29,6 +29,10 @@
   padding-left: 55px;
   line-height: 1.5;
   font-weight: 300;
+
+  @media (max-width: 567px) {
+    padding-left: 0;
+  }
 }
 .answer {
   margin-top: 10px;
@@ -43,5 +47,8 @@
 
   &:hover {
     color: #6164ec;
+  }
+  @media (max-width: 567px) {
+    margin-left: 0;
   }
 }

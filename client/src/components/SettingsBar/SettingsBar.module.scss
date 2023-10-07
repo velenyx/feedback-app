@@ -30,7 +30,7 @@
 
   & .divider {
     border-bottom: 1px solid var(--border-color);
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
       & {
         border: none;
       }

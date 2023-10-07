@@ -9,7 +9,7 @@
     margin-bottom: 20px;
   }
 
-  & figure {
+  & .headerFigure {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -24,6 +24,18 @@
       @media (max-width: 567px) {
         width: 30px;
         height: 30px;
+      }
+    }
+    & .verify {
+      color: var(--green-color);
+      font-size: 20px;
+      height: 100%;
+      display: flex;
+      margin-left: -10px;
+
+      @media (max-width: 567px) {
+        font-size: 16px;
+        margin: 0;
       }
     }
   }

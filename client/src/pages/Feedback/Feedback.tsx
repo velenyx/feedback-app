@@ -33,6 +33,7 @@ const Feedback = () => {
         id: "eignsjsuetsakasf",
         name: "Иванов Иван",
         email: "ivanow.w@gmail.com",
+        isEmailVerified: true,
       },
     },
     {
@@ -43,6 +44,7 @@ const Feedback = () => {
         id: "eignsjsuetsakasf",
         name: "Иванов Иван",
         email: "ivanow.w@gmail.com",
+        isEmailVerified: true,
       },
     },
     {
@@ -53,6 +55,7 @@ const Feedback = () => {
         id: "eignsjsuetsakasf",
         name: "Иванов Иван",
         email: "ivanow.w@gmail.com",
+        isEmailVerified: true,
       },
     },
   ];
@@ -90,7 +93,11 @@ const Feedback = () => {
         <div className={styles.container}>
           {status === StatusEnum.success && feedback && (
             <>
-              <HeaderBlock userName={feedback.user.name} rating={feedback.rating} />
+              <HeaderBlock
+                userName={feedback.user.name}
+                rating={feedback.rating}
+                isVerify={feedback.user.isEmailVerified}
+              />
               <InfoBlock feedback={feedback} />
               <SharedBlock name={feedback.client.name} />
               <FeedbackTextBlock text={feedback.text} />

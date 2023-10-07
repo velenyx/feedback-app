@@ -1,10 +1,12 @@
 .categories {
-  min-width: 226px;
+  min-width: 200px;
   background-color: var(--white-color);
   border-radius: 10px;
   height: max-content;
   overflow: hidden;
-  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.11), 0 2px 1px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 5px 14px rgba(0, 0, 0, 0.11),
+    0 2px 1px rgba(0, 0, 0, 0.05);
 
   & .container {
     padding-bottom: 20px;
@@ -31,7 +33,7 @@
     & svg {
       transition: all 0.3s ease;
 
-      @media (max-width: 767px) {
+      @media (max-width: 768px) {
         & {
           cursor: pointer;
         }
@@ -40,7 +42,7 @@
     & .activeSvg {
       transform: rotate(45deg);
     }
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
       & {
         background: var(--main-color);
         color: var(--white-color);
@@ -49,7 +51,7 @@
   }
   & .divider {
     border-bottom: 1px solid var(--border-color);
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
       & {
         border: none;
       }
