@@ -8,7 +8,7 @@ const createComment = async (commentBody) => {
 };
 
 const getCommentsByTargetId = async (targetId) => {
-  const comments = await Comment.find({ targetId });
+  const comments = await Comment.find({ targetId }).populate(['creator', 'user']);
   return comments;
 };
 
@@ -18,11 +18,17 @@ const rateComment = async (commentId, rateType) => {
     { $inc: { [rateType]: 1 } },
     { new: true }
   );
+  if (!ratedComment) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Comment isn't found");
+  }
   return ratedComment;
 };
 
 const getRepliesByCommentId = async (commentId) => {
-  const replies = Reply.find({ comment: commentId });
+  const replies = Reply.find({ comment: commentId })
+    .populate(['reply_to', 'user'])
+    .populate(['creator', 'user'])
+    .exec();
   return replies;
 };
 
@@ -37,6 +43,9 @@ const createReply = async (replyBody, commentId) => {
 
 const rateReply = async (replyId, rateType) => {
   const ratedReply = await Reply.findByIdAndUpdate(replyId, { $inc: { [rateType]: 1 } });
+  if (!ratedReply) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Reply isn't found");
+  }
   return ratedReply;
 };
 
