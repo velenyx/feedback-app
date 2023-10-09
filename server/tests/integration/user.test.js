@@ -37,7 +37,8 @@ describe('User routes', () => {
         name: newUser.name,
         email: newUser.email,
         role: newUser.role,
-        isEmailVerified: false
+        isEmailVerified: false,
+        createdAt: expect.anything()
       });
 
       const dbUser = await User.findById(res.body.id);
@@ -168,7 +169,8 @@ describe('User routes', () => {
         name: userOne.name,
         email: userOne.email,
         role: userOne.role,
-        isEmailVerified: userOne.isEmailVerified
+        isEmailVerified: userOne.isEmailVerified,
+        createdAt: expect.anything()
       });
     });
 
@@ -371,7 +373,8 @@ describe('User routes', () => {
         email: userOne.email,
         name: userOne.name,
         role: userOne.role,
-        isEmailVerified: userOne.isEmailVerified
+        isEmailVerified: userOne.isEmailVerified,
+        createdAt: expect.anything()
       });
     });
 
@@ -504,7 +507,8 @@ describe('User routes', () => {
         name: updateBody.name,
         email: updateBody.email,
         role: 'user',
-        isEmailVerified: false
+        isEmailVerified: false,
+        createdAt: expect.anything()
       });
 
       const dbUser = await User.findById(userOne._id);

@@ -1,19 +1,29 @@
 const express = require('express');
 const { commentsController } = require('../../controllers');
 const auth = require('../../middlewares/auth');
+const validate = require('../../middlewares/validate');
+const { commentOrReplyValidation } = require('../../validations');
 
 const router = express.Router();
 
 router
   .route('/:targetId')
-  .post(auth(), commentsController.createComment)
+  .post(
+    auth(),
+    validate(commentOrReplyValidation.createComemntOrReply),
+    commentsController.createComment
+  )
   .patch(auth(), commentsController.rateComment)
   .get(commentsController.getCommentsByTargetId);
 
 router
   .route('/reply/:id')
   .get(commentsController.getRepliesByCommentId)
-  .post(auth(), commentsController.createReply)
+  .post(
+    auth(),
+    validate(commentOrReplyValidation.createComemntOrReply),
+    commentsController.createReply
+  )
   .patch(auth(), commentsController.rateReply);
 
 module.exports = router;

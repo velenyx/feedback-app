@@ -12,8 +12,7 @@ const commentSchema = mongoose.Schema(
     text: { type: String, required: true },
     replies_count: { type: Number, default: 0 },
     likes: { type: Number, default: 0 },
-    dislikes: { type: Number, default: 0 },
-    createdDate: { type: Date, default: Date.now }
+    dislikes: { type: Number, default: 0 }
   },
   { timestamps: true }
 );
