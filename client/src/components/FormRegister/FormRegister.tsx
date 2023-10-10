@@ -58,6 +58,21 @@ export const FormRegister = () => {
     setSuccess(false);
     setError({ state: false, message: "" });
   };
+
+  const  handleAxiosError = (error: unknown) => {
+    if (error instanceof AxiosError && error.response) {
+      const { code, message } = error.response.data;
+      if (code === 400 || code === 401) {
+        setError({ state: true, message });
+      }
+      if (error.response.status === 429) {
+        setError({ state: true, message: error.response.data });
+      }
+    } else {
+      setError({ state: true, message: "Ошибка при регистрации" });
+    }
+  }
+
   const onSubmit = (userData: RegisterType) => {
     resetFormState();
     const normalizeData = { ...userData, name: capitalizeFullName(userData.name) };
@@ -68,17 +83,7 @@ export const FormRegister = () => {
         form.reset(defaultFormValues);
       })
       .catch((error) => {
-        if (error instanceof AxiosError && error.response) {
-          const { code, message } = error.response.data;
-          if (code === 400 || code === 401) {
-            setError({ state: true, message });
-          }
-          if (error.response.status === 429) {
-            setError({ state: true, message: error.response.data });
-          }
-        } else {
-          setError({ state: true, message: "Ошибка при регистрации" });
-        }
+        handleAxiosError(error)
       })
       .finally(() => {
         setLoading(false);
