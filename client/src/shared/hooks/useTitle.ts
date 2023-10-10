@@ -1,8 +1,16 @@
-import { useEffect } from "react";
-export const useTitle = (title: string | undefined) => {
+import { useEffect, useState } from "react";
+
+export const useTitle = () => {
+
+  const [pageTitle, setPageTitle] = useState("")
+
   useEffect(() => {
-    if (title) {
-      document.title = title;
+    if (pageTitle) {
+      document.title = pageTitle;
     }
-  }, [title]);
+  }, [pageTitle]);
+
+  return {
+    setPageTitle
+  }
 };

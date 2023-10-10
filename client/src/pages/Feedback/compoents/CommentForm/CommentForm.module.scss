@@ -58,12 +58,6 @@
       &:focus {
         background: var(--main-color-active);
       }
-
-      &.notAuth {
-        pointer-events: none;
-        background: gray;
-        color: var(--white-color);
-      }
     }
   }
 }

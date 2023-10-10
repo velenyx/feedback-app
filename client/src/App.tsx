@@ -4,10 +4,11 @@ import { Routing } from "./Routing";
 import { removeUser, setUser } from "./app/store/slice/auth/authSlice";
 import AuthService from "./services/AuthService";
 import "./app/styles/app.scss";
+import { useTitle } from "./shared/hooks/useTitle";
 
 export const App = () => {
   const dispatch = useDispatch();
-  
+
   const checkAuthorization = async () => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {

@@ -1,12 +1,12 @@
 import { useMemo, memo, useState } from "react";
-import PersonPinIcon from "@mui/icons-material/PersonPin";
+import PersonPinIcon from '@mui/icons-material/PersonPin';
 import { BsArrowReturnRight as AnswerIcon } from "react-icons/bs";
 import { CommentType } from "../../../../@types/global_types";
 import { calculateTimeElapsed } from "../../../../shared/helpers/calculateTimeElapsed";
-import styles from "./Comment.module.scss";
 import { SubComment } from "../SubComment/SubComment";
 import { useAuth } from "../../../../shared/hooks/useAuth";
 import { notifyWarning } from "../../../../shared/utils/notify";
+import styles from "./Comment.module.scss";
 
 interface ICommentProps {
   data: CommentType;

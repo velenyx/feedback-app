@@ -9,6 +9,7 @@ export const useAuth = () => {
     email: user?.email,
     name: user?.name,
     id: user?.id,
+    isVerified: user?.isEmailVerified,
     role: user?.role,
   };
 };

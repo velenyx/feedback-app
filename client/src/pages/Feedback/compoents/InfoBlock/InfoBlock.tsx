@@ -19,7 +19,6 @@ interface IInfoProps {
 }
 
 export const InfoBlock = ({ feedback }: IInfoProps) => {
-
   return (
     <div className={styles.infoWrapper}>
       <section className={styles.block}>
@@ -62,13 +61,20 @@ export const InfoBlock = ({ feedback }: IInfoProps) => {
           <li>
             <PhoneIcon />
             <span>Телефон:</span>
-            {<a href={`tel:${feedback.client.phone}`}>{feedback.client.phone}</a> ||
-              "Нет данных"}
+            {feedback.client.phone ? (
+              <a href={`tel:${feedback.client.phone}`}>{feedback.client.phone}</a>
+            ) : (
+              "Нет данных"
+            )}
           </li>
           <li>
             <EmailIcon />
             <span>Почта:</span>
-            {feedback.client.email || "Нет данных"}
+            {feedback.client.email ? (
+              <a href={"mailto:" + feedback.client.email}>{feedback.client.email}</a>
+            ) : (
+              "Нет данных"
+            )}
           </li>
           <li>
             <LinksIcon />
