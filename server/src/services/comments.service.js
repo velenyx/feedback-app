@@ -1,8 +1,14 @@
 const httpStatus = require('http-status');
-const { Comment, Reply } = require('../models');
+const { Comment, Reply, Feedback } = require('../models');
 const ApiError = require('../utils/ApiError');
+const { feedbackService } = require('.');
 
 const createComment = async (commentBody) => {
+  const feedback = await feedbackService.incrementFeedbackMetricCount(
+    commentBody.targetId,
+    'comments_count'
+  );
+  console.log(feedback);
   const comment = await Comment.create(commentBody);
   return comment;
 };
