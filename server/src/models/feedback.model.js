@@ -48,7 +48,6 @@ const feedbackSchema = mongoose.Schema(
       4: { type: Number, default: 0 },
       5: { type: Number, default: 0 }
     },
-    created_date: { type: Date, default: Date.now }
   },
 
   { timestamps: true }
