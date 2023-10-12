@@ -41,7 +41,8 @@ describe('Auth routes', () => {
         name: newUser.name,
         email: newUser.email,
         role: 'user',
-        isEmailVerified: false
+        isEmailVerified: false,
+        createdAt: expect.anything()
       });
 
       const dbUser = await User.findById(res.body.user.id);
@@ -108,7 +109,8 @@ describe('Auth routes', () => {
         name: userOne.name,
         email: userOne.email,
         role: userOne.role,
-        isEmailVerified: userOne.isEmailVerified
+        isEmailVerified: userOne.isEmailVerified,
+        createdAt: expect.anything()
       });
 
       expect(res.body.tokens).toEqual({

@@ -20,10 +20,10 @@ const queryFeedbacks = async (filter, options) => {
   return feedbacks;
 };
 
-const incrementFeedbackViewsCount = async (feedbackId) => {
-  const updatedFeedback = await Feedback.findOneAndUpdate(
-    { _id: feedbackId },
-    { $inc: { views: 1 } },
+const incrementFeedbackMetricCount = async (feedbackId, field) => {
+  const updatedFeedback = await Feedback.findByIdAndUpdate(
+    feedbackId,
+    { $inc: { [field]: 1 } },
     { new: true }
   );
   return updatedFeedback;
@@ -62,7 +62,7 @@ module.exports = {
   createFeedback,
   getFeedbackById,
   queryFeedbacks,
-  incrementFeedbackViewsCount,
+  incrementFeedbackMetricCount,
   rateFeedback,
   deleteFeedback
 };
