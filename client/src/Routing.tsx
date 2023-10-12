@@ -14,6 +14,7 @@ import { AgremeentLazy } from "./pages/Agremeent/AgremeentLazy";
 import { AboutLazy } from "./pages/About/AboutLazy";
 import { VerifyEmailLazy } from "./pages/VerifyEmail/VerifyEmailLazy";
 import { LazyLoading } from "./components/LazyLoading/LazyLoading";
+import VerifyEmail from "./pages/VerifyEmail/VerifyEmail";
 
 export const Routing = () => {
   const { isAuth } = useAuth();
@@ -45,6 +46,14 @@ export const Routing = () => {
           <Suspense fallback={<LazyLoading />}>
             <HomeLazy />
           </Suspense>
+        }
+      />
+      <Route
+        path="/verify"
+        element={
+
+            <VerifyEmail />
+   
         }
       />
 

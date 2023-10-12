@@ -31,10 +31,11 @@ export const Categories = () => {
   }, [dispatch]);
 
   return (
-    <nav className={styles.categories}>
-      <div className={styles.container}>
+    <aside className={styles.categories}>
+      <nav className={styles.container}>
         <div className={styles.title}>
           <span>Категории</span>
+
           <CategoryIcon
             onClick={handleIsOpen}
             className={classNames({ [styles.activeSvg]: isOpenCategories })}
@@ -49,7 +50,7 @@ export const Categories = () => {
           selectedCategory={selectedCategory}
           isOpenCategories={isOpenCategories}
         />
-      </div>
-    </nav>
+      </nav>
+    </aside>
   );
 };
