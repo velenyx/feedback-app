@@ -30,12 +30,18 @@ const incrementFeedbackMetricCount = async (feedbackId, field) => {
 };
 
 const rateFeedback = async (feedbackId, rating) => {
-  const feedback = await getFeedbackById(feedbackId);
-  if (!feedback) {
+  const ratedFeedback = await Feedback.findByIdAndUpdate(
+    feedbackId,
+    {
+      $inc: { [`rating_counts.${rating}`]: 1 },
+      rating
+    },
+    { new: true }
+  );
+
+  if (!ratedFeedback) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Feedback does not exist!');
   }
-  feedback.rating = rating;
-  const ratedFeedback = await feedback.save();
   return ratedFeedback;
 };
 

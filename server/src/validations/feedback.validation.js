@@ -9,4 +9,10 @@ const getFeedbacks = {
   })
 };
 
-module.exports = { getFeedbacks };
+const rateFeedback = {
+  query: Joi.object().keys({
+    rating: Joi.number().min(1).max(5)
+  })
+};
+
+module.exports = { getFeedbacks, rateFeedback };

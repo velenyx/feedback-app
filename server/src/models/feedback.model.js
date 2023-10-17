@@ -45,7 +45,13 @@ const feedbackSchema = mongoose.Schema(
       default: 0
     },
     rating: { type: Number, default: 0 },
-    created_date: { type: Date, default: Date.now }
+    rating_counts: {
+      1: { type: Number, default: 0 },
+      2: { type: Number, default: 0 },
+      3: { type: Number, default: 0 },
+      4: { type: Number, default: 0 },
+      5: { type: Number, default: 0 }
+    }
   },
 
   { timestamps: true }
